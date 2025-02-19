@@ -8,6 +8,9 @@ import PLACES_IMAGES from '@/constants/PlacesDemoImages'
 export default function Places() {
   const Container = Platform.OS === 'web' ? ScrollView : SafeAreaView;
 
+  const listHeaderComponent = <Text style={styles.textDefault}>Top of List</Text>
+  const listFooterComponent = <Text style={styles.textDefault}>End of List</Text>
+
   return (
     <>
       <Stack.Screen options={{ title: 'Places',  headerShown: false }} />
@@ -17,13 +20,25 @@ export default function Places() {
           data={PLACES_DEMO}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.contentContainer}
+          // ListHeaderComponent={listHeaderComponent}
+          // ListHeaderComponentStyle={ styles.listHeaderFooterComponent }
+          ListFooterComponent={listFooterComponent}
+          ListFooterComponentStyle={ styles.listHeaderFooterComponent }
+          ListEmptyComponent={<Text style={styles.textDefault} >No Items</Text>}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
             <View style={styles.placeContainer}>
               <Image style={styles.iconImg} source={PLACES_IMAGES[item.id]}></Image>
-              <View>
-                <Text style={styles.textName}>{item.name}</Text>
-                <Text style={styles.textType}>{item.type}</Text>
+              <View style={styles.textAllContainer}>
+                <View style={styles.textContainer}>
+                  <Text style={styles.textName}>{item.name}</Text>
+                  <Text style={styles.textType}>{item.type}</Text>
+                </View>
+                <View style={styles.textDetailsContainer}>
+                  <Text style={styles.textDetails}>{item.next_opening_time}</Text>
+                  <Text style={styles.textDetails}>{item.languages}</Text>
+                  <Text style={styles.textDetails}>{item.city}, {item.district}</Text>
+                </View>
               </View>
             </View>
           )}
@@ -38,6 +53,10 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
     },
+    textDefault: {
+      color: 'white',
+      fontSize: 20,
+  },
     text: {
         color: 'white',
         fontSize: 42,
@@ -46,15 +65,20 @@ const styles = StyleSheet.create({
     },
     textName: {
       color: 'white',
-      fontSize: 32,
+      fontSize: 20,
       fontWeight: 'bold',
       // textAlign: 'center',
+      maxWidth: 200,
+      overflow: "hidden",
     },
     textType: {
-        color: 'white',
-        fontSize: 28,
-        fontWeight: '400',
-        // textAlign: 'center',
+      color: 'white',
+      fontSize: 16,
+      fontWeight: '400',
+      // textAlign: 'center',
+      maxWidth: 150,
+      overflow: "hidden",
+      textOverflow: "ellipsis",
     },
     contentContainer: {
       paddingTop: 10,
@@ -62,12 +86,57 @@ const styles = StyleSheet.create({
       paddingHorizontal: 12,
       backgroundColor: "#202020",
     },
+
     placeContainer: {
       flex: 1,
-      flexDirection: 'row'
+      flexDirection: 'row',
+      width: "100%",
+      maxWidth: 600,
+      marginBottom: 10,
+      borderRadius: 20,
+      overflow: "hidden",
+      marginHorizontal: "auto",
+      backgroundColor: "#333",
+      padding: 15,
+      height: 110
+    },
+
+    textAllContainer: {
+      flex: 1,
+      flexDirection: 'row',
+      width: "100%",
+      justifyContent: 'space-between'
+    },
+    textContainer: {
+      marginLeft: 20,
+      height: "100%",
+      marginVertical: "auto",
     },
     iconImg: {
-      width: 80,
-      height: 80,
+      width: 70,
+      height: 70,
+    },
+
+    textDetailsContainer: {
+      marginLeft: 20,
+      height: "100%",
+      marginVertical: "auto",
+      maxWidth: 150
+    },
+    textDetails: {
+      color: 'white',
+      fontSize: 14,
+      fontWeight: '400',
+      // textAlign: 'center',
+      maxWidth: 150,
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      textAlign: "right"
+    },
+
+    listHeaderFooterComponent: {
+      color: 'white',
+      textAlign: 'center',
+      marginHorizontal: 'auto',
     }
 })

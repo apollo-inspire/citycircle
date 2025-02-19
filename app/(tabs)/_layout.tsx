@@ -35,13 +35,13 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="forum.fill" color={color} />,
         }}
       />
-      {/* <Tabs.Screen
+      <Tabs.Screen
         name="events"
         options={{
           title: 'Events',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="calendartoday.fill" color={color} />,
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="calendar-today.fill" color={color} />,
         }}
-      /> */}
+      />
       <Tabs.Screen
         name="map"
         options={{
@@ -56,13 +56,13 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="list.fill" color={color} />,
         }}
       />
-      {/* <Tabs.Screen
+      <Tabs.Screen
         name="profile"
         options={{
           title: 'Profile',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="person.fill" color={color} />,
         }}
-      /> */}
+      />
     </Tabs>
   );
 }
