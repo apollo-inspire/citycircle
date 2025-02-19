@@ -19,8 +19,8 @@ export default function Places() {
           contentContainerStyle={styles.contentContainer}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
-            <View>
-              <Image source={PLACES_IMAGES[item.id - 1]}></Image>
+            <View style={styles.placeContainer}>
+              <Image style={styles.iconImg} source={PLACES_IMAGES[item.id]}></Image>
               <View>
                 <Text style={styles.textName}>{item.name}</Text>
                 <Text style={styles.textType}>{item.type}</Text>
@@ -61,5 +61,13 @@ const styles = StyleSheet.create({
       paddingBottom: 20,
       paddingHorizontal: 12,
       backgroundColor: "#202020",
+    },
+    placeContainer: {
+      flex: 1,
+      flexDirection: 'row'
+    },
+    iconImg: {
+      width: 80,
+      height: 80,
     }
 })
