@@ -1,4 +1,5 @@
 import { StyleSheet, Image, Platform } from 'react-native';
+import { Link, Stack } from 'expo-router'
 
 import { Collapsible } from '@/components/Collapsible';
 import { ExternalLink } from '@/components/ExternalLink';
@@ -9,7 +10,7 @@ import { IconSymbol } from '@/components/ui/IconSymbol';
 
 export default function TabTwoScreen() {
   return (
-    <><Stack.Screen options={{ title: 'Places',  headerShown: true }} />
+    <><Stack.Screen options={{ title: 'Explore', headerTitle: 'Explore Page Header', headerShown: true }} />
       <ParallaxScrollView
         headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
         headerImage={
