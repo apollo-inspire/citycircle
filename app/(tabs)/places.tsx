@@ -1,11 +1,15 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet} from 'react-native';
+import { Link, Stack } from 'expo-router';
 import React from 'react'
 
 const places = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>List of Places</Text>
-    </View>
+    <>
+      <Stack.Screen options={{ title: 'Places',  headerShown: true }} />
+      <View style={styles.container}>
+        <Text style={styles.text}>List of Places</Text>
+      </View>
+    </>
   )
 }
 
