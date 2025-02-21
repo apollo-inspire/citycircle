@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet, Platform, SafeAreaView, ScrollView, FlatList } from 'react-native';
+import { View, Text, Image, StyleSheet, Platform, SafeAreaView, ScrollView, FlatList, Pressable } from 'react-native';
 import { Link, Stack } from 'expo-router';
 import React from 'react'
 
@@ -27,7 +27,8 @@ export default function Places() {
           ListEmptyComponent={<Text style={styles.textDefault} >No Items</Text>}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
-            <View style={styles.placeContainer}>
+          <Link href={`/place/${item.id}`} asChild>
+            <Pressable style={styles.placeContainer}>
               <Image style={styles.iconImg} source={PLACES_IMAGES[item.id]}></Image>
               <View style={styles.textAllContainer}>
                 <View style={styles.textContainer}>
@@ -40,7 +41,8 @@ export default function Places() {
                   <Text style={styles.textDetails}>{item.city}, {item.district}</Text>
                 </View>
               </View>
-            </View>
+            </Pressable>
+          </Link>
           )}
           />
       </Container>
