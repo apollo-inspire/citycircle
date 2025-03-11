@@ -1,10 +1,11 @@
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native'
 import React, { useEffect, useRef } from 'react'
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
+import MapView, { PROVIDER_GOOGLE, Region, Marker } from 'react-native-maps'
 
-import rotterdamMapImg from "@/assets/images/maps-rotterdam.png"
+// import rotterdamMapImg from "@/assets/images/maps-rotterdam.png"
 import { useNavigation } from '@react-navigation/native';
 
+import { PLACES_DEMO } from '@/constants/PlacesDemo'
 
 const INITIAL_REGION = {
   latitude: 51.9205651,
@@ -41,6 +42,11 @@ const map = () => {
   };
 
 
+  const onRegionChange = (region: Region) => {
+    console.log(region);
+  };
+
+
   return (
     <View style={styles.container}>
       <MapView 
@@ -50,8 +56,13 @@ const map = () => {
         region={INITIAL_REGION}
         showsUserLocation
         showsMyLocationButton
+        onRegionChangeComplete={onRegionChange}
         ref={mapRef}
-      />
+      >
+        {PLACES_DEMO.map((marker, index) => (
+          <Marker key={index} coordinate={marker} />
+        ))}
+      </MapView>
     </View>
   )
 }
