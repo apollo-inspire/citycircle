@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, Alert } from 'react-native'
 import React, { useEffect, useRef } from 'react'
-import MapView, { PROVIDER_GOOGLE, Region, Marker } from 'react-native-maps'
+import MapView, { PROVIDER_GOOGLE, Region, Marker, Callout } from 'react-native-maps'
 
 // import rotterdamMapImg from "@/assets/images/maps-rotterdam.png"
 import { useNavigation } from '@react-navigation/native';
@@ -43,7 +43,7 @@ const map = () => {
 
 
   const onRegionChange = (region: Region) => {
-    console.log(region);
+    // console.log(region);
   };
 
   const onMarkerSelected = (marker: any) => {
@@ -64,7 +64,19 @@ const map = () => {
         ref={mapRef}
       >
         {PLACES_DEMO.map((marker, index) => (
-          <Marker key={index} coordinate={marker} onPress={() => onMarkerSelected(marker)} />
+          <Marker 
+            key={index} 
+            coordinate={marker} 
+            onPress={() => onMarkerSelected(marker)}
+          >
+            <Callout 
+              onPress={() => onMarkerSelected(marker)}
+              >
+              <View style={{ padding: 10 }}>
+                <Text>{marker.name}</Text>
+              </View>
+            </Callout>
+          </Marker>
         ))}
       </MapView>
     </View>
