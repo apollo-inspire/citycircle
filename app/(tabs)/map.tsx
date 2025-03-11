@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, Alert } from 'react-native'
 import React, { useEffect, useRef } from 'react'
 import MapView, { PROVIDER_GOOGLE, Region, Marker } from 'react-native-maps'
 
@@ -46,6 +46,10 @@ const map = () => {
     console.log(region);
   };
 
+  const onMarkerSelected = (marker: any) => {
+    Alert.alert(`${marker.name}`, `${marker.type}\n${marker.city}, ${marker.district}`);
+  }
+
 
   return (
     <View style={styles.container}>
@@ -60,7 +64,7 @@ const map = () => {
         ref={mapRef}
       >
         {PLACES_DEMO.map((marker, index) => (
-          <Marker key={index} coordinate={marker} />
+          <Marker key={index} coordinate={marker} onPress={() => onMarkerSelected(marker)} />
         ))}
       </MapView>
     </View>
