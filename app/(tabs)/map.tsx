@@ -1,18 +1,57 @@
-import { View, Text, StyleSheet, ImageBackground } from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native'
+import React, { useEffect, useRef } from 'react'
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 
 import rotterdamMapImg from "@/assets/images/maps-rotterdam.png"
+import { useNavigation } from '@react-navigation/native';
+
+
+const INITIAL_REGION = {
+  latitude: 51.9205651,
+  longitude: 4.4756543,
+  latitudeDelta: 0.07,
+  longitudeDelta: 0.07,
+};
 
 const map = () => {
+  const mapRef = useRef<MapView>();
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <TouchableOpacity onPress={focusMap}>
+          <View style={{ padding: 10 }}> 
+            <Text style={styles.text} >Focus</Text>
+          </View>
+      </TouchableOpacity>
+      )
+    })
+  })
+
+  const focusMap = () => {
+    const LocationFenix = {
+      latitude: 51.9020075,
+      longitude: 4.486874,
+      latitudeDelta: 0.003,
+      longitudeDelta: 0.003,
+    };
+
+    mapRef.current.animateToRegion(LocationFenix);
+  };
+
+
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={rotterdamMapImg}
-        resizeMode="cover"
-         style={styles.image}
-      >
-        <Text style={styles.text}>Rotterdam Map</Text>
-      </ImageBackground>
+      <MapView 
+        style={styles.map} 
+        provider={PROVIDER_GOOGLE} 
+        initialRegion={INITIAL_REGION}
+        region={INITIAL_REGION}
+        showsUserLocation
+        showsMyLocationButton
+        ref={mapRef}
+      />
     </View>
   )
 }
@@ -22,20 +61,24 @@ export default map
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'column',
+        // flexDirection: 'column',
     },
-    image: {
+    map: {
       width: '100%',
       height: '100%',
-      flex: 1,
-      resizeMode: 'cover',
-      justifyContent: 'center',
     },
+    // image: {
+    //   width: '100%',
+    //   height: '100%',
+    //   flex: 1,
+    //   resizeMode: 'cover',
+    //   justifyContent: 'center',
+    // },
     text: {
         color: 'white',
-        fontSize: 42,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        backgroundColor: 'rgba(0,0,0,0.7)'
+    //     fontSize: 42,
+    //     fontWeight: 'bold',
+    //     textAlign: 'center',
+    //     backgroundColor: 'rgba(0,0,0,0.7)'
     }
 })
