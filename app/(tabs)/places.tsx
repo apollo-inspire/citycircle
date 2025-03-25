@@ -1,22 +1,25 @@
-import { View, Text, Image, StyleSheet, Platform, SafeAreaView, ScrollView, FlatList, Pressable } from 'react-native';
+import { View, Text, Image, StyleSheet, Platform, ScrollView, FlatList, Pressable } from 'react-native';
 import { Link, Stack } from 'expo-router';
 import React from 'react'
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import { PLACES_DEMO } from '@/constants/PlacesDemo'
 import PLACES_IMAGES from '@/constants/PlacesDemoImages'
 
 export default function Places() {
+  const Provider = Platform.OS === 'web' ? null : SafeAreaProvider;
   const Container = Platform.OS === 'web' ? ScrollView : SafeAreaView;
 
   const listHeaderComponent = <Text style={styles.textDefault}>Top of List</Text>
   const listFooterComponent = <Text style={styles.textDefault}>End of List</Text>
 
   return (
-    <>
+    <Provider>
       <Stack.Screen options={{ title: 'Places',  headerShown: false }} />
       <Container style={styles.container}>
         <Text style={styles.text}>List of Places</Text>
         <FlatList 
+          style={styles.flatList}
           data={PLACES_DEMO}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.contentContainer}
@@ -46,14 +49,14 @@ export default function Places() {
           )}
           />
       </Container>
-    </>
+    </Provider>
   )
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'column',
+        // flexDirection: 'column',
     },
     textDefault: {
       color: 'white',
@@ -87,6 +90,11 @@ const styles = StyleSheet.create({
       paddingBottom: 20,
       paddingHorizontal: 12,
       backgroundColor: "#202020",
+    },
+
+    flatList: {
+      flex: 1,
+      flexDirection: "column",
     },
 
     placeContainer: {

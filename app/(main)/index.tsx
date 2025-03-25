@@ -16,7 +16,7 @@ const index = () => {
 
         <Link href="/map" style={styles.link}>Map</Link>
 
-        <Link href="/explore" style={{ marginHorizontal: 'auto' }} asChild>
+        <Link href="/Explore" style={{ marginHorizontal: 'auto' }} asChild>
             <Pressable style={styles.button}><Text style={styles.buttonText}>Explore</Text></Pressable>
         </Link>
       </ImageBackground>
