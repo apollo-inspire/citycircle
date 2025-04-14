@@ -28,7 +28,7 @@ export default function TabLayout() {
           default: {},
         }),
       }}>
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name="index"
         options={{
           title: 'Friends',
@@ -41,7 +41,7 @@ export default function TabLayout() {
           title: 'Events',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="calendar-today.fill" color={color} />,
         }}
-      />
+      /> */}
       <Tabs.Screen
         name="map"
         options={{
@@ -57,13 +57,13 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="list.fill" color={color} />,
         }}
       />
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name="profile"
         options={{
           title: 'Profile',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="person.fill" color={color} />,
         }}
-      />
+      /> */}
     </Tabs>
   );
 }
