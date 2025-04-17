@@ -16,6 +16,9 @@ const index = () => {
 
         <Link href="/map" style={styles.link}>Map</Link>
 
+        <Link href="/localdatabasetest" style={{ marginHorizontal: 'auto' }} asChild>
+            <Pressable style={styles.button}><Text style={styles.buttonText}>Local Database Test</Text></Pressable>
+        </Link>
         <Link href="/Explore" style={{ marginHorizontal: 'auto' }} asChild>
             <Pressable style={styles.button}><Text style={styles.buttonText}>Explore</Text></Pressable>
         </Link>
