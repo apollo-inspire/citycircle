@@ -4,7 +4,11 @@ import React from 'react'
 
 import rotterdamMapImg from "@/assets/images/maps-rotterdam.png"
 
+import useGeoFenceNotification from '@/hooks/useGeoFenceNotification'
+
 const index = () => {
+  useGeoFenceNotification();
+
   return (
     <View style={styles.container}>
       <ImageBackground
