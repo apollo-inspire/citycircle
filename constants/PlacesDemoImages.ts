@@ -9,6 +9,7 @@ import worm from "@/assets/images/placesdemo/worm-favicon.png";
 import v2 from "@/assets/images/placesdemo/v2-favicon.png";
 import szeneviertel from "@/assets/images/placesdemo/szeneviertel-favicon.png";
 import wunderbar from "@/assets/images/placesdemo/worm-favicon.png";
+import hogeschoolrotterdam from "@/assets/images/placesdemo/worm-favicon.png";
 
 export default [
     donner,
@@ -22,4 +23,5 @@ export default [
     v2,
     szeneviertel,
     wunderbar,
+    hogeschoolrotterdam,
 ];

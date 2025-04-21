@@ -6,7 +6,17 @@ import rotterdamMapImg from "@/assets/images/maps-rotterdam.png"
 
 import useGeoFenceNotification from '@/hooks/useGeoFenceNotification'
 
+import * as Notifications from "expo-notifications";
+
 const index = () => {
+  Notifications.setNotificationHandler({
+      handleNotification: async () => ({
+        shouldShowAlert: true,
+        shouldPlaySound: true,
+        shouldSetBadge: false,
+      }),
+  });
+
   useGeoFenceNotification();
 
   return (

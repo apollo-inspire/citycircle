@@ -3,15 +3,24 @@ import * as Notifications from "expo-notifications";
 import { useEffect, useRef, useState } from "react";
 import { Platform, Alert } from "react-native";
 
+// const GEO_AREA = {
+//   latitude: 51.91731349749627,     
+//   longitude: 4.484378867887312,
+//   radius: 20,           
+// };
+
 const GEO_AREA = {
-  latitude: 37.4219983,     // Example: San Francisco
-  longitude: -122.084,
-  radius: 2000,           // in meters
+  latitude: 51.841636531677224,     
+  longitude: 4.625671826667882,
+  radius: 200,           
 };
 
 export default function useGeoFenceNotification() {
-  const [hasEntered, setHasEntered] = useState(false);
+  // const [hasEntered, setHasEntered] = useState(false);
+  let hasEntered = false;
   const locationSubscription = useRef<Location.LocationSubscription | null>(null);
+
+
 
   useEffect(() => {
     const startTracking = async () => {
@@ -23,6 +32,8 @@ export default function useGeoFenceNotification() {
         return;
       }
 
+      // const { status: existingStatus } = await Notifications.getPermissionsAsync();
+      // console.log("Notification permission status:", existingStatus);
       // sendNotification("Testing Notification", "Lorum ipsum dolor set amit");
 
       locationSubscription.current = await Location.watchPositionAsync(
@@ -44,12 +55,16 @@ export default function useGeoFenceNotification() {
           );
 
           if (distance <= GEO_AREA.radius && !hasEntered) {
-            // sendNotification("You're here!", "You've entered the area.");
+            console.log(hasEntered)
+            sendNotification("You're here!", "You've entered the area.");
             console.log("You're here!", "You've entered the area.");
             Alert.alert("You're here!", "You've entered the area.");
-            setHasEntered(true);
+            // setHasEntered(true);
+            hasEntered = true;
+            console.log(hasEntered)
           } else if (distance > GEO_AREA.radius && hasEntered) {
-            setHasEntered(false); // Reset when user leaves
+            hasEntered = false;
+            // setHasEntered(false); // Reset when user leaves
           }
         }
       );
@@ -85,6 +100,10 @@ async function sendNotification(title: string, body: string) {
       title,
       body,
     },
-    trigger: null, // Send immediately
+    trigger: {
+      // type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
+      seconds: 1,
+      // channelId: 'default',
+    },
   });
 }

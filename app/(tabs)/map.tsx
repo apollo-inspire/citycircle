@@ -113,14 +113,24 @@ const map = () => {
             strokeWidth={6}
           />
           <Circle
-          center={{
-            latitude: 51.918852498892,
-            longitude: 4.479435816744115,
-          }}
-          radius={300} // meters
-          strokeWidth={2}
-          strokeColor="rgba(0,112,255,0.7)"
-          fillColor="rgba(0,112,255,0.3)"
+            center={{
+              latitude:51.841636531677224,     
+              longitude: 4.625671826667882,
+            }}
+            radius={200} // meters
+            strokeWidth={2}
+            strokeColor="rgba(0,112,255,0.7)"
+            fillColor="rgba(0,112,255,0.3)"
+          />
+          <Circle
+            center={{
+              latitude: 51.91731349749627,
+              longitude: 4.484378867887312,
+            }}
+            radius={20} // meters
+            strokeWidth={2}
+            strokeColor="rgba(0,112,255,0.7)"
+            fillColor="rgba(0,112,255,0.3)"
           />
           <Heatmap
             points={heatmapPoints}
