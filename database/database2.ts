@@ -13,7 +13,7 @@ export default function useDatabase() {
     function getOnlineDatabaseContent() {
         onlineDatabase = PLACES_DEMO
     
-        console.log(onlineDatabase)
+        console.log("getOnlineDatabaseContent():", onlineDatabase)
     }
 
     function initialiseOfflineCacheDB() {
@@ -36,6 +36,13 @@ export default function useDatabase() {
         }).catch((error) => {
             console.error("Error creating table", error);
         });
+
+        updateOfflineCache()
+
+        setInterval(() => {
+            console.log("Interval triggered: checking for database update...");
+            updateOfflineCache();
+        }, 1 * 60 * 1000); // minutes, (60) seconds, (1000) ms
     }
 
     function addTestingData() {
@@ -111,11 +118,56 @@ export default function useDatabase() {
         }
     }
 
+    async function updateOfflineCache() {
+        console.log("Starting updateOfflineCache...");
+
+        getOnlineDatabaseContent();
+
+        const offlineData = await getOfflineCacheDBContent();
+
+        const offlineString = JSON.stringify(offlineData.sort((a, b) => a.id - b.id));
+        const onlineString = JSON.stringify(onlineDatabase.sort((a, b) => a.id - b.id));
+
+        if (offlineString !== onlineString) {
+            console.log("Detected difference in online and offline DB — updating offline cache.");
+    
+            for (const place of onlineDatabase) {
+                try {
+                    await offlineCacheDB.runAsync(
+                        `INSERT OR REPLACE INTO places 
+                            (id, name, type, languages, city, district, next_opening_time, latitude, longitude) 
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                        [
+                            place.id,
+                            place.name,
+                            place.type,
+                            JSON.stringify(place.languages),
+                            place.city,
+                            place.district,
+                            place.next_opening_time,
+                            place.latitude,
+                            place.longitude
+                        ]
+                    );
+                    console.log(`Synced: ${place.name}`);
+                } catch (err) {
+                    console.error(`Failed to sync: ${place.name}`, err);
+                }
+            }
+    
+            console.log("Offline cache successfully updated.");
+            // console.log("Cached data now reads:", getOfflineCacheDBContent());
+        } else {
+            console.log("Offline cache is already up-to-date.");
+        }
+    }
+
     return {
         getOnlineDatabaseContent,
         initialiseOfflineCacheDB,
         addTestingData,
-        getOfflineCacheDBContent
+        getOfflineCacheDBContent,
+        updateOfflineCache
     };
 }
 

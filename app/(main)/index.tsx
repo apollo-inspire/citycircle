@@ -12,10 +12,11 @@ import * as Notifications from "expo-notifications";
 const index = () => {
   const database = useDatabase();
   
-  database.getOnlineDatabaseContent()
+  // database.getOnlineDatabaseContent()
   database.initialiseOfflineCacheDB()
-  database.addTestingData()
-  database.getOfflineCacheDBContent()
+  // database.addTestingData()
+  // database.getOfflineCacheDBContent()
+  database.updateOfflineCache()
 
   // console.log(database.getOnlineDatabaseContent())
 
