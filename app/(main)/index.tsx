@@ -5,10 +5,23 @@ import React from 'react'
 import rotterdamMapImg from "@/assets/images/maps-rotterdam.png"
 
 import useGeoFenceNotification from '@/hooks/useGeoFenceNotification'
+import useDatabase from "@/database/database2"
 
 import * as Notifications from "expo-notifications";
 
 const index = () => {
+  const database = useDatabase();
+  
+  database.getOnlineDatabaseContent()
+  database.initialiseOfflineCacheDB()
+  database.addTestingData()
+  database.getOfflineCacheDBContent()
+
+  // console.log(database.getOnlineDatabaseContent())
+
+
+
+
   Notifications.setNotificationHandler({
       handleNotification: async () => ({
         shouldShowAlert: true,
@@ -17,6 +30,7 @@ const index = () => {
       }),
   });
 
+  
   useGeoFenceNotification();
 
   return (
@@ -30,9 +44,9 @@ const index = () => {
 
         <Link href="/map" style={styles.link}>Map</Link>
 
-        <Link href="/localdatabasetest" style={{ marginHorizontal: 'auto' }} asChild>
+        {/* <Link href="/localdatabasetest" style={{ marginHorizontal: 'auto' }} asChild>
             <Pressable style={styles.button}><Text style={styles.buttonText}>Local Database Test</Text></Pressable>
-        </Link>
+        </Link> */}
         <Link href="/Explore" style={{ marginHorizontal: 'auto' }} asChild>
             <Pressable style={styles.button}><Text style={styles.buttonText}>Explore</Text></Pressable>
         </Link>
