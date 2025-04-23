@@ -16,10 +16,14 @@ const index = () => {
   database.initialiseOfflineCacheDB()
   // database.addTestingData()
   // database.getOfflineCacheDBContent()
-  database.updateOfflineCache()
+  // database.updateOfflineCache()
 
   // console.log(database.getOnlineDatabaseContent())
 
+  // setTimeout(async () => {
+  //   const data = await database.getData();
+  //   console.log("🛢️ database.getData():", data);
+  // }, 4000); // 3000ms = 3 seconds
 
 
 

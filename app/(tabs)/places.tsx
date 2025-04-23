@@ -1,17 +1,32 @@
 import { View, Text, Image, StyleSheet, Platform, ScrollView, FlatList, Pressable } from 'react-native';
 import { Link, Stack } from 'expo-router';
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
-import { PLACES_DEMO } from '@/constants/PlacesDemo'
+// import { PLACES_DEMO } from '@/constants/PlacesDemo'
+import useDatabase from "@/database/database2"
 import PLACES_IMAGES from '@/constants/PlacesDemoImages'
 
+
 export default function Places() {
+  const database = useDatabase();
+  const [places, setPlaces] = useState([]);
+
   const Provider = Platform.OS === 'web' ? null : SafeAreaProvider;
   const Container = Platform.OS === 'web' ? ScrollView : SafeAreaView;
 
   const listHeaderComponent = <Text style={styles.textDefault}>Top of List</Text>
   const listFooterComponent = <Text style={styles.textDefault}>End of List</Text>
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await database.getData();
+      setPlaces(data);
+    };
+
+    fetchData();
+  }, []);
+
 
   return (
     <Provider>
@@ -20,7 +35,7 @@ export default function Places() {
         <Text style={styles.text}>List of Places</Text>
         <FlatList 
           style={styles.flatList}
-          data={PLACES_DEMO}
+          data={places}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.contentContainer}
           // ListHeaderComponent={listHeaderComponent}
