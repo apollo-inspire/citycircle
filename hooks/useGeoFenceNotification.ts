@@ -9,10 +9,16 @@ import { Platform, Alert } from "react-native";
 //   radius: 20,           
 // };
 
+// const GEO_AREA = {
+//   latitude: 51.841636531677224,     
+//   longitude: 4.625671826667882,
+//   radius: 200,           
+// };
+
 const GEO_AREA = {
-  latitude: 51.841636531677224,     
-  longitude: 4.625671826667882,
-  radius: 200,           
+  latitude: 37.422,     
+  longitude: 122.084,
+  radius: 2000,           
 };
 
 export default function useGeoFenceNotification() {
@@ -20,6 +26,7 @@ export default function useGeoFenceNotification() {
   let hasEntered = false;
   const locationSubscription = useRef<Location.LocationSubscription | null>(null);
 
+  console.log("useGeoFenceNotification()")
 
 
   useEffect(() => {
@@ -39,7 +46,7 @@ export default function useGeoFenceNotification() {
       locationSubscription.current = await Location.watchPositionAsync(
         {
           accuracy: Location.Accuracy.High,
-          timeInterval: 5000, // every 5 seconds
+          timeInterval: 1000, // every 5 seconds
           distanceInterval: 10, // or every 10 meters
         },
         (location) => {

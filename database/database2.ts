@@ -4,23 +4,25 @@ import * as Network from "expo-network";
 
 import { PLACES_DEMO } from '@/constants/PlacesDemo'
 
-let onlineDatabase; 
-const offlineCacheDB = SQLite.openDatabaseSync('places.db');
 
-let connectedToInternet = false;
-let currentConnectionType: string | null = null;
 
 export default function useDatabase() {
-    console.log("useDatabase enabled")
+    console.log("🗄️ useDatabase enabled")
+
+    let onlineDatabase; 
+    const offlineCacheDB = SQLite.openDatabaseSync('places.db');
+
+    let connectedToInternet = false;
+    let currentConnectionType: string | null = null;
 
     function getOnlineDatabaseContent() {
         onlineDatabase = PLACES_DEMO
     
-        console.log("getOnlineDatabaseContent():", onlineDatabase)
+        console.log("🌐 getOnlineDatabaseContent():", onlineDatabase)
     }
 
     function initialiseOfflineCacheDB() {
-        console.log("starting: initialiseOfflineCacheDB()")
+        console.log("🗂️ starting: initialiseOfflineCacheDB()")
 
         offlineCacheDB.execAsync(
             `CREATE TABLE IF NOT EXISTS places (
@@ -35,9 +37,9 @@ export default function useDatabase() {
                 longitude REAL
             );`
         ).then(() => {
-            console.log("Table created successfully");
+            console.log("✅ Table created successfully");
         }).catch((error) => {
-            console.error("Error creating table", error);
+            console.error("❌ Error creating table", error);
         });
 
         // monitorConnectionType();
@@ -45,7 +47,7 @@ export default function useDatabase() {
         updateOfflineCache()
 
         setInterval(() => {
-            console.log("Interval triggered: checking for database update...");
+            console.log("⏰ Interval triggered: checking for database update...");
             updateOfflineCache();
         }, 5 * 60 * 1000); // minutes, (60) seconds, (1000) ms
     }
@@ -114,17 +116,17 @@ export default function useDatabase() {
                 languages: JSON.parse(row.languages),
             }));
     
-            console.log("Offline cache content:", parsedRows);
+            console.log("💾 Offline cache content:", parsedRows);
             return parsedRows;
     
         } catch (error) {
-            console.error("Error fetching data from offline cache", error);
+            console.error("❌ Error fetching data from offline cache", error);
             return [];
         }
     }
 
     async function updateOfflineCache() {
-        console.log("Starting updateOfflineCache...");
+        console.log("🔁 Starting updateOfflineCache...");
 
         getOnlineDatabaseContent();
 
@@ -154,16 +156,16 @@ export default function useDatabase() {
                             place.longitude
                         ]
                     );
-                    console.log(`Synced: ${place.name}`);
+                    console.log(`✅ Synced: ${place.name}`);
                 } catch (err) {
-                    console.error(`Failed to sync: ${place.name}`, err);
+                    console.error(`❌ Failed to sync: ${place.name}`, err);
                 }
             }
     
-            console.log("Offline cache successfully updated.");
+            console.log("🟢 Offline cache successfully updated.");
             // console.log("Cached data now reads:", getOfflineCacheDBContent());
         } else {
-            console.log("Offline cache is already up-to-date.");
+            console.log("✅ Offline cache is already up-to-date.");
         }
 
 
@@ -207,17 +209,17 @@ export default function useDatabase() {
 
     async function getData() {
         console.log("🔍 Checking connection to decide where to fetch data from...");
-    
+
         try {
             const state = await Network.getNetworkStateAsync();
             const type = state.type;
             const isConnected = state.isConnected && state.isInternetReachable;
-    
+
             console.log(`Connection type: ${type}, Connected: ${isConnected}`);
-    
+
             if (type === Network.NetworkStateType.WIFI && isConnected) {
                 console.log("📶 Fetching data from online database...");
-                getOnlineDatabaseContent(); // Sets `onlineDatabase`
+                getOnlineDatabaseContent();
                 return onlineDatabase;
             } else {
                 console.log("📱 Or ❌ Fetching data from offline cache...");
@@ -225,7 +227,7 @@ export default function useDatabase() {
             }
         } catch (error) {
             console.error("Error checking connection type or fetching data:", error);
-            return await getOfflineCacheDBContent(); // Fallback
+            return await getOfflineCacheDBContent();
         }
     }
 
