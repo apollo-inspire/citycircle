@@ -1,4 +1,5 @@
 import  * as SQLite from "expo-sqlite";
+import * as Network from "expo-network";
 
 
 import { PLACES_DEMO } from '@/constants/PlacesDemo'
@@ -6,6 +7,7 @@ import { PLACES_DEMO } from '@/constants/PlacesDemo'
 let onlineDatabase; 
 const offlineCacheDB = SQLite.openDatabaseSync('places.db');
 
+let connectedToInternet = false;
 
 export default function useDatabase() {
     console.log("useDatabase enabled")
@@ -37,12 +39,14 @@ export default function useDatabase() {
             console.error("Error creating table", error);
         });
 
+        monitorConnectionType();
+
         updateOfflineCache()
 
         setInterval(() => {
             console.log("Interval triggered: checking for database update...");
             updateOfflineCache();
-        }, 1 * 60 * 1000); // minutes, (60) seconds, (1000) ms
+        }, 5 * 60 * 1000); // minutes, (60) seconds, (1000) ms
     }
 
     function addTestingData() {
@@ -161,6 +165,29 @@ export default function useDatabase() {
             console.log("Offline cache is already up-to-date.");
         }
     }
+
+    async function monitorConnectionType() {
+        const updateConnection = async () => {
+            const state = await Network.getNetworkStateAsync();
+            console.log("Network state:", state);
+    
+            connectedToInternet = state.isConnected && state.isInternetReachable;
+    
+            if (connectedToInternet) {
+                console.log("✅ Connected to the internet");
+            } else {
+                console.log("❌ Not connected to the internet");
+            }
+        };
+    
+        // Initial check
+        await updateConnection();
+
+        // Set up an interval to check every 30 seconds (or use AppState or NetInfo subscriptions if preferred)
+        setInterval(updateConnection, 20 * 1000);
+    }
+
+
 
     return {
         getOnlineDatabaseContent,

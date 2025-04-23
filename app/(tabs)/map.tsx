@@ -87,61 +87,76 @@ const map = () => {
               onPress={() => onMarkerSelected(marker)}
               >
               <View style={{ padding: 10 }}>
-                <Text>{marker.name}</Text>
+                {/* <Text>{marker.name}</Text> */}
+                <Text>Lorum Ipsum Dolor</Text>
               </View>
             </Callout>
           </Marker>
         ))}
-          <Polyline
-            coordinates={[
-              {latitude: 51.918852498892, longitude: 4.479435816744115},
-              {latitude: 51.91008440463913, longitude: 4.509421634628058},
-              {latitude: 51.92, longitude: 4.51},
-              {latitude: 51.93, longitude: 4.52},
-              {latitude: 51.94, longitude: 4.53},
-              {latitude: 51.95, longitude: 4.54},
-            ]}
-            strokeColor="#000" // fallback for when `strokeColors` is not supported by the map-provider
-            strokeColors={[
-              '#7F0000',
-              '#00000000', // no color, creates a "long" gradient between the previous and next coordinate
-              '#B24112',
-              '#E5845C',
-              '#238C23',
-              '#7F0000',
-            ]}
-            strokeWidth={6}
-          />
-          <Circle
-            center={{
-              latitude:51.841636531677224,     
-              longitude: 4.625671826667882,
-            }}
-            radius={200} // meters
-            strokeWidth={2}
-            strokeColor="rgba(0,112,255,0.7)"
-            fillColor="rgba(0,112,255,0.3)"
-          />
-          <Circle
-            center={{
-              latitude: 51.91731349749627,
-              longitude: 4.484378867887312,
-            }}
-            radius={20} // meters
-            strokeWidth={2}
-            strokeColor="rgba(0,112,255,0.7)"
-            fillColor="rgba(0,112,255,0.3)"
-          />
-          <Heatmap
-            points={heatmapPoints}
-            opacity={0.7}
-            radius={50}
-            gradient={{
-              colors: ['#00f', '#0ff', '#0f0', '#ff0', '#f00'],
-              startPoints: [0.01, 0.04, 0.1, 0.45, 1],
-              colorMapSize: 256,
-            }}
-          />
+
+        <Marker 
+          coordinate={{
+            latitude: 51.841636531677224,
+            longitude: 4.625671826667882,
+          }}
+        >
+          <Callout>
+            <View style={{ padding: 10 }}>
+              <Text>Lorum Ipsum Dolor</Text>
+            </View>
+          </Callout>
+        </Marker>
+
+        <Polyline
+          coordinates={[
+            {latitude: 51.918852498892, longitude: 4.479435816744115},
+            {latitude: 51.91008440463913, longitude: 4.509421634628058},
+            {latitude: 51.92, longitude: 4.51},
+            {latitude: 51.93, longitude: 4.52},
+            {latitude: 51.94, longitude: 4.53},
+            {latitude: 51.95, longitude: 4.54},
+          ]}
+          strokeColor="#000" // fallback for when `strokeColors` is not supported by the map-provider
+          strokeColors={[
+            '#7F0000',
+            '#00000000', // no color, creates a "long" gradient between the previous and next coordinate
+            '#B24112',
+            '#E5845C',
+            '#238C23',
+            '#7F0000',
+          ]}
+          strokeWidth={6}
+        />
+        <Circle
+          center={{
+            latitude:51.841636531677224,     
+            longitude: 4.625671826667882,
+          }}
+          radius={200} // meters
+          strokeWidth={2}
+          strokeColor="rgba(0,112,255,0.7)"
+          fillColor="rgba(0,112,255,0.3)"
+        />
+        <Circle
+          center={{
+            latitude: 51.91731349749627,
+            longitude: 4.484378867887312,
+          }}
+          radius={20} // meters
+          strokeWidth={2}
+          strokeColor="rgba(0,112,255,0.7)"
+          fillColor="rgba(0,112,255,0.3)"
+        />
+        <Heatmap
+          points={heatmapPoints}
+          opacity={0.7}
+          radius={50}
+          gradient={{
+            colors: ['#00f', '#0ff', '#0f0', '#ff0', '#f00'],
+            startPoints: [0.01, 0.04, 0.1, 0.45, 1],
+            colorMapSize: 256,
+          }}
+        />
       </MapView>
     </View>
   )
