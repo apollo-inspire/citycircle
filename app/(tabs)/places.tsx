@@ -3,13 +3,13 @@ import { Link, Stack } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
-// import { PLACES_DEMO } from '@/constants/PlacesDemo'
-import useDatabase from "@/database/database2"
+import { PLACES_DEMO } from '@/constants/PlacesDemo'
+// import useDatabase from "@/database/database2"
 import PLACES_IMAGES from '@/constants/PlacesDemoImages'
 
 
 export default function Places() {
-  const database = useDatabase();
+  // const database = useDatabase();
   const [places, setPlaces] = useState([]);
 
   const Provider = Platform.OS === 'web' ? null : SafeAreaProvider;
@@ -20,8 +20,8 @@ export default function Places() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await database.getData();
-      setPlaces(data);
+      // const data = await database.getData();
+      setPlaces(PLACES_DEMO);
     };
 
     fetchData();

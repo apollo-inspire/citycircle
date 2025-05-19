@@ -17,8 +17,8 @@ import { Platform, Alert } from "react-native";
 
 const GEO_AREA = {
   latitude: 37.422,     
-  longitude: 122.084,
-  radius: 2000,           
+  longitude: -122.084,
+  radius: 20000,           
 };
 
 export default function useGeoFenceNotification() {
@@ -46,7 +46,7 @@ export default function useGeoFenceNotification() {
       locationSubscription.current = await Location.watchPositionAsync(
         {
           accuracy: Location.Accuracy.High,
-          timeInterval: 1000, // every 5 seconds
+          timeInterval: 5000, // every 5 seconds
           distanceInterval: 10, // or every 10 meters
         },
         (location) => {

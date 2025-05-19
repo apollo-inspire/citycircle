@@ -4,26 +4,17 @@ import React from 'react'
 
 import rotterdamMapImg from "@/assets/images/maps-rotterdam.png"
 
-import useGeoFenceNotification from '@/hooks/useGeoFenceNotification'
-import useDatabase from "@/database/database2"
+// import useGeoFenceNotification from '@/hooks/useGeoFenceNotification'
+// import useDatabase from "@/database/database2"
 
 import * as Notifications from "expo-notifications";
 
 const index = () => {
-  const database = useDatabase();
+  // const database = useDatabase();
   
-  // database.getOnlineDatabaseContent()
-  database.initialiseOfflineCacheDB()
-  // database.addTestingData()
-  // database.getOfflineCacheDBContent()
-  // database.updateOfflineCache()
 
-  // console.log(database.getOnlineDatabaseContent())
+  // database.initialiseOfflineCacheDB()
 
-  // setTimeout(async () => {
-  //   const data = await database.getData();
-  //   console.log("🛢️ database.getData():", data);
-  // }, 4000); // 3000ms = 3 seconds
 
 
 
@@ -36,7 +27,7 @@ const index = () => {
   });
 
   
-  useGeoFenceNotification();
+  // useGeoFenceNotification();
 
   return (
     <View style={styles.container}>
