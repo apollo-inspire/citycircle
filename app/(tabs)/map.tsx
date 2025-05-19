@@ -1,11 +1,12 @@
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, Alert } from 'react-native'
 import React, { useEffect, useRef } from 'react'
 import MapView, { PROVIDER_GOOGLE, Region, Marker, Callout, Polyline, Circle, Heatmap } from 'react-native-maps'
+import { useRouter } from 'expo-router';
 
 // import rotterdamMapImg from "@/assets/images/maps-rotterdam.png"
 import { useNavigation } from '@react-navigation/native';
 
-import { PLACES_DEMO } from '@/constants/PlacesDemo'
+import { PLACES_DEMO } from '@/constants/Places'
 
 const INITIAL_REGION = {
   latitude: 51.9205651,
@@ -17,6 +18,8 @@ const INITIAL_REGION = {
 const map = () => {
   const mapRef = useRef<MapView>();
   const navigation = useNavigation();
+
+  const router = useRouter();
 
   useEffect(() => {
     navigation.setOptions({
@@ -46,9 +49,25 @@ const map = () => {
     // console.log(region);
   };
 
-  const onMarkerSelected = (marker: any) => {
-    Alert.alert(`${marker.name}`, `${marker.type}\n${marker.city}, ${marker.district}`);
-  }
+const onMarkerSelected = (marker: any) => {
+  Alert.alert(
+    marker.name, // Title
+    `${marker.type}\n${marker.city}, ${marker.district}`, // Message
+    [
+      {
+        text: "Cancel",
+        style: "cancel"
+      },
+      {
+        text: "See Details",
+        onPress: () => {
+          router.push(`/place/${marker.id}`);
+        }
+      },
+    ],
+    { cancelable: true }
+  );
+};
 
   const heatmapPoints = [
     { latitude: 51.928852498892, longitude: 4.479435816744115, weight: 1 },
