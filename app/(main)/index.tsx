@@ -11,12 +11,8 @@ import * as Notifications from "expo-notifications";
 
 const index = () => {
   // const database = useDatabase();
-  
 
   // database.initialiseOfflineCacheDB()
-
-
-
 
   Notifications.setNotificationHandler({
       handleNotification: async () => ({

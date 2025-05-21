@@ -10,8 +10,8 @@ import { PLACES_DEMO } from '@/constants/PlacesBasic';
 const INITIAL_REGION = {
   latitude: 51.9205651,
   longitude: 4.4856543,
-  latitudeDelta: 0.1,
-  longitudeDelta: 0.1,
+  latitudeDelta: 0.08,
+  longitudeDelta: 0.08,
 };
 
 const MapScreen = () => {
@@ -45,10 +45,10 @@ const MapScreen = () => {
 
   const focusMap = () => {
     const location = {
-      latitude: 51.9020075,
-      longitude: 4.486874,
-      latitudeDelta: 0.003,
-      longitudeDelta: 0.003,
+      latitude: 51.9155651,
+      longitude: 4.4856543,
+      latitudeDelta: 0.06,
+      longitudeDelta: 0.06,
     };
     mapRef.current.animateToRegion(location);
   };
