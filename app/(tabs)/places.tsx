@@ -21,7 +21,8 @@ export default function Places() {
   useEffect(() => {
     const fetchData = async () => {
       // const data = await database.getData();
-      setPlaces(PLACES_DEMO);
+      let filteredPlaces = PLACES_DEMO.filter(place => place.type.toLowerCase().includes("venue"));
+      setPlaces(filteredPlaces);
     };
 
     fetchData();

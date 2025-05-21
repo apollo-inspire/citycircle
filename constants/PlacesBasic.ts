@@ -482,7 +482,7 @@ export const PLACES_DEMO = [
   {
     id: 48,
     name: "Vessel 11",
-    type: "Music Venue on Ship",
+    type: "Music Venue",
     latitude: 51.9233,
     longitude: 4.4870,
     city: "Rotterdam",
