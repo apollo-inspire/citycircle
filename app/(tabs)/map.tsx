@@ -6,13 +6,13 @@ import { useRouter } from 'expo-router';
 // import rotterdamMapImg from "@/assets/images/maps-rotterdam.png"
 import { useNavigation } from '@react-navigation/native';
 
-import { PLACES_DEMO } from '@/constants/Places'
+import { PLACES_DEMO } from '@/constants/PlacesBasic'
 
 const INITIAL_REGION = {
   latitude: 51.9205651,
-  longitude: 4.4756543,
-  latitudeDelta: 0.07,
-  longitudeDelta: 0.07,
+  longitude: 4.4856543,
+  latitudeDelta: 0.1,
+  longitudeDelta: 0.1,
 };
 
 const map = () => {
@@ -20,6 +20,29 @@ const map = () => {
   const navigation = useNavigation();
 
   const router = useRouter();
+
+  const mapStyle =
+  [
+    {
+      "featureType": "poi",
+      "elementType": "labels.icon",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "featureType": "poi",
+      "elementType": "labels.text",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    }
+  ]
+
 
   useEffect(() => {
     navigation.setOptions({
@@ -50,39 +73,41 @@ const map = () => {
   };
 
 const onMarkerSelected = (marker: any) => {
-  Alert.alert(
-    marker.name, // Title
-    `${marker.type}\n${marker.city}, ${marker.district}`, // Message
-    [
-      {
-        text: "Cancel",
-        style: "cancel"
-      },
-      {
-        text: "See Details",
-        onPress: () => {
-          router.push(`/place/${marker.id}`);
-        }
-      },
-    ],
-    { cancelable: true }
-  );
+  router.push(`/place/${marker.id}`);
+  // Alert.alert(
+  //   marker.name, // Title
+  //   `${marker.type}\n${marker.city}, ${marker.district}`, // Message
+  //   [
+  //     {
+  //       text: "Cancel",
+  //       style: "cancel"
+  //     },
+  //     {
+  //       text: "See Details",
+  //       onPress: () => {
+  //         router.push(`/place/${marker.id}`);
+  //       }
+  //     },
+  //   ],
+  //   { cancelable: true }
+  // );
 };
 
-  const heatmapPoints = [
-    { latitude: 51.928852498892, longitude: 4.479435816744115, weight: 1 },
-    { latitude: 51.929, longitude: 4.4799, weight: 2 },
-    { latitude: 51.9285, longitude: 4.4789, weight: 3 },
-    { latitude: 51.9287, longitude: 4.4799, weight: 2.5 },
-    { latitude: 51.9282, longitude: 4.4800, weight: 5 },
-    { latitude: 51.93, longitude: 4.4850, weight: 10 },
-    { latitude: 51.95, longitude: 4.4853, weight: 100 },
-  ];
+  // const heatmapPoints = [
+  //   { latitude: 51.928852498892, longitude: 4.479435816744115, weight: 1 },
+  //   { latitude: 51.929, longitude: 4.4799, weight: 2 },
+  //   { latitude: 51.9285, longitude: 4.4789, weight: 3 },
+  //   { latitude: 51.9287, longitude: 4.4799, weight: 2.5 },
+  //   { latitude: 51.9282, longitude: 4.4800, weight: 5 },
+  //   { latitude: 51.93, longitude: 4.4850, weight: 10 },
+  //   { latitude: 51.95, longitude: 4.4853, weight: 100 },
+  // ];
 
 
   return (
     <View style={styles.container}>
       <MapView 
+        customMapStyle={mapStyle}
         style={styles.map} 
         provider={PROVIDER_GOOGLE} 
         initialRegion={INITIAL_REGION}
@@ -113,20 +138,9 @@ const onMarkerSelected = (marker: any) => {
           </Marker>
         ))}
 
-        <Marker 
-          coordinate={{
-            latitude: 51.841636531677224,
-            longitude: 4.625671826667882,
-          }}
-        >
-          <Callout>
-            <View style={{ padding: 10 }}>
-              <Text>Lorum Ipsum Dolor</Text>
-            </View>
-          </Callout>
-        </Marker>
 
-        <Polyline
+
+        {/* <Polyline
           coordinates={[
             {latitude: 51.918852498892, longitude: 4.479435816744115},
             {latitude: 51.91008440463913, longitude: 4.509421634628058},
@@ -145,8 +159,8 @@ const onMarkerSelected = (marker: any) => {
             '#7F0000',
           ]}
           strokeWidth={6}
-        />
-        <Circle
+        /> */}
+        {/* <Circle
           center={{
             latitude:51.841636531677224,     
             longitude: 4.625671826667882,
@@ -155,18 +169,8 @@ const onMarkerSelected = (marker: any) => {
           strokeWidth={2}
           strokeColor="rgba(0,112,255,0.7)"
           fillColor="rgba(0,112,255,0.3)"
-        />
-        <Circle
-          center={{
-            latitude: 51.91731349749627,
-            longitude: 4.484378867887312,
-          }}
-          radius={20} // meters
-          strokeWidth={2}
-          strokeColor="rgba(0,112,255,0.7)"
-          fillColor="rgba(0,112,255,0.3)"
-        />
-        <Heatmap
+        /> */}
+        {/* <Heatmap
           points={heatmapPoints}
           opacity={0.7}
           radius={50}
@@ -175,13 +179,15 @@ const onMarkerSelected = (marker: any) => {
             startPoints: [0.01, 0.04, 0.1, 0.45, 1],
             colorMapSize: 256,
           }}
-        />
+        /> */}
       </MapView>
     </View>
   )
 }
 
 export default map
+
+
 
 const styles = StyleSheet.create({
     container: {

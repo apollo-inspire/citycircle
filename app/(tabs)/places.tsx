@@ -3,7 +3,7 @@ import { Link, Stack } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
-import { PLACES_DEMO } from '@/constants/PlacesDemo'
+import { PLACES_DEMO } from '@/constants/PlacesBasic'
 // import useDatabase from "@/database/database2"
 import PLACES_IMAGES from '@/constants/PlacesDemoImages'
 
@@ -54,8 +54,8 @@ export default function Places() {
                   <Text style={styles.textType}>{item.type}</Text>
                 </View>
                 <View style={styles.textDetailsContainer}>
-                  <Text style={styles.textDetails}>{item.next_opening_time}</Text>
-                  <Text style={styles.textDetails}>{item.languages}</Text>
+                  {/* <Text style={styles.textDetails}>{item.next_opening_time}</Text>
+                  <Text style={styles.textDetails}>{item.languages}</Text> */}
                   <Text style={styles.textDetails}>{item.city}, {item.district}</Text>
                 </View>
               </View>
