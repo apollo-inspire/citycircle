@@ -5,7 +5,7 @@ import { useRouter } from 'expo-router';
 import { useNavigation } from '@react-navigation/native';
 import DropDownPicker from 'react-native-dropdown-picker';
 
-import { PLACES_DEMO } from '@/constants/PlacesBasic';
+import { PLACES_DEMO } from '@/constants/Places';
 
 const INITIAL_REGION = {
   latitude: 51.9205651,

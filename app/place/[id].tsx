@@ -2,7 +2,7 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 import { Stack, useLocalSearchParams } from 'expo-router';
 import React from 'react';
 
-import { PLACES_DEMO } from '@/constants/PlacesBasic';
+import { PLACES_DEMO } from '@/constants/Places';
 import PLACES_IMAGES from '@/constants/PlacesDemoImages';
 
 export default function PlaceDetail() {
@@ -29,8 +29,11 @@ export default function PlaceDetail() {
       <Text style={styles.textType}>{place.type}</Text>
       <Text style={styles.textDetails}>City: {place.city}</Text>
       <Text style={styles.textDetails}>District: {place.district}</Text>
-      {/* <Text style={styles.textDetails}>Languages: {place.languages.join(', ')}</Text> */}
-      {/* <Text style={styles.textDetails}>Next Opening: {place.next_opening_time}</Text> */}
+      <Text style={styles.textDetails}>{place.address}</Text>
+      <Text style={styles.textDetails}>{place.languages}</Text>
+      <Text style={styles.textDetails}>{place.tags}</Text>
+      <Text style={styles.textDetails}>{place.description}</Text>
+      {/* <Text style={styles.textDetails}>{place.opening_times}</Text> */}
     </View>
   );
 }

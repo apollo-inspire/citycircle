@@ -3,7 +3,7 @@ import { Link, Stack } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
-import { PLACES_DEMO } from '@/constants/PlacesBasic'
+import { PLACES_DEMO } from '@/constants/Places'
 // import useDatabase from "@/database/database2"
 import PLACES_IMAGES from '@/constants/PlacesDemoImages'
 
@@ -21,7 +21,7 @@ export default function Places() {
   useEffect(() => {
     const fetchData = async () => {
       // const data = await database.getData();
-      let filteredPlaces = PLACES_DEMO.filter(place => place.type.toLowerCase().includes("venue"));
+      let filteredPlaces = PLACES_DEMO.filter(place => place.type.toLowerCase().includes(""));
       setPlaces(filteredPlaces);
     };
 
@@ -55,8 +55,6 @@ export default function Places() {
                   <Text style={styles.textType}>{item.type}</Text>
                 </View>
                 <View style={styles.textDetailsContainer}>
-                  {/* <Text style={styles.textDetails}>{item.next_opening_time}</Text>
-                  <Text style={styles.textDetails}>{item.languages}</Text> */}
                   <Text style={styles.textDetails}>{item.city}, {item.district}</Text>
                 </View>
               </View>

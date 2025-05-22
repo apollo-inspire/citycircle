@@ -32,7 +32,7 @@ export const PLACES_DEMO = [
   {
     id: 3,
     name: "Rotown",
-    type: "Concert Venue / Music Bar",
+    type: "Concert Venue / Bar",
     latitude: 51.91689793565822,
     longitude: 4.471683329939567,
     city: "Rotterdam",
@@ -122,9 +122,9 @@ export const PLACES_DEMO = [
   {
     id: 12,
     name: "NN Douwe Egberts Café",
-    type: "Café / Study Spot",
-    latitude: 51.9231,
-    longitude: 4.4709,
+    type: "Café",
+    latitude: 51.9237494,
+    longitude: 4.4712685,
     city: "Rotterdam",
     district: "Stadscentrum",
     google_maps_link: "https://maps.google.com/?q=NN+Douwe+Egberts+Café+Rotterdam"
@@ -132,19 +132,19 @@ export const PLACES_DEMO = [
   {
     id: 13,
     name: "Heilige Boontjes",
-    type: "Café / Study Spot",
-    latitude: 51.9168,
-    longitude: 4.4731,
+    type: "Café",
+    latitude: 51.916644,
+    longitude: 4.4701034,
     city: "Rotterdam",
     district: "Stadscentrum",
     google_maps_link: "https://maps.google.com/?q=Heilige+Boontjes+Rotterdam"
   },
   {
     id: 14,
-    name: "Backyard",
-    type: "Café / Study Spot",
-    latitude: 51.9205,
-    longitude: 4.4813,
+    name: "BACKYARD",
+    type: "Café",
+    latitude: 51.9196432,
+    longitude: 4.47977693,
     city: "Rotterdam",
     district: "Stadscentrum",
     google_maps_link: "https://maps.google.com/?q=Backyard+Rotterdam"
@@ -153,8 +153,8 @@ export const PLACES_DEMO = [
     id: 15,
     name: "Centrale Bibliotheek Rotterdam",
     type: "Library",
-    latitude: 51.9208,
-    longitude: 4.4881,
+    latitude: 51.9210943,
+    longitude: 4.4866137,
     city: "Rotterdam",
     district: "Stadscentrum",
     google_maps_link: "https://maps.google.com/?q=Centrale+Bibliotheek+Rotterdam"
@@ -162,9 +162,9 @@ export const PLACES_DEMO = [
   {
     id: 16,
     name: "Biergarten",
-    type: "Beer Garden",
-    latitude: 51.9220,
-    longitude: 4.4795,
+    type: "Bar",
+    latitude: 51.925423,
+    longitude: 4.4737291,
     city: "Rotterdam",
     district: "Stadscentrum",
     google_maps_link: "https://maps.google.com/?q=Biergarten+Rotterdam"
@@ -172,9 +172,9 @@ export const PLACES_DEMO = [
   {
     id: 17,
     name: "Kaapse Brouwers",
-    type: "Brewery / Bar",
-    latitude: 51.8993,
-    longitude: 4.4894,
+    type: "Bar",
+    latitude: 51.9044814,
+    longitude: 4.4012009,
     city: "Rotterdam",
     district: "Katendrecht",
     google_maps_link: "https://maps.google.com/?q=Kaapse+Brouwers+Rotterdam"
@@ -182,9 +182,9 @@ export const PLACES_DEMO = [
   {
     id: 18,
     name: "Beest Boulders",
-    type: "Bouldering Gym",
-    latitude: 51.9382,
-    longitude: 4.4761,
+    type: "Bouldering",
+    latitude: 51.927392,
+    longitude: 4.4737071,
     city: "Rotterdam",
     district: "Noord",
     google_maps_link: "https://maps.google.com/?q=Beest+Boulders+Rotterdam"
@@ -192,9 +192,9 @@ export const PLACES_DEMO = [
   {
     id: 19,
     name: "Queer Rotterdam",
-    type: "LGBTQ+ Community Group",
-    latitude: 51.9225,
-    longitude: 4.4792,
+    type: "Queer Community Group",
+    latitude: 51.9143409,
+    longitude: 4.4400976,
     city: "Rotterdam",
     district: "Centrum",
     google_maps_link: "https://maps.google.com/?q=Queer+Rotterdam"
@@ -202,9 +202,9 @@ export const PLACES_DEMO = [
   {
     id: 20,
     name: "Ferry",
-    type: "LGBTQ+ Bar & Restaurant",
-    latitude: 51.9229,
-    longitude: 4.4797,
+    type: "Queer Bar",
+    latitude: 51.9170151,
+    longitude: 4.4729362,
     city: "Rotterdam",
     district: "Centrum",
     google_maps_link: "https://maps.google.com/?q=Ferry+Rotterdam"
@@ -213,8 +213,8 @@ export const PLACES_DEMO = [
     id: 21,
     name: "Cinerama",
     type: "Cinema",
-    latitude: 51.9204,
-    longitude: 4.4758,
+    latitude: 51.9170756,
+    longitude: 4.4762712,
     city: "Rotterdam",
     district: "Centrum",
     google_maps_link: "https://maps.google.com/?q=Cinerama+Rotterdam"
@@ -223,8 +223,8 @@ export const PLACES_DEMO = [
     id: 22,
     name: "De Slegte",
     type: "Bookstore",
-    latitude: 51.9209,
-    longitude: 4.4801,
+    latitude: 51.9210891,
+    longitude: 4.4838334,
     city: "Rotterdam",
     district: "Centrum",
     google_maps_link: "https://maps.google.com/?q=De+Slegte+Rotterdam"
@@ -233,8 +233,8 @@ export const PLACES_DEMO = [
     id: 23,
     name: "Toffler",
     type: "Nightclub",
-    latitude: 51.9223,
-    longitude: 4.4789,
+    latitude: 51.9235959,
+    longitude: 4.4728292,
     city: "Rotterdam",
     district: "Centrum",
     google_maps_link: "https://maps.google.com/?q=Toffler+Rotterdam"
@@ -243,8 +243,8 @@ export const PLACES_DEMO = [
     id: 24,
     name: "Annabel",
     type: "Music Venue",
-    latitude: 51.9221,
-    longitude: 4.4796,
+    latitude: 51.9253806,
+    longitude: 4.4734658,
     city: "Rotterdam",
     district: "Centrum",
     google_maps_link: "https://maps.google.com/?q=Annabel+Rotterdam"
@@ -252,9 +252,9 @@ export const PLACES_DEMO = [
   {
     id: 25,
     name: "Teds op het dak",
-    type: "Rooftop Brunch Café",
-    latitude: 51.9227,
-    longitude: 4.4793,
+    type: "Café",
+    latitude: 51.9256766,
+    longitude: 4.4740312,
     city: "Rotterdam",
     district: "Centrum",
     google_maps_link: "https://maps.google.com/?q=Teds+op+het+dak+Rotterdam"
@@ -263,8 +263,8 @@ export const PLACES_DEMO = [
     id: 26,
     name: "Perron",
     type: "Nightclub",
-    latitude: 51.9224,
-    longitude: 4.4790,
+    latitude: 51.9254191,
+    longitude: 4.4721746,
     city: "Rotterdam",
     district: "Centrum",
     google_maps_link: "https://maps.google.com/?q=Perron+Rotterdam"
@@ -273,18 +273,18 @@ export const PLACES_DEMO = [
     id: 27,
     name: "Roodkapje",
     type: "Cultural Center",
-    latitude: 51.9226,
-    longitude: 4.4791,
+    latitude: 51.9248886,
+    longitude: 4.471909,
     city: "Rotterdam",
     district: "Centrum",
     google_maps_link: "https://maps.google.com/?q=Roodkapje+Rotterdam"
   },
   {
     id: 28,
-    name: "Burgertrut",
-    type: "Burger Restaurant",
-    latitude: 51.9225,
-    longitude: 4.4792,
+    name: "Burgertrut", 
+    type: "Restaurant",
+    latitude: 51.9248541,
+    longitude: 4.4720209,
     city: "Rotterdam",
     district: "Centrum",
     google_maps_link: "https://maps.google.com/?q=Burgertrut+Rotterdam"
@@ -293,8 +293,8 @@ export const PLACES_DEMO = [
     id: 29,
     name: "Fenix Food Factory",
     type: "Food Market",
-    latitude: 51.9021,
-    longitude: 4.4868,
+    latitude: 51.9020098,
+    longitude: 4.4842887,
     city: "Rotterdam",
     district: "Katendrecht",
     google_maps_link: "https://maps.google.com/?q=Fenix+Food+Factory+Rotterdam"
@@ -303,8 +303,8 @@ export const PLACES_DEMO = [
     id: 30,
     name: "Kleine Walhalla",
     type: "Theater",
-    latitude: 51.9002,
-    longitude: 4.4882,
+    latitude: 51.9015922,
+    longitude: 4.4826287,
     city: "Rotterdam",
     district: "Katendrecht",
     google_maps_link: "https://maps.google.com/?q=Kleine+Walhalla+Rotterdam"
@@ -313,8 +313,8 @@ export const PLACES_DEMO = [
     id: 31,
     name: "Nieuwe Luxor Theater",
     type: "Theater",
-    latitude: 51.9052,
-    longitude: 4.4879,
+    latitude: 51.907128,
+    longitude: 4.4883574,
     city: "Rotterdam",
     district: "Kop van Zuid",
     google_maps_link: "https://maps.google.com/?q=Nieuwe+Luxor+Theater+Rotterdam"
@@ -322,9 +322,9 @@ export const PLACES_DEMO = [
   {
     id: 32,
     name: "LantarenVenster",
-    type: "Cinema & Jazz Venue",
-    latitude: 51.9048,
-    longitude: 4.4868,
+    type: "Cinema",
+    latitude: 51.9048318,
+    longitude: 4.4844183, 
     city: "Rotterdam",
     district: "Kop van Zuid",
     google_maps_link: "https://maps.google.com/?q=LantarenVenster+Rotterdam"
@@ -332,9 +332,9 @@ export const PLACES_DEMO = [
   {
     id: 33,
     name: "Historische Tuin Schoonoord",
-    type: "Historic Garden",
-    latitude: 51.9086,
-    longitude: 4.4727,
+    type: "Park",
+    latitude: 51.9086472,
+    longitude: 4.4701521,
     city: "Rotterdam",
     district: "Centrum",
     google_maps_link: "https://maps.google.com/?q=Historische+Tuin+Schoonoord+Rotterdam"
@@ -343,8 +343,8 @@ export const PLACES_DEMO = [
     id: 34,
     name: "Mystiek",
     type: "Nightclub",
-    latitude: 51.9171,
-    longitude: 4.4754,
+    latitude: 51.9163654,
+    longitude: 4.4771888,
     city: "Rotterdam",
     district: "Centrum",
     google_maps_link: "https://maps.google.com/?q=Mystiek+Rotterdam"
@@ -353,18 +353,18 @@ export const PLACES_DEMO = [
     id: 35,
     name: "Boekhandel van Gennep",
     type: "Bookstore",
-    latitude: 51.9191,
-    longitude: 4.4758,
+    latitude: 51.9172815,
+    longitude: 4.4709029,
     city: "Rotterdam",
     district: "Centrum",
     google_maps_link: "https://maps.google.com/?q=Boekhandel+van+Gennep+Rotterdam"
   },
   {
     id: 36,
-    name: "Kilo Kilo store",
-    type: "Vintage Clothing Store",
-    latitude: 51.9200,
-    longitude: 4.4796,
+    name: "Rejoes",
+    type: "Second Hand Clothing Store",
+    latitude: 51.9176524,
+    longitude: 4.4766628,
     city: "Rotterdam",
     district: "Centrum",
     google_maps_link: "https://maps.google.com/?q=Kilo+Kilo+store+Rotterdam"
@@ -372,9 +372,9 @@ export const PLACES_DEMO = [
   {
     id: 37,
     name: "De Après Skihut",
-    type: "Après-ski Bar",
-    latitude: 51.9214,
-    longitude: 4.4782,
+    type: "Bar",
+    latitude: 51.9223802,
+    longitude: 4.4741391,
     city: "Rotterdam",
     district: "Centrum",
     google_maps_link: "https://maps.google.com/?q=De+Après+Skihut+Rotterdam"
@@ -382,9 +382,9 @@ export const PLACES_DEMO = [
   {
     id: 38,
     name: "De Gele Kanarie Cafe",
-    type: "Café & Brewery",
-    latitude: 51.9223,
-    longitude: 4.4861,
+    type: "Bar",
+    latitude: 51.9228109,
+    longitude: 4.4859978,
     city: "Rotterdam",
     district: "Centrum",
     google_maps_link: "https://maps.google.com/?q=De+Gele+Kanarie+Cafe+Rotterdam"
@@ -392,9 +392,9 @@ export const PLACES_DEMO = [
   {
     id: 39,
     name: "Deli Tasty",
-    type: "Vietnamese Restaurant",
-    latitude: 51.9226,
-    longitude: 4.4862,
+    type: "Restaurant",
+    latitude: 51.9233262,
+    longitude: 4.482632,
     city: "Rotterdam",
     district: "Centrum",
     google_maps_link: "https://maps.google.com/?q=Deli+Tasty+Rotterdam"
@@ -402,9 +402,9 @@ export const PLACES_DEMO = [
   {
     id: 40,
     name: "Cheap Fashion",
-    type: "Clothing Store",
-    latitude: 51.9225,
-    longitude: 4.4862,
+    type: "Second Hand Clothing Store",
+    latitude: 51.9237678,
+    longitude: 4.4828559,
     city: "Rotterdam",
     district: "Centrum",
     google_maps_link: "https://maps.google.com/?q=Cheap+Fashion+Rotterdam"
@@ -413,8 +413,8 @@ export const PLACES_DEMO = [
     id: 41,
     name: "Pebbles Kitty Cat Café",
     type: "Cat Café",
-    latitude: 51.9226,
-    longitude: 4.4863,
+    latitude: 51.9229726,
+    longitude: 4.4918148,
     city: "Rotterdam",
     district: "Centrum",
     google_maps_link: "https://maps.google.com/?q=Pebbles+Kitty+Cat+Café+Rotterdam"
@@ -423,8 +423,8 @@ export const PLACES_DEMO = [
     id: 42,
     name: "The Social Hub Rotterdam",
     type: "Hotel & Co-working Space",
-    latitude: 51.9227,
-    longitude: 4.4864,
+    latitude: 51.9212788,
+    longitude: 4.502891,
     city: "Rotterdam",
     district: "Kralingen-Crooswijk",
     google_maps_link: "https://maps.google.com/?q=The+Social+Hub+Rotterdam"
@@ -432,9 +432,9 @@ export const PLACES_DEMO = [
   {
     id: 43,
     name: "Skate Fever",
-    type: "Roller Skating Rink",
-    latitude: 51.9228,
-    longitude: 4.4865,
+    type: "Sports",
+    latitude: 51.924714,
+    longitude: 4.5639559,
     city: "Rotterdam",
     district: "Feijenoord",
     google_maps_link: "https://maps.google.com/?q=Skate+Fever+Rotterdam"
@@ -443,8 +443,8 @@ export const PLACES_DEMO = [
     id: 44,
     name: "Hollywood Entertainment Center",
     type: "Arcade & Bowling",
-    latitude: 51.9229,
-    longitude: 4.4866,
+    latitude: 51.8961215,
+    longitude: 4.522459,
     city: "Rotterdam",
     district: "Centrum",
     google_maps_link: "https://maps.google.com/?q=Hollywood+Entertainment+Center+Rotterdam"
@@ -453,8 +453,8 @@ export const PLACES_DEMO = [
     id: 45,
     name: "Gamestate de Kuip",
     type: "Arcade",
-    latitude: 51.9230,
-    longitude: 4.4867,
+    latitude: 51.8968932,
+    longitude: 4.5222146,
     city: "Rotterdam",
     district: "Feijenoord",
     google_maps_link: "https://maps.google.com/?q=Gamestate+de+Kuip+Rotterdam"
@@ -463,8 +463,8 @@ export const PLACES_DEMO = [
     id: 46,
     name: "Pathé Schouwburgplein",
     type: "Cinema",
-    latitude: 51.9231,
-    longitude: 4.4868,
+    latitude: 51.9207891,
+    longitude: 4.4708331,
     city: "Rotterdam",
     district: "Centrum",
     google_maps_link: "https://maps.google.com/?q=Pathé+Schouwburgplein+Rotterdam"
@@ -473,8 +473,8 @@ export const PLACES_DEMO = [
     id: 47,
     name: "Baroeg",
     type: "Music Venue",
-    latitude: 51.9232,
-    longitude: 4.4869,
+    latitude: 51.876749,
+    longitude: 4.5164991,
     city: "Rotterdam",
     district: "Lombardijen",
     google_maps_link: "https://maps.google.com/?q=Baroeg+Rotterdam"
@@ -482,9 +482,9 @@ export const PLACES_DEMO = [
   {
     id: 48,
     name: "Vessel 11",
-    type: "Music Venue",
-    latitude: 51.9233,
-    longitude: 4.4870,
+    type: "Music Venue & Restaurant",
+    latitude: 51.9172122,
+    longitude: 4.4834674,
     city: "Rotterdam",
     district: "Centrum",
     google_maps_link: "https://maps.google.com/?q=Vessel+11+Rotterdam"
@@ -493,8 +493,8 @@ export const PLACES_DEMO = [
     id: 49,
     name: "Tuincentrum De Molen",
     type: "Garden Center",
-    latitude: 51.9234,
-    longitude: 4.4871,
+    latitude: 51.883457,
+    longitude: 4.4667266,
     city: "Rotterdam",
     district: "Overschie",
     google_maps_link: "https://maps.google.com/?q=Tuincentrum+De+Molen+Rotterdam"
