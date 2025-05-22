@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, Linking, TouchableOpacity } from 'react-native';
 import { Stack, useLocalSearchParams } from 'expo-router';
 import React from 'react';
 
@@ -33,6 +33,12 @@ export default function PlaceDetail() {
       <Text style={styles.textDetails}>{place.languages}</Text>
       <Text style={styles.textDetails}>{place.tags}</Text>
       <Text style={styles.textDetails}>{place.description}</Text>
+      {/* <Text style={styles.textDetails}>{place.website}</Text> */}
+      <TouchableOpacity onPress={() => Linking.openURL(place.website)}>
+        <Text style={[styles.textDetails, { color: 'blue', textDecorationLine: 'underline' }]}>
+          {place.website}
+        </Text>
+      </TouchableOpacity>
       {/* <Text style={styles.textDetails}>{place.opening_times}</Text> */}
     </View>
   );
