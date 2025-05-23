@@ -221,6 +221,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     backgroundColor: '#ddd',
     borderRadius: 6,
+    marginBottom: 10,
   },
   clearButtonText: {
     fontWeight: 'bold',
