@@ -29,14 +29,21 @@ export default function PlaceDetail() {
       <Text style={styles.textType}>{place.type}</Text>
       <Text style={styles.textDetails}>City: {place.city}</Text>
       <Text style={styles.textDetails}>District: {place.district}</Text>
-      <Text style={styles.textDetails}>{place.address}</Text>
-      <Text style={styles.textDetails}>{place.languages}</Text>
-      <Text style={styles.textDetails}>{place.tags}</Text>
-      <Text style={styles.textDetails}>{place.description}</Text>
+      <Text style={styles.textDetails}>Address: {place.address}</Text>
+      <Text style={styles.textDetails}>Languages: {place.languages}</Text>
+      <Text style={styles.textDetails}>Tags: {place.tags}</Text>
+      <Text style={styles.textDetails}>Description: {place.description}</Text>
       {/* <Text style={styles.textDetails}>{place.website}</Text> */}
       <TouchableOpacity onPress={() => Linking.openURL(place.website)}>
-        <Text style={[styles.textDetails, { color: 'blue', textDecorationLine: 'underline' }]}>
-          {place.website}
+        <Text style={[styles.textDetails, { color: 'lightblue', textDecorationLine: 'underline' }]}>
+          Link to Website
+          {/* {place.website} */}
+        </Text>
+      </TouchableOpacity>
+            <TouchableOpacity onPress={() => Linking.openURL(place.google_maps_link)}>
+        <Text style={[styles.textDetails, { color: 'lightblue', textDecorationLine: 'underline' }]}>
+          Link to Google Maps
+          {/* {place.website} */}
         </Text>
       </TouchableOpacity>
       {/* <Text style={styles.textDetails}>{place.opening_times}</Text> */}
