@@ -74,18 +74,23 @@ const MapScreen = () => {
 
   return (
     <View style={styles.container}>
-      <DropDownPicker
-        open={open}
-        multiple={true}
-        value={selectedTypes}
-        items={typeOptions}
-        setOpen={setOpen}
-        setValue={setSelectedTypes}
-        setItems={setTypeOptions}
-        placeholder="Filter by type..."
-        style={styles.dropdown}
-        dropDownContainerStyle={styles.dropdownContainer}
-      />
+        <DropDownPicker
+            open={open}
+            multiple={true}
+            value={selectedTypes}
+            items={typeOptions}
+            setOpen={setOpen}
+            setValue={setSelectedTypes}
+            setItems={setTypeOptions}
+            placeholder="Filter by type..."
+            style={styles.dropdown}
+            dropDownContainerStyle={styles.dropdownContainer}
+        />
+    <View style={styles.dropdownWrapper}>
+      <TouchableOpacity style={styles.clearButton} onPress={() => setSelectedTypes([])}>
+        <Text style={styles.clearButtonText}>Clear Selection</Text>
+      </TouchableOpacity>
+    </View>
 
       <MapView
         customMapStyle={mapStyle}
@@ -150,4 +155,20 @@ const styles = StyleSheet.create({
   dropdownContainer: {
     zIndex: 999,
   },
+dropdownWrapper: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  marginHorizontal: 10,
+},
+clearButton: {
+  marginLeft: 8,
+  paddingHorizontal: 10,
+  paddingVertical: 12,
+  backgroundColor: '#ddd',
+  borderRadius: 6,
+},
+clearButtonText: {
+  fontWeight: 'bold',
+  color: '#333',
+},
 });
