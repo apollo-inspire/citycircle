@@ -24,18 +24,39 @@ const MapScreen = () => {
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
   const [typeOptions, setTypeOptions] = useState([]);
 
+  const [selectedCity, setSelectedCity] = useState<string | null>(null);
+  const [cityOptions, setCityOptions] = useState([]);
+
+  const [selectedDistrict, setSelectedDistrict] = useState<string | null>(null);
+  const [districtOptions, setDistrictOptions] = useState([]);
+
+  const [cityOpen, setCityOpen] = useState(false);
+  const [districtOpen, setDistrictOpen] = useState(false);
+
   useEffect(() => {
-    const types = PLACES_DEMO.map(place => place.type.toLowerCase());
-    const allTags = PLACES_DEMO.flatMap(place => place.tags.map(tag => tag.toLowerCase()));
-    const combined = Array.from(new Set([...types, ...allTags]));
+  const types = PLACES_DEMO.map(place => place.type.toLowerCase());
+  const allTags = PLACES_DEMO.flatMap(place => place.tags.map(tag => tag.toLowerCase()));
+  const combined = Array.from(new Set([...types, ...allTags]));
 
-    const formatted = combined.map(entry => ({
-      label: entry.charAt(0).toUpperCase() + entry.slice(1),
-      value: entry,
-    }));
+  const formattedTypes = combined.map(entry => ({
+    label: entry.charAt(0).toUpperCase() + entry.slice(1),
+    value: entry,
+  }));
 
-    setTypeOptions(formatted);
-  }, []);
+  const cities = Array.from(new Set(PLACES_DEMO.map(p => p.city))).map(city => ({
+    label: city,
+    value: city,
+  }));
+
+  const districts = Array.from(new Set(PLACES_DEMO.map(p => p.district))).map(d => ({
+    label: d,
+    value: d,
+  }));
+
+  setTypeOptions(formattedTypes);
+  setCityOptions(cities);
+  setDistrictOptions(districts);
+}, []);
 
   useEffect(() => {
     navigation.setOptions({
@@ -64,13 +85,16 @@ const MapScreen = () => {
   };
 
   // Filter logic
-  const filteredPlaces = selectedTypes.length === 0
-    ? PLACES_DEMO
-    : PLACES_DEMO.filter(place => {
-        const type = place.type.toLowerCase();
-        const tags = place.tags.map(tag => tag.toLowerCase());
-        return selectedTypes.includes(type) || tags.some(tag => selectedTypes.includes(tag));
-      });
+  const filteredPlaces = PLACES_DEMO.filter(place => {
+    const matchesType = selectedTypes.length === 0 ||
+      selectedTypes.includes(place.type.toLowerCase()) ||
+      place.tags.some(tag => selectedTypes.includes(tag.toLowerCase()));
+
+    const matchesCity = !selectedCity || place.city === selectedCity;
+    const matchesDistrict = !selectedDistrict || place.district === selectedDistrict;
+
+    return matchesType && matchesCity && matchesDistrict;
+  });
 
   return (
     <View style={styles.container}>
@@ -86,9 +110,43 @@ const MapScreen = () => {
             style={styles.dropdown}
             dropDownContainerStyle={styles.dropdownContainer}
         />
+
+        <DropDownPicker
+          open={cityOpen}
+          value={selectedCity}
+          items={cityOptions}
+          setOpen={setCityOpen}
+          setValue={setSelectedCity}
+          setItems={setCityOptions}
+          placeholder="Filter by city..."
+          style={styles.dropdown}
+          dropDownContainerStyle={styles.dropdownContainer}
+        />
+
+        <DropDownPicker
+          open={districtOpen}
+          value={selectedDistrict}
+          items={districtOptions}
+          setOpen={setDistrictOpen}
+          setValue={setSelectedDistrict}
+          setItems={setDistrictOptions}
+          placeholder="Filter by district..."
+          style={styles.dropdown}
+          dropDownContainerStyle={styles.dropdownContainer}
+        />
     <View style={styles.dropdownWrapper}>
-      <TouchableOpacity style={styles.clearButton} onPress={() => setSelectedTypes([])}>
-        <Text style={styles.clearButtonText}>Clear Selection</Text>
+      <TouchableOpacity
+        style={styles.clearButton}
+        onPress={() => {
+          setSelectedTypes([]);
+          setSelectedCity(null);
+          setSelectedDistrict(null);
+          setOpen(false);
+          setCityOpen(false);
+          setDistrictOpen(false);
+        }}
+      >
+        <Text style={styles.clearButtonText}>Deselect All</Text>
       </TouchableOpacity>
     </View>
 
@@ -150,10 +208,10 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     margin: 10,
-    zIndex: 1000,
+    zIndex: 30,
   },
   dropdownContainer: {
-    zIndex: 999,
+    zIndex: 15,
   },
 dropdownWrapper: {
   flexDirection: 'row',
