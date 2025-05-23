@@ -106,6 +106,9 @@ const MapScreen = () => {
           placeholder="Filter by city and districts..."
           style={styles.dropdown}
           dropDownContainerStyle={styles.dropdownContainer}
+          searchable={true}
+          searchPlaceholder="Search city or district..."
+          searchTextInputStyle={styles.searchInput}
           onOpen={() => {
             setOpen(false);
           }}
@@ -122,6 +125,9 @@ const MapScreen = () => {
           placeholder="Filter by types and tags..."
           style={styles.dropdown}
           dropDownContainerStyle={styles.dropdownContainer}
+          searchable={true}
+          searchPlaceholder="Search types or tags..."
+          searchTextInputStyle={styles.searchInput}
           onOpen={() => {
             setLocationOpen(false);
           }}
@@ -204,20 +210,29 @@ const styles = StyleSheet.create({
   dropdownContainer: {
     // zIndex: 2000,
   },
-dropdownWrapper: {
-  flexDirection: 'row',
-  alignItems: 'center',
-  marginHorizontal: 10,
-},
-clearButton: {
-  marginLeft: 8,
-  paddingHorizontal: 10,
-  paddingVertical: 12,
-  backgroundColor: '#ddd',
-  borderRadius: 6,
-},
-clearButtonText: {
-  fontWeight: 'bold',
-  color: '#333',
-},
+  dropdownWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginHorizontal: 10,
+  },
+  clearButton: {
+    marginLeft: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 12,
+    backgroundColor: '#ddd',
+    borderRadius: 6,
+  },
+  clearButtonText: {
+    fontWeight: 'bold',
+    color: '#333',
+  },
+  searchInput: {
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 6,
+    marginVertical: 1,
+    marginHorizontal: 3,
+  },
 });
