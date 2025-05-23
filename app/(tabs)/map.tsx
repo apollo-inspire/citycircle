@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import MapView, { PROVIDER_GOOGLE, Marker, Region } from 'react-native-maps';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
+import MapView, { PROVIDER_GOOGLE, Marker, Callout } from 'react-native-maps';
 import { useRouter } from 'expo-router';
 import { useNavigation } from '@react-navigation/native';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -93,6 +93,15 @@ const MapScreen = () => {
     return matchesType && matchesCity && matchesDistrict;
   });
 
+
+  const markerRef = useRef(null);
+
+  useEffect(() => {
+  if (markerRef.current) {
+    markerRef.current.showCallout();
+  }
+}, []);
+
   return (
     <View style={styles.container}>
         <DropDownPicker
@@ -162,13 +171,26 @@ const MapScreen = () => {
       >
         {filteredPlaces.map((marker, index) => (
           <Marker
+            ref={markerRef}
             key={index}
             coordinate={{
               latitude: marker.latitude,
               longitude: marker.longitude,
             }}
             onPress={() => onMarkerSelected(marker)}
-          />
+            title={marker.name}
+            // description={marker.district}
+          >
+            {/* <View style={styles.markerContainer}>
+              <Image 
+                source={require('@/assets/images/map-marker.png')}
+                style={styles.markerImage}
+              />
+              <View style={styles.markerLabel}>
+                <Text style={styles.markerLabelText}>{marker.name}</Text>
+              </View> 
+            </View> */}
+          </Marker>
         ))}
       </MapView>
     </View>
@@ -236,4 +258,40 @@ const styles = StyleSheet.create({
     marginVertical: 1,
     marginHorizontal: 3,
   },
+  markerContainer: {
+    color: "#333",
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 35,
+    height: 35,
+  },
+  markerLabel: {
+    backgroundColor: 'white',
+    // paddingHorizontal: 6,
+    // paddingVertical: 2,
+    // borderRadius: 6,
+    // borderColor: '#ccc',
+    // borderWidth: 1,
+    // marginBottom: 4,
+    // maxWidth: 500,
+  },
+
+  markerLabelText: {
+    fontSize: 12,
+    color: '#333',
+    textAlign: 'center',
+  },
+
+  // markerDot: {
+  //   width: 10,
+  //   height: 10,
+  //   borderRadius: 5,
+  //   backgroundColor: '#007AFF',
+  //   borderWidth: 2,
+  //   borderColor: 'white',
+  // },
+    markerImage: {
+    width: 40,
+    height: 40
+  }
 });
