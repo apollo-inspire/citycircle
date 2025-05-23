@@ -10,8 +10,8 @@ import { PLACES_DEMO } from '@/constants/Places';
 const INITIAL_REGION = {
   latitude: 51.9205651,
   longitude: 4.4856543,
-  latitudeDelta: 0.08,
-  longitudeDelta: 0.08,
+  latitudeDelta: 0.07,
+  longitudeDelta: 0.07,
 };
 
 const MapScreen = () => {
@@ -25,9 +25,15 @@ const MapScreen = () => {
   const [typeOptions, setTypeOptions] = useState([]);
 
   useEffect(() => {
-    // Extract unique types from PLACES_DEMO for dropdown options
-    const uniqueTypes = [...new Set(PLACES_DEMO.map(place => place.type))];
-    const formatted = uniqueTypes.map(type => ({ label: type, value: type }));
+    const types = PLACES_DEMO.map(place => place.type.toLowerCase());
+    const allTags = PLACES_DEMO.flatMap(place => place.tags.map(tag => tag.toLowerCase()));
+    const combined = Array.from(new Set([...types, ...allTags]));
+
+    const formatted = combined.map(entry => ({
+      label: entry.charAt(0).toUpperCase() + entry.slice(1),
+      value: entry,
+    }));
+
     setTypeOptions(formatted);
   }, []);
 
@@ -60,7 +66,11 @@ const MapScreen = () => {
   // Filter logic
   const filteredPlaces = selectedTypes.length === 0
     ? PLACES_DEMO
-    : PLACES_DEMO.filter(place => selectedTypes.includes(place.type));
+    : PLACES_DEMO.filter(place => {
+        const type = place.type.toLowerCase();
+        const tags = place.tags.map(tag => tag.toLowerCase());
+        return selectedTypes.includes(type) || tags.some(tag => selectedTypes.includes(tag));
+      });
 
   return (
     <View style={styles.container}>
