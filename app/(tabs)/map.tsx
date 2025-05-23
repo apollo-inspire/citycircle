@@ -24,14 +24,9 @@ const MapScreen = () => {
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
   const [typeOptions, setTypeOptions] = useState([]);
 
-  const [selectedCity, setSelectedCity] = useState<string | null>(null);
-  const [cityOptions, setCityOptions] = useState([]);
-
-  const [selectedDistrict, setSelectedDistrict] = useState<string | null>(null);
-  const [districtOptions, setDistrictOptions] = useState([]);
-
-  const [cityOpen, setCityOpen] = useState(false);
-  const [districtOpen, setDistrictOpen] = useState(false);
+  const [selectedLocations, setSelectedLocations] = useState<string[]>([]);
+  const [locationOptions, setLocationOptions] = useState([]);
+  const [locationOpen, setLocationOpen] = useState(false);
 
   useEffect(() => {
   const types = PLACES_DEMO.map(place => place.type.toLowerCase());
@@ -43,19 +38,17 @@ const MapScreen = () => {
     value: entry,
   }));
 
-  const cities = Array.from(new Set(PLACES_DEMO.map(p => p.city))).map(city => ({
-    label: city,
-    value: city,
+  const locations = Array.from(
+    new Set([...PLACES_DEMO.map(p => p.city), ...PLACES_DEMO.map(p => p.district)])
+  ).map(location => ({
+    label: location,
+    value: location,
   }));
 
-  const districts = Array.from(new Set(PLACES_DEMO.map(p => p.district))).map(d => ({
-    label: d,
-    value: d,
-  }));
+  setLocationOptions(locations);
 
   setTypeOptions(formattedTypes);
-  setCityOptions(cities);
-  setDistrictOptions(districts);
+
 }, []);
 
   useEffect(() => {
@@ -90,8 +83,12 @@ const MapScreen = () => {
       selectedTypes.includes(place.type.toLowerCase()) ||
       place.tags.some(tag => selectedTypes.includes(tag.toLowerCase()));
 
-    const matchesCity = !selectedCity || place.city === selectedCity;
-    const matchesDistrict = !selectedDistrict || place.district === selectedDistrict;
+    const matchesLocation =
+      selectedLocations.length === 0 ||
+      selectedLocations.includes(place.city) ||
+      selectedLocations.includes(place.district);
+
+    return matchesType && matchesLocation;
 
     return matchesType && matchesCity && matchesDistrict;
   });
@@ -99,51 +96,45 @@ const MapScreen = () => {
   return (
     <View style={styles.container}>
         <DropDownPicker
-            open={open}
-            multiple={true}
-            value={selectedTypes}
-            items={typeOptions}
-            setOpen={setOpen}
-            setValue={setSelectedTypes}
-            setItems={setTypeOptions}
-            placeholder="Filter by type..."
-            style={styles.dropdown}
-            dropDownContainerStyle={styles.dropdownContainer}
+          open={locationOpen}
+          multiple={true}
+          value={selectedLocations}
+          items={locationOptions}
+          setOpen={setLocationOpen}
+          setValue={setSelectedLocations}
+          setItems={setLocationOptions}
+          placeholder="Filter by city and districts..."
+          style={styles.dropdown}
+          dropDownContainerStyle={styles.dropdownContainer}
+          onOpen={() => {
+            setOpen(false);
+          }}
         />
 
         <DropDownPicker
-          open={cityOpen}
-          value={selectedCity}
-          items={cityOptions}
-          setOpen={setCityOpen}
-          setValue={setSelectedCity}
-          setItems={setCityOptions}
-          placeholder="Filter by city..."
+          open={open}
+          multiple={true}
+          value={selectedTypes}
+          items={typeOptions}
+          setOpen={setOpen}
+          setValue={setSelectedTypes}
+          setItems={setTypeOptions}
+          placeholder="Filter by types and tags..."
           style={styles.dropdown}
           dropDownContainerStyle={styles.dropdownContainer}
+          onOpen={() => {
+            setLocationOpen(false);
+          }}
         />
 
-        <DropDownPicker
-          open={districtOpen}
-          value={selectedDistrict}
-          items={districtOptions}
-          setOpen={setDistrictOpen}
-          setValue={setSelectedDistrict}
-          setItems={setDistrictOptions}
-          placeholder="Filter by district..."
-          style={styles.dropdown}
-          dropDownContainerStyle={styles.dropdownContainer}
-        />
     <View style={styles.dropdownWrapper}>
       <TouchableOpacity
         style={styles.clearButton}
         onPress={() => {
           setSelectedTypes([]);
-          setSelectedCity(null);
-          setSelectedDistrict(null);
+          setSelectedLocations([]);
           setOpen(false);
-          setCityOpen(false);
-          setDistrictOpen(false);
+          setLocationOpen(false);
         }}
       >
         <Text style={styles.clearButtonText}>Deselect All</Text>
@@ -208,10 +199,10 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     margin: 10,
-    zIndex: 30,
+    zIndex: 3000,
   },
   dropdownContainer: {
-    zIndex: 15,
+    // zIndex: 2000,
   },
 dropdownWrapper: {
   flexDirection: 'row',
