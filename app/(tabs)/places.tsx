@@ -3,6 +3,7 @@ import { Link, Stack } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import DropDownPicker from 'react-native-dropdown-picker';
+import * as Location from 'expo-location';
 
 import { PLACES_DEMO } from '@/constants/Places'
 // import useDatabase from "@/database/database2"
@@ -18,6 +19,8 @@ export default function Places() {
 
   const listHeaderComponent = <Text style={styles.textDefault}>Top of List</Text>
   const listFooterComponent = <Text style={styles.textDefault}>End of List</Text>
+
+  const CITY_CENTER = { latitude: 51.9178565, longitude: 4.4811894 }; // Rotterdam
 
   // useEffect(() => {
   //   const fetchData = async () => {
@@ -36,6 +39,39 @@ export default function Places() {
   const [selectedLocations, setSelectedLocations] = useState<string[]>([]);
   const [locationOptions, setLocationOptions] = useState([]);
   const [locationOpen, setLocationOpen] = useState(false);
+
+  const [userLocation, setUserLocation] = useState<null | { latitude: number, longitude: number }>(null);
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        return;
+      }
+
+      const location = await Location.getCurrentPositionAsync({});
+      setUserLocation({
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+      });
+    })();
+  }, []);
+
+  function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+    const R = 6371; // Earth radius in km
+    const dLat = ((lat2 - lat1) * Math.PI) / 180;
+    const dLon = ((lon2 - lon1) * Math.PI) / 180;
+    const a =
+      0.5 -
+      Math.cos(dLat) / 2 +
+      (Math.cos((lat1 * Math.PI) / 180) *
+        Math.cos((lat2 * Math.PI) / 180) *
+        (1 - Math.cos(dLon))) /
+        2;
+
+    console.log(R * 2 * Math.asin(Math.sqrt(a)))
+    return R * 2 * Math.asin(Math.sqrt(a));
+  }
 
 
   useEffect(() => {
@@ -60,26 +96,49 @@ export default function Places() {
 }, []);
 
 
-useEffect(() => {
-  const filtered = PLACES_DEMO.filter(place => {
-    const type = place.type.toLowerCase();
-    const tags = place.tags.map(tag => tag.toLowerCase());
+  useEffect(() => {
+    const filtered = PLACES_DEMO.filter(place => {
+      const type = place.type.toLowerCase();
+      const tags = place.tags.map(tag => tag.toLowerCase());
 
-    const matchesType =
-      selectedTypes.length === 0 ||
-      selectedTypes.includes(type) ||
-      tags.some(tag => selectedTypes.includes(tag));
+      const matchesType =
+        selectedTypes.length === 0 ||
+        selectedTypes.includes(type) ||
+        tags.some(tag => selectedTypes.includes(tag));
 
-    const matchesLocation =
-      selectedLocations.length === 0 ||
-      selectedLocations.includes(place.city) ||
-      selectedLocations.includes(place.district);
+      const matchesLocation =
+        selectedLocations.length === 0 ||
+        selectedLocations.includes(place.city) ||
+        selectedLocations.includes(place.district);
 
-    return matchesType && matchesLocation;
-  });
+      return matchesType && matchesLocation;
+    });
 
-  setPlaces(filtered);
-  }, [selectedTypes, selectedLocations]);
+    let sorted = [...filtered];
+
+    if (userLocation) {
+      // Sort by distance
+      sorted.sort((a, b) => {
+        // const distA = getDistanceFromLatLonInKm(userLocation.latitude, userLocation.longitude, a.latitude, a.longitude);
+        // const distB = getDistanceFromLatLonInKm(userLocation.latitude, userLocation.longitude, b.latitude, b.longitude);
+        const distA = getDistanceFromLatLonInKm(CITY_CENTER.latitude, CITY_CENTER.longitude, a.latitude, a.longitude);
+        const distB = getDistanceFromLatLonInKm(CITY_CENTER.latitude, CITY_CENTER.longitude, b.latitude, b.longitude);
+        return distA - distB;
+      });
+    } else {
+      // Fallback: alphabetical
+      // sorted.sort((a, b) => a.name.localeCompare(b.name));
+
+      // City center fallback
+      sorted.sort((a, b) => {
+      const distA = getDistanceFromLatLonInKm(CITY_CENTER.latitude, CITY_CENTER.longitude, a.latitude, a.longitude);
+      const distB = getDistanceFromLatLonInKm(CITY_CENTER.latitude, CITY_CENTER.longitude, b.latitude, b.longitude);
+      return distA - distB;
+      });
+    } 
+
+    setPlaces(sorted);
+  }, [selectedTypes, selectedLocations, userLocation]);
 
   const getIsOpenNow = (openingTimes) => {
     const now = new Date();
