@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker, Callout } from 'react-native-maps';
-import { useRouter } from 'expo-router';
+import { useRouter, useLocalSearchParams } from 'expo-router';
 import { useNavigation } from '@react-navigation/native';
 import DropDownPicker from 'react-native-dropdown-picker';
 
@@ -18,6 +18,8 @@ const MapScreen = () => {
   const mapRef = useRef<MapView>();
   const navigation = useNavigation();
   const router = useRouter();
+
+  const { focusLat, focusLng } = useLocalSearchParams();
 
   // Dropdown state
   const [open, setOpen] = useState(false);
@@ -97,10 +99,21 @@ const MapScreen = () => {
   const markerRef = useRef(null);
 
   useEffect(() => {
-  if (markerRef.current) {
-    markerRef.current.showCallout();
-  }
-}, []);
+    if (markerRef.current) {
+      markerRef.current.showCallout();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (focusLat && focusLng && mapRef.current) {
+      mapRef.current.animateToRegion({
+        latitude: parseFloat(focusLat as string),
+        longitude: parseFloat(focusLng as string),
+        latitudeDelta: 0.01,
+        longitudeDelta: 0.01,
+      });
+    }
+  }, [focusLat, focusLng]);
 
   return (
     <View style={styles.container}>

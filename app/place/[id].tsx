@@ -1,13 +1,16 @@
 import { View, Text, Image, StyleSheet, Linking, TouchableOpacity, ScrollView } from 'react-native';
-import { Stack, useLocalSearchParams } from 'expo-router';
+import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import React from 'react';
 
 import { PLACES_DEMO } from '@/constants/Places';
 import PLACES_IMAGES from '@/constants/PlacesDemoImages';
 
+
 export default function PlaceDetail() {
   // Get the ID from the URL
   const { id } = useLocalSearchParams();
+
+  const router = useRouter();
 
   // Convert ID to number and find the place
   const place = PLACES_DEMO.find((p) => p.id === Number(id));
@@ -82,7 +85,30 @@ export default function PlaceDetail() {
           {isOpen ? 'Open Now' : 'Closed Now'}
         </Text>
 
+
+        <TouchableOpacity
+          onPress={() => {
+            router.push({
+              pathname: '/(tabs)/map',
+              params: {
+                focusLat: place.latitude,
+                focusLng: place.longitude,
+              },
+            });
+          }}
+          style={{
+            marginTop: 20,
+            padding: 12,
+            backgroundColor: '#444',
+            borderRadius: 8,
+          }}
+        >
+          <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>
+            Show on Map
+          </Text>
+        </TouchableOpacity>
         <View style={styles.separator} />
+        
         <Text style={styles.textDetails}>Address: {place.address}</Text>
         <Text style={styles.textDetails}>Languages: {place.languages.join(', ')}</Text>
         <Text style={styles.textDetails}>Description: {place.description}</Text>

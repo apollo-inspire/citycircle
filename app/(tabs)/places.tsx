@@ -69,7 +69,6 @@ export default function Places() {
         (1 - Math.cos(dLon))) /
         2;
 
-    console.log(R * 2 * Math.asin(Math.sqrt(a)))
     return R * 2 * Math.asin(Math.sqrt(a));
   }
 
