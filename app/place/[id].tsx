@@ -42,6 +42,32 @@ export default function PlaceDetail() {
 
   const openingTimesFormatted = formatOpeningTimes(place.opening_times);
 
+
+  const getIsOpenNow = (openingTimes) => {
+    const now = new Date();
+    const weekday = now.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase(); // e.g. "monday"
+    const openTime = openingTimes[`${weekday}_open`];
+    const closeTime = openingTimes[`${weekday}_close`];
+
+    if (!openTime || !closeTime) {
+      return false; // Closed today
+    }
+
+    // Parse time strings to hours and minutes
+    const [openHour, openMinute] = openTime.split(':').map(Number);
+    const [closeHour, closeMinute] = closeTime.split(':').map(Number);
+
+    const openDate = new Date(now);
+    openDate.setHours(openHour, openMinute, 0);
+
+    const closeDate = new Date(now);
+    closeDate.setHours(closeHour, closeMinute, 0);
+
+    return now >= openDate && now <= closeDate;
+  };
+
+  const isOpen = getIsOpenNow(place.opening_times);
+
   return (
     <ScrollView style={styles.container}>
       <Stack.Screen options={{ title: "Place Detail", headerShown: true }} />
@@ -49,8 +75,14 @@ export default function PlaceDetail() {
         <Image style={styles.image} source={PLACES_IMAGES[place.id]} />
         <Text style={styles.text}>{place.name}</Text>
         <Text style={styles.textType}>{place.type}</Text>
-        <Text style={styles.textDetails}>City: {place.city}</Text>
-        <Text style={styles.textDetails}>District: {place.district}</Text>
+
+        <Text style={styles.textDetails}>{place.city}{place.district ? `, ${place.district}` : null}</Text>
+        
+        <Text style={[styles.textDetails, { fontWeight: 'bold', color: isOpen ? 'lightgreen' : 'tomato' }]}>
+          {isOpen ? 'Open Now' : 'Closed Now'}
+        </Text>
+
+        <View style={styles.separator} />
         <Text style={styles.textDetails}>Address: {place.address}</Text>
         <Text style={styles.textDetails}>Languages: {place.languages.join(', ')}</Text>
         <Text style={styles.textDetails}>Description: {place.description}</Text>

@@ -79,7 +79,27 @@ useEffect(() => {
   });
 
   setPlaces(filtered);
-}, [selectedTypes, selectedLocations]);
+  }, [selectedTypes, selectedLocations]);
+
+  const getIsOpenNow = (openingTimes) => {
+    const now = new Date();
+    const weekday = now.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase(); // e.g. "monday"
+    const openTime = openingTimes[`${weekday}_open`];
+    const closeTime = openingTimes[`${weekday}_close`];
+
+    if (!openTime || !closeTime) return false;
+
+    const [openHour, openMinute] = openTime.split(':').map(Number);
+    const [closeHour, closeMinute] = closeTime.split(':').map(Number);
+
+    const openDate = new Date(now);
+    openDate.setHours(openHour, openMinute, 0);
+
+    const closeDate = new Date(now);
+    closeDate.setHours(closeHour, closeMinute, 0);
+
+    return now >= openDate && now <= closeDate;
+  };
 
   return (
     <Provider>
@@ -151,22 +171,31 @@ useEffect(() => {
           ListFooterComponentStyle={ styles.listHeaderFooterComponent }
           ListEmptyComponent={<Text style={styles.textDefault} >No Items</Text>}
           keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
-          <Link href={`/place/${item.id}`} asChild>
-            <Pressable style={styles.placeContainer}>
-              <Image style={styles.iconImg} source={PLACES_IMAGES[item.id]}></Image>
-              <View style={styles.textAllContainer}>
-                <View style={styles.textContainer}>
-                  <Text style={styles.textName}>{item.name}</Text>
-                  <Text style={styles.textType}>{item.type}</Text>
-                </View>
-                <View style={styles.textDetailsContainer}>
-                  <Text style={styles.textDetails}>{item.city}, {item.district}</Text>
-                </View>
-              </View>
-            </Pressable>
-          </Link>
-          )}
+          renderItem={({ item }) => {
+            const isOpen = getIsOpenNow(item.opening_times);
+
+            return (
+              <Link href={`/place/${item.id}`} asChild>
+                <Pressable style={styles.placeContainer}>
+                  <Image style={styles.iconImg} source={PLACES_IMAGES[item.id]} />
+                  <View style={styles.textAllContainer}>
+                    <View style={styles.textContainer}>
+                      <Text style={styles.textName}>{item.name}</Text>
+                      <Text style={styles.textType}>{item.type}</Text>
+                    </View>
+                    <View style={styles.textDetailsContainer}>
+                      <Text style={styles.textDetails}>
+                        {item.city}{item.district ? `, ${item.district}` : ''}
+                      </Text>
+                      <Text style={[ styles.openStatus, { color: isOpen ? 'lightgreen' : 'tomato' },]} >
+                          {isOpen ? 'Open Now' : 'Closed Now'}
+                      </Text>
+                    </View>
+                  </View>
+                </Pressable>
+              </Link>
+            );
+          }}
           />
       </Container>
     </Provider>
@@ -248,10 +277,11 @@ const styles = StyleSheet.create({
     },
 
     textDetailsContainer: {
-      marginLeft: 20,
+      marginLeft: 3,
       height: "100%",
-      marginVertical: "auto",
-      maxWidth: 150
+      maxWidth: 150,
+      alignItems: "flex-end",      // Align text to the right
+      justifyContent: "center",    // Vertically center
     },
     textDetails: {
       color: 'white',
@@ -301,5 +331,10 @@ const styles = StyleSheet.create({
     clearButtonText: {
       fontWeight: 'bold',
       color: '#333',
+    },
+    openStatus: {
+      fontSize: 14,
+      fontWeight: 'bold',
+      marginTop: 4,
     },
 })
