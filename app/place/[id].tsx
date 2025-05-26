@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet, Linking, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, Linking, TouchableOpacity, ScrollView } from 'react-native';
 import { Stack, useLocalSearchParams } from 'expo-router';
 import React from 'react';
 
@@ -21,40 +21,114 @@ export default function PlaceDetail() {
     );
   }
 
+  const formatOpeningTimes = (openingTimes) => {
+    const days = [
+      { key: 'monday', label: 'Monday' },
+      { key: 'tuesday', label: 'Tuesday' },
+      { key: 'wednesday', label: 'Wednesday' },
+      { key: 'thursday', label: 'Thursday' },
+      { key: 'friday', label: 'Friday' },
+      { key: 'saturday', label: 'Saturday' },
+      { key: 'sunday', label: 'Sunday' },
+    ];
+
+    return days.map(({ key, label }) => {
+      const open = openingTimes[`${key}_open`];
+      const close = openingTimes[`${key}_close`];
+      const time = open && close ? `${open}-${close}` : 'Closed';
+      return `${label}: ${time}`;
+    });
+  };
+
+  const openingTimesFormatted = formatOpeningTimes(place.opening_times);
+
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Stack.Screen options={{ title: "Place Detail", headerShown: true }} />
-      <Image style={styles.image} source={PLACES_IMAGES[place.id]} />
-      <Text style={styles.text}>{place.name}</Text>
-      <Text style={styles.textType}>{place.type}</Text>
-      <Text style={styles.textDetails}>City: {place.city}</Text>
-      <Text style={styles.textDetails}>District: {place.district}</Text>
-      <Text style={styles.textDetails}>Address: {place.address}</Text>
-      <Text style={styles.textDetails}>Languages: {place.languages}</Text>
-      <Text style={styles.textDetails}>Tags: {place.tags}</Text>
-      <Text style={styles.textDetails}>Description: {place.description}</Text>
-      {/* <Text style={styles.textDetails}>{place.website}</Text> */}
-      <TouchableOpacity onPress={() => Linking.openURL(place.website)}>
-        <Text style={[styles.textDetails, { color: 'lightblue', textDecorationLine: 'underline' }]}>
-          Link to Website
-          {/* {place.website} */}
+      <View style={styles.content}>
+        <Image style={styles.image} source={PLACES_IMAGES[place.id]} />
+        <Text style={styles.text}>{place.name}</Text>
+        <Text style={styles.textType}>{place.type}</Text>
+        <Text style={styles.textDetails}>City: {place.city}</Text>
+        <Text style={styles.textDetails}>District: {place.district}</Text>
+        <Text style={styles.textDetails}>Address: {place.address}</Text>
+        <Text style={styles.textDetails}>Languages: {place.languages.join(', ')}</Text>
+        <Text style={styles.textDetails}>Description: {place.description}</Text>
+
+        <TouchableOpacity onPress={() => Linking.openURL(place.website)}>
+          <Text style={[styles.textDetails, styles.link]}>Link to Website</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => Linking.openURL(place.google_maps_link)}>
+          <Text style={[styles.textDetails, styles.link]}>Link to Google Maps</Text>
+        </TouchableOpacity>
+
+        <View style={styles.separator} />
+        <Text style={styles.textDetails}>Opening Times:</Text>
+        {openingTimesFormatted.map((line, index) => (
+          <Text key={index} style={styles.textDetails}>{line}</Text>
+        ))}
+
+        <Text style={styles.textDetails}>
+          Tags: {place.tags
+            .map(tag =>
+              tag
+                .split(' ')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(' ')
+            )
+            .join(', ')}
         </Text>
-      </TouchableOpacity>
-            <TouchableOpacity onPress={() => Linking.openURL(place.google_maps_link)}>
-        <Text style={[styles.textDetails, { color: 'lightblue', textDecorationLine: 'underline' }]}>
-          Link to Google Maps
-          {/* {place.website} */}
-        </Text>
-      </TouchableOpacity>
-      {/* <Text style={styles.textDetails}>{place.opening_times}</Text> */}
-    </View>
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#202020', padding: 20 },
-  text: { color: 'white', fontSize: 32, fontWeight: 'bold', textAlign: 'center' },
-  textType: { color: 'white', fontSize: 20, marginBottom: 10 },
-  textDetails: { color: 'white', fontSize: 18, marginVertical: 5 },
-  image: { width: 100, height: 100, marginBottom: 20 }
+  container: {
+    flex: 1,
+    backgroundColor: '#202020',
+  },
+  content: {
+    alignItems: 'center',
+    padding: 20,
+  },
+  centeredContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#202020',
+    padding: 20,
+  },
+  text: {
+    color: 'white',
+    fontSize: 32,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  textType: {
+    color: 'white',
+    fontSize: 24,
+    marginBottom: 10,
+  },
+  textDetails: {
+    color: 'white',
+    fontSize: 18,
+    marginVertical: 5,
+  },
+  image: {
+    width: 100,
+    height: 100,
+    marginBottom: 20,
+  },
+  link: {
+    color: 'lightblue',
+    textDecorationLine: 'underline',
+  },
+  separator: {
+    borderBottomColor: '#333',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    marginVertical: 10,
+    alignSelf: 'stretch',
+  },
+
 });

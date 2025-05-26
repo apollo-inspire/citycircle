@@ -361,7 +361,7 @@ export const PLACES_DEMO = [
         district: "Stadscentrum",
         address: "Rochussenstraat 198, 3015 EK Rotterdam",
         tags: ["study spot", "education", "university", "students", "education", "university", "students", "academic", "research", "public", "community", "innovation", "technology", "culture"],
-        languages: ["NL", "EN", "Other"],
+        languages: ["NL", "EN"],
         description: "Hogeschool Rotterdam is a university of applied sciences offering a wide range of bachelor's and master's programs.",
         opening_times: {
             monday_open: "07:30",
@@ -489,7 +489,7 @@ export const PLACES_DEMO = [
         "district": "Stadscentrum",
         "address": "Hoogstraat 110, 3011 PV Rotterdam",
         "tags": ["study spot", "library", "study", "books", "public", "library", "study", "books", "public", "culture", "reading", "events", "community", "academic", "multilingual"],
-        "languages": ["NL", "EN"],
+        "languages": ["NL"],
         "description": "The central library of Rotterdam offering a vast collection of books, study spaces, and various cultural events.",
         "opening_times": {
             "monday_open": "13:00",
@@ -521,7 +521,7 @@ export const PLACES_DEMO = [
         "district": "Stadscentrum",
         "address": "Schiestraat 18, 3013 AH Rotterdam",
         "tags": ["bar", "beer", "outdoor", "music", "bar", "beer", "outdoor", "music", "casual", "social", "nightlife", "events", "food", "youth"],
-        "languages": ["NL", "EN"],
+        "languages": ["EN", "NL"],
         "description": "An open-air bar offering a variety of beers, food, and live music events in a relaxed atmosphere.",
         "opening_times": {
             "monday_open": "Closed",
@@ -657,7 +657,7 @@ export const PLACES_DEMO = [
             "networking",
             "activism",
             "diverse"],
-        "languages": ["NL", "EN"],
+        "languages": ["EN", "NL"],
         "description": "Queer Rotterdam is a volunteer-run collective organizing events and activities for the LGBTQI+ community, fostering connection and empowerment in an inclusive environment.",
         "opening_times": {
             "monday_open": "Varies",
@@ -703,7 +703,7 @@ export const PLACES_DEMO = [
             "Westblaak",
             "evening",
             "social"],
-        "languages": ["NL", "EN"],
+        "languages": ["EN", "NL"],
         "description": "Ferry is a vibrant queer bar and café offering a welcoming space with two floors and a terrace. It hosts regular events, including DJ nights and drag performances.",
         "opening_times": {
             "monday_open": "16:00",
@@ -749,7 +749,7 @@ export const PLACES_DEMO = [
             "Kinepolis Group",
             "comfortable seating",
             "evening entertainment"],
-        "languages": ["NL", "EN"],
+        "languages": ["NL", "EN", "Other"],
         "description": "Cinerama is a historic cinema featuring seven screens and a mix of mainstream and arthouse films. It also hosts various film festivals throughout the year.",
         "opening_times": {
             "monday_open": "12:30",
@@ -795,7 +795,7 @@ export const PLACES_DEMO = [
             "affordable",
             "historic",
             "literary"],
-        "languages": ["NL", "EN"],
+        "languages": ["NL", "EN", "Other"],
         "description": "De Slegte is a renowned bookstore in Rotterdam, offering a vast collection of secondhand books, study materials, and literary works. It's a haven for book enthusiasts seeking both classic and contemporary titles.",
         "opening_times": {
             "monday_open": "12:00",
@@ -1171,7 +1171,7 @@ export const PLACES_DEMO = [
         "district": "Kop van Zuid",
         "address": "Otto Reuchlinweg 996, 3072 MD Rotterdam",
         "tags": ["cinema", "jazz", "film screenings", "concerts", "festivals", "cultural events", "restaurant", "art house", "live music", "educational programs", "independent films", "documentaries", "world cinema", "inclusive", "community space", "urban", "creative", "diverse programming", "cultural hub", "modern"],
-        "languages": ["NL", "EN"],
+        "languages": ["NL", "EN", "Other"],
         "description": "LantarenVenster is a cultural venue in Rotterdam offering a diverse program of films, jazz concerts, and festivals, along with a restaurant and educational activities.",
         "opening_times": {
             "monday_open": "11:30",
@@ -1203,7 +1203,7 @@ export const PLACES_DEMO = [
         "district": "Stadscentrum",
         "address": "Kievitslaan 8, 3016 CG Rotterdam",
         "tags": ["park", "historic garden", "greenery", "tranquil", "nature", "walking paths", "botanical", "relaxation", "scenic", "urban oasis", "heritage site", "flora and fauna", "educational", "family-friendly", "photography", "birdwatching", "seasonal blooms", "meditative", "accessible", "hidden gem"],
-        "languages": ["NL", "EN"],
+        "languages": [""],
         "description": "Historische Tuin Schoonoord is a serene historic garden in the heart of Rotterdam, offering visitors a peaceful retreat amidst lush greenery and diverse plant species.",
         "opening_times": {
             "monday_open": "08:30",
@@ -1266,7 +1266,8 @@ export const PLACES_DEMO = [
         "city": "Rotterdam",
         "district": "Stadscentrum",
         "address": "Oude Binnenweg 131B, 3012 JD Rotterdam",
-        "tags": ["bookstore", "literature", "poetry", "art books", "children's books", "photography", "cozy", "independent", "readings", "cultural", "local authors", "community events", "intellectual", "historic", "literary hub", "inclusive", "educational", "urban", "creative", "niche"], "languages": ["NL", "EN"],
+        "tags": ["bookstore", "literature", "poetry", "art books", "children's books", "photography", "cozy", "independent", "readings", "cultural", "local authors", "community events", "intellectual", "historic", "literary hub", "inclusive", "educational", "urban", "creative", "niche"],
+        "languages": ["NL"],
         "description": "Boekhandel van Gennep is a cozy independent bookstore in Rotterdam offering a curated selection of literature, poetry, art, and photography books, along with regular author readings.",
         "opening_times": {
             "monday_open": "12:00",
@@ -1490,7 +1491,7 @@ export const PLACES_DEMO = [
         "district": "Kralingen-Crooswijk",
         "address": "Willem Ruyslaan 225, 3063 ER Rotterdam",
         "tags": ["hotel", "co-working", "student housing", "events", "restaurant", "gym", "community", "networking", "modern", "urban", "inclusive", "creative", "flexible spaces", "international", "youthful", "innovative", "social", "collaborative", "accommodation", "lifestyle"],
-        "languages": ["NL", "EN"],
+        "languages": ["EN", "NL"],
         "description": "The Social Hub Rotterdam is a hybrid hospitality concept combining hotel accommodations, student housing, co-working spaces, and event venues, fostering a vibrant community for travelers, students, and professionals.",
         "opening_times": {
             "monday_open": "00:00",
@@ -1518,8 +1519,8 @@ export const PLACES_DEMO = [
         "type": "Sports",
         "latitude": 51.924714,
         "longitude": 4.5639559,
-        "city": "Rotterdam",
-        "district": "Feijenoord",
+        "city": "Capelle aan den IJssel",
+        "district": "",
         "address": "Rhijnspoor 275, 2901 LB Capelle aan den IJssel",
         "tags": ["roller skating", "disco", "family fun", "music", "events", "birthday parties", "skate rental", "indoor", "sports", "entertainment", "youthful", "active", "social", "inclusive", "urban", "casual", "fun", "recreational", "community", "vibrant"],
         "languages": ["NL", "EN"],
