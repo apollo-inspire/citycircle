@@ -159,49 +159,56 @@ export default function Places() {
     return now >= openDate && now <= closeDate;
   };
 
+  const WhiteCheckIcon = () => (
+    <Text style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}>✓</Text>
+  );
+
   return (
     <Provider>
-      <Stack.Screen options={{ title: 'Places',  headerShown: false }} />
+      <Stack.Screen options={{ title: 'Places',  headerShown: true }} />
       <Container style={styles.container}>
-        <Text style={styles.text}>List of Places</Text>
+        {/* <Text style={styles.text}>List of Places</Text> */}
 
         <View style={{ zIndex: 3000 }}>
-          <DropDownPicker
-            open={locationOpen}
-            multiple={true}
-            value={selectedLocations}
-            items={locationOptions}
-            setOpen={setLocationOpen}
-            setValue={setSelectedLocations}
-            setItems={setLocationOptions}
-            placeholder="Filter by city and districts..."
-            searchable={true}
-            searchPlaceholder="Search city or district..."
-            searchTextInputStyle={styles.searchInput}
-            onOpen={() => setOpen(false)}
-            style={styles.dropdown}
-            dropDownContainerStyle={styles.dropdownContainer}
-          />
+                  <DropDownPicker
+          open={locationOpen}
+          multiple={true}
+          value={selectedLocations}
+          items={locationOptions}
+          setOpen={setLocationOpen}
+          setValue={setSelectedLocations}
+          setItems={setLocationOptions}
+          placeholder="Filter by city and districts..."
+          style={styles.dropdownDark}
+          dropDownContainerStyle={styles.dropdownContainerDark}
+          textStyle={styles.dropdownText}
+          placeholderStyle={styles.dropdownPlaceholder}
+          searchTextInputStyle={styles.searchInputDark}
+          searchable={true}
+          searchPlaceholder="Search city or district..."
+          TickIconComponent={WhiteCheckIcon}
+          onOpen={() => setOpen(false)}
+        />
 
-          <DropDownPicker
-            open={open}
-            multiple={true}
-            value={selectedTypes}
-            items={typeOptions}
-            setOpen={setOpen}
-            setValue={(callback) => {
-              const newValue = callback(selectedTypes);
-              setSelectedTypes(newValue.map(val => val.toLowerCase()));
-            }}
-            setItems={setTypeOptions}
-            placeholder="Filter by types and tags..."
-            searchable={true}
-            searchPlaceholder="Search types or tags..."
-            searchTextInputStyle={styles.searchInput}
-            onOpen={() => setLocationOpen(false)}
-            style={styles.dropdown}
-            dropDownContainerStyle={styles.dropdownContainer}
-          />
+        <DropDownPicker
+          open={open}
+          multiple={true}
+          value={selectedTypes}
+          items={typeOptions}
+          setOpen={setOpen}
+          setValue={setSelectedTypes}
+          setItems={setTypeOptions}
+          placeholder="Filter by types and tags..."
+          style={styles.dropdownDark}
+          dropDownContainerStyle={styles.dropdownContainerDark}
+          textStyle={styles.dropdownText}
+          placeholderStyle={styles.dropdownPlaceholder}
+          searchTextInputStyle={styles.searchInputDark}
+          searchable={true}
+          searchPlaceholder="Search types or tags..."
+          TickIconComponent={WhiteCheckIcon}
+          onOpen={() => setLocationOpen(false)}
+        />
 
           <View style={styles.dropdownWrapper}>
             <TouchableOpacity
@@ -378,17 +385,49 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       marginHorizontal: 10,
     },
+
+    dropdownDark: {
+      margin: 10,
+      backgroundColor: '#2a2a2a',
+      borderColor: '#444',
+      zIndex: 3000,
+    },
+
+    dropdownContainerDark: {
+      backgroundColor: '#1f1f1f',
+      borderColor: '#444',
+    },
+
+    dropdownText: {
+      color: 'white',
+    },
+
+    dropdownPlaceholder: {
+      color: '#aaa',
+    },
+
+    searchInputDark: {
+      padding: 12,
+      borderWidth: 1,
+      borderColor: '#555',
+      borderRadius: 6,  
+      marginVertical: 1,
+      marginHorizontal: 3,
+      color: 'white',
+      backgroundColor: '#2a2a2a',
+    },
+
     clearButton: {
       marginLeft: 8,
       paddingHorizontal: 10,
       paddingVertical: 12,
-      backgroundColor: '#ddd',
-      borderRadius: 6,
+      backgroundColor: '#444',
+      borderRadius: 8,
       marginBottom: 10,
     },
     clearButtonText: {
       fontWeight: 'bold',
-      color: '#333',
+      color: 'white',
     },
     openStatus: {
       fontSize: 14,

@@ -10,8 +10,8 @@ import { PLACES_DEMO } from '@/constants/Places';
 const INITIAL_REGION = {
   latitude: 51.9205651,
   longitude: 4.4856543,
-  latitudeDelta: 0.07,
-  longitudeDelta: 0.07,
+  latitudeDelta: 0.04,
+  longitudeDelta: 0.04,
 };
 
 const MapScreen = () => {
@@ -109,11 +109,15 @@ const MapScreen = () => {
       mapRef.current.animateToRegion({
         latitude: parseFloat(focusLat as string),
         longitude: parseFloat(focusLng as string),
-        latitudeDelta: 0.01,
-        longitudeDelta: 0.01,
+        latitudeDelta: 0.005,
+        longitudeDelta: 0.005,
       });
     }
   }, [focusLat, focusLng]);
+
+  const WhiteCheckIcon = () => (
+    <Text style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}>✓</Text>
+  );
 
   return (
     <View style={styles.container}>
@@ -126,14 +130,15 @@ const MapScreen = () => {
           setValue={setSelectedLocations}
           setItems={setLocationOptions}
           placeholder="Filter by city and districts..."
-          style={styles.dropdown}
-          dropDownContainerStyle={styles.dropdownContainer}
+          style={styles.dropdownDark}
+          dropDownContainerStyle={styles.dropdownContainerDark}
+          textStyle={styles.dropdownText}
+          placeholderStyle={styles.dropdownPlaceholder}
+          searchTextInputStyle={styles.searchInputDark}
           searchable={true}
           searchPlaceholder="Search city or district..."
-          searchTextInputStyle={styles.searchInput}
-          onOpen={() => {
-            setOpen(false);
-          }}
+          TickIconComponent={WhiteCheckIcon}
+          onOpen={() => setOpen(false)}
         />
 
         <DropDownPicker
@@ -145,14 +150,15 @@ const MapScreen = () => {
           setValue={setSelectedTypes}
           setItems={setTypeOptions}
           placeholder="Filter by types and tags..."
-          style={styles.dropdown}
-          dropDownContainerStyle={styles.dropdownContainer}
+          style={styles.dropdownDark}
+          dropDownContainerStyle={styles.dropdownContainerDark}
+          textStyle={styles.dropdownText}
+          placeholderStyle={styles.dropdownPlaceholder}
+          searchTextInputStyle={styles.searchInputDark}
           searchable={true}
           searchPlaceholder="Search types or tags..."
-          searchTextInputStyle={styles.searchInput}
-          onOpen={() => {
-            setLocationOpen(false);
-          }}
+          TickIconComponent={WhiteCheckIcon}
+          onOpen={() => setLocationOpen(false)}
         />
 
     <View style={styles.dropdownWrapper}>
@@ -254,20 +260,49 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     paddingHorizontal: 10,
     paddingVertical: 12,
-    backgroundColor: '#ddd',
-    borderRadius: 6,
+    backgroundColor: '#444',
+    borderRadius: 8,
     marginBottom: 10,
+  },
+  dropdownDark: {
+  margin: 10,
+  backgroundColor: '#2a2a2a',
+  borderColor: '#444',
+  zIndex: 3000,
+  },
+
+  dropdownContainerDark: {
+    backgroundColor: '#1f1f1f',
+    borderColor: '#444',
+  },
+
+  dropdownText: {
+    color: 'white',
+  },
+
+  dropdownPlaceholder: {
+    color: '#aaa',
+  },
+
+  searchInputDark: {
+    padding: 12,
+    borderWidth: 1,
+    borderColor: '#555',
+    borderRadius: 6,  
+    marginVertical: 1,
+    marginHorizontal: 3,
+    color: 'white',
+    backgroundColor: '#2a2a2a',
   },
   clearButtonText: {
     fontWeight: 'bold',
-    color: '#333',
+    color: 'white',
   },
   searchInput: {
-    paddingVertical: 10,
-    paddingHorizontal: 12,
+    padding: 12,
     borderWidth: 1,
     borderColor: '#ccc',
-    borderRadius: 6,
+    borderRadius: 6,  
     marginVertical: 1,
     marginHorizontal: 3,
   },

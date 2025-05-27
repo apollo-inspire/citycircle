@@ -96,12 +96,7 @@ export default function PlaceDetail() {
               },
             });
           }}
-          style={{
-            marginTop: 20,
-            padding: 12,
-            backgroundColor: '#444',
-            borderRadius: 8,
-          }}
+          style={styles.button}
         >
           <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>
             Show on Map
@@ -188,5 +183,10 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     alignSelf: 'stretch',
   },
-
+  button: {
+    marginTop: 20,
+    padding: 12,
+    backgroundColor: '#444',
+    borderRadius: 8,
+  }
 });
