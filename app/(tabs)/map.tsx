@@ -14,6 +14,7 @@ const INITIAL_REGION = {
   longitudeDelta: 0.04,
 };
 
+
 const MapScreen = () => {
   const mapRef = useRef<MapView>();
   const navigation = useNavigation();
@@ -31,27 +32,27 @@ const MapScreen = () => {
   const [locationOpen, setLocationOpen] = useState(false);
 
   useEffect(() => {
-  const types = PLACES_DEMO.map(place => place.type.toLowerCase());
-  const allTags = PLACES_DEMO.flatMap(place => place.tags.map(tag => tag.toLowerCase()));
-  const combined = Array.from(new Set([...types, ...allTags]));
+    const types = PLACES_DEMO.map(place => place.type.toLowerCase());
+    const allTags = PLACES_DEMO.flatMap(place => place.tags.map(tag => tag.toLowerCase()));
+    const combined = Array.from(new Set([...types, ...allTags]));
 
-  const formattedTypes = combined.map(entry => ({
-    label: entry.charAt(0).toUpperCase() + entry.slice(1),
-    value: entry,
-  }));
+    const formattedTypes = combined.map(entry => ({
+      label: entry.charAt(0).toUpperCase() + entry.slice(1),
+      value: entry,
+    }));
 
-  const locations = Array.from(
-    new Set([...PLACES_DEMO.map(p => p.city), ...PLACES_DEMO.map(p => p.district)])
-  ).map(location => ({
-    label: location,
-    value: location,
-  }));
+    const locations = Array.from(
+      new Set([...PLACES_DEMO.map(p => p.city), ...PLACES_DEMO.map(p => p.district)])
+    ).map(location => ({
+      label: location,
+      value: location,
+    }));
 
-  setLocationOptions(locations);
+    setLocationOptions(locations);
 
-  setTypeOptions(formattedTypes);
+    setTypeOptions(formattedTypes);
 
-}, []);
+  }, []);
 
   useEffect(() => {
     navigation.setOptions({
@@ -215,8 +216,6 @@ const MapScreen = () => {
     </View>
   );
 };
-
-export default MapScreen;
 
 const mapStyle = [
   // On/off
@@ -424,3 +423,6 @@ const styles = StyleSheet.create({
     height: 40
   }
 });
+
+
+export default MapScreen;

@@ -1,13 +1,12 @@
-import { View, Text, Image, StyleSheet, Platform, ScrollView, FlatList, Pressable, TouchableOpacity } from 'react-native';
+import * as Location from 'expo-location';
 import { Link, Stack } from 'expo-router';
 import React, { useEffect, useState } from 'react';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { FlatList, Platform, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
-import * as Location from 'expo-location';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
-import { PLACES_DEMO } from '@/constants/Places'
+import { PLACES_DEMO } from '@/constants/Places';
 // import useDatabase from "@/database/database2"
-import PLACES_IMAGES from '@/constants/PlacesDemoImages'
 
 
 export default function Places() {
@@ -118,10 +117,10 @@ export default function Places() {
     if (userLocation) {
       // Sort by distance
       sorted.sort((a, b) => {
-        // const distA = getDistanceFromLatLonInKm(userLocation.latitude, userLocation.longitude, a.latitude, a.longitude);
-        // const distB = getDistanceFromLatLonInKm(userLocation.latitude, userLocation.longitude, b.latitude, b.longitude);
-        const distA = getDistanceFromLatLonInKm(CITY_CENTER.latitude, CITY_CENTER.longitude, a.latitude, a.longitude);
-        const distB = getDistanceFromLatLonInKm(CITY_CENTER.latitude, CITY_CENTER.longitude, b.latitude, b.longitude);
+        const distA = getDistanceFromLatLonInKm(userLocation.latitude, userLocation.longitude, a.latitude, a.longitude);
+        const distB = getDistanceFromLatLonInKm(userLocation.latitude, userLocation.longitude, b.latitude, b.longitude);
+        // const distA = getDistanceFromLatLonInKm(CITY_CENTER.latitude, CITY_CENTER.longitude, a.latitude, a.longitude);
+        // const distB = getDistanceFromLatLonInKm(CITY_CENTER.latitude, CITY_CENTER.longitude, b.latitude, b.longitude);
         return distA - distB;
       });
     } else {
@@ -242,7 +241,7 @@ export default function Places() {
             return (
               <Link href={`/place/${item.id}`} asChild>
                 <Pressable style={styles.placeContainer}>
-                  <Image style={styles.iconImg} source={PLACES_IMAGES[item.id]} />
+                  {/* <Image style={styles.iconImg} source={PLACES_IMAGES[item.id]} /> */}
                   <View style={styles.textAllContainer}>
                     <View style={styles.textContainer}>
                       <Text style={styles.textName}>{item.name}</Text>
@@ -284,18 +283,18 @@ const styles = StyleSheet.create({
     },
     textName: {
       color: 'white',
-      fontSize: 20,
+      fontSize: 18,
       fontWeight: 'bold',
       // textAlign: 'center',
-      maxWidth: 200,
+      maxWidth: 150,
       overflow: "hidden",
     },
     textType: {
       color: 'white',
-      fontSize: 16,
+      fontSize: 15,
       fontWeight: '400',
       // textAlign: 'center',
-      maxWidth: 150,
+      maxWidth: 100,
       overflow: "hidden",
       textOverflow: "ellipsis",
     },
