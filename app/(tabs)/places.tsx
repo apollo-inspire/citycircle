@@ -169,7 +169,7 @@ export default function Places() {
         {/* <Text style={styles.text}>List of Places</Text> */}
 
         <View style={{ zIndex: 3000 }}>
-                  <DropDownPicker
+        <DropDownPicker
           open={locationOpen}
           multiple={true}
           value={selectedLocations}
@@ -207,6 +207,12 @@ export default function Places() {
           searchPlaceholder="Search types or tags..."
           TickIconComponent={WhiteCheckIcon}
           onOpen={() => setLocationOpen(false)}
+          listMode="SCROLLVIEW"
+          scrollViewProps={{
+            nestedScrollEnabled: true,
+          }}
+          zIndex={2000}
+          zIndexInverse={1000}
         />
 
           <View style={styles.dropdownWrapper}>

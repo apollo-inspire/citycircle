@@ -29,7 +29,8 @@ export const PLACES_DEMO = [
         },
         logo: require("@/assets/images/placesdemo/donner-favicon.png"),
         "website": "https://www.donner.nl/en/",
-        google_maps_link: "https://maps.google.com/?q=Donner+Rotterdam"
+        google_maps_link: "https://maps.google.com/?q=Donner+Rotterdam",
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Donner+Rotterdam"
     },
     {
         id: 1,
@@ -61,7 +62,7 @@ export const PLACES_DEMO = [
         },
         logo: require("@/assets/images/placesdemo/erasmusesports-favicon.png"),
         "website": "https://www.erasmusesports.nl/",
-        google_maps_link: "https://maps.google.com/?q=Erasmus+Esports+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Erasmus+Esports+Rotterdam"
     },
     {
         id: 2,
@@ -93,7 +94,7 @@ export const PLACES_DEMO = [
         },
         logo: require("@/assets/images/placesdemo/skateland-favicon.png"),
         "website": "https://skateland.nl/",
-        google_maps_link: "https://maps.google.com/?q=Skateland+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Skateland+Rotterdam"
     },
     {
         id: 3,
@@ -125,7 +126,7 @@ export const PLACES_DEMO = [
         },
         logo: require("@/assets/images/placesdemo/rotown-favicon.jpg"),
         "website": "https://www.rotown.nl/",
-        google_maps_link: "https://maps.google.com/?q=Rotown+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Rotown+Rotterdam"
     },
     {
         id: 4,
@@ -157,7 +158,7 @@ export const PLACES_DEMO = [
         },
         logo: require("@/assets/images/placesdemo/bar3-favicon.png"),
         "website": "https://bar3.nl/",
-        google_maps_link: "https://maps.google.com/?q=Bar3+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Bar3+Rotterdam"
     },
     {
         id: 5,
@@ -189,7 +190,7 @@ export const PLACES_DEMO = [
         },
         logo: require("@/assets/images/placesdemo/160k-favicon.png"),
         "website": "https://www.160k.nl/",
-        google_maps_link: "https://maps.google.com/?q=160K+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=160K+Rotterdam"
     },
     {
         id: 6,
@@ -221,7 +222,7 @@ export const PLACES_DEMO = [
         },
         logo: require("@/assets/images/placesdemo/kino-favicon.png"),
         "website": "https://kinorotterdam.nl/",
-        google_maps_link: "https://maps.google.com/?q=Kino+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Kino+Rotterdam"
     },
     {
         id: 7,
@@ -253,7 +254,7 @@ export const PLACES_DEMO = [
         },
         logo: require("@/assets/images/placesdemo/worm-favicon.png"),
         "website": "https://worm.org/",
-        google_maps_link: "https://maps.google.com/?q=WORM+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=WORM+Rotterdam"
     },
     {
         id: 8,
@@ -285,7 +286,7 @@ export const PLACES_DEMO = [
         },
         logo: require("@/assets/images/placesdemo/v2-favicon.png"),
         "website": "https://v2.nl/",
-        google_maps_link: "https://maps.google.com/?q=V2+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=V2+Rotterdam"
     },
     {
         id: 9,
@@ -317,7 +318,7 @@ export const PLACES_DEMO = [
         },
         logo: require("@/assets/images/placesdemo/szeneviertel-favicon.png"),
         "website": "https://maps.google.com/?q=Szeneviertel+Rotterdam",
-        google_maps_link: "https://maps.google.com/?q=Szeneviertel+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Szeneviertel+Rotterdam"
     },
     {
         id: 10,
@@ -349,7 +350,7 @@ export const PLACES_DEMO = [
         },
         logo: require("@/assets/images/placesdemo/v2-favicon.png"),
         "website": "https://worm.org/spaces/wunderbar/",
-        google_maps_link: "https://maps.google.com/?q=Wunderbar+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Wunderbar+Rotterdam"
     },
     {
         id: 11,
@@ -381,7 +382,7 @@ export const PLACES_DEMO = [
         },
         logo: require("@/assets/images/placesdemo/v2-favicon.png"),
         "website": "https://www.hogeschoolrotterdam.nl/",
-        google_maps_link: "https://maps.google.com/?q=Hogeschool+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Hogeschool+Rotterdam"
     },
     {
         "id": 12,
@@ -413,7 +414,7 @@ export const PLACES_DEMO = [
         },
         "logo": null,
         "website": "https://decafes.nl/",
-        "google_maps_link": "https://maps.google.com/?q=NN+Douwe+Egberts+Café+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=NN+Douwe+Egberts+Café+Rotterdam"
     },
     {
         "id": 13,
@@ -445,7 +446,7 @@ export const PLACES_DEMO = [
         },
         "logo": null,
         "website": "https://www.heiligeboontjes.com/",
-        "google_maps_link": "https://maps.google.com/?q=Heilige+Boontjes+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Heilige+Boontjes+Rotterdam"
     },
     {
         "id": 14,
@@ -477,7 +478,7 @@ export const PLACES_DEMO = [
         },
         "logo": null,
         "website": "https://www.backyardrotterdam.nl/",
-        "google_maps_link": "https://maps.google.com/?q=Backyard+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Backyard+Rotterdam"
     },
     {
         "id": 15,
@@ -509,7 +510,7 @@ export const PLACES_DEMO = [
         },
         "logo": null,
         "website": "https://www.bibliotheek.rotterdam.nl/",
-        "google_maps_link": "https://maps.google.com/?q=Centrale+Bibliotheek+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Centrale+Bibliotheek+Rotterdam"
     },
     {
         "id": 16,
@@ -541,7 +542,7 @@ export const PLACES_DEMO = [
         },
         "logo": null,
         "website": "https://biergartenrotterdam.nl/",
-        "google_maps_link": "https://maps.google.com/?q=Biergarten+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Biergarten+Rotterdam"
     },
     {
         "id": 17,
@@ -587,7 +588,7 @@ export const PLACES_DEMO = [
         },
         "logo": null,
         "website": "https://kaapsebrouwers.nl/",
-        "google_maps_link": "https://maps.google.com/?q=Kaapse+Brouwers+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Kaapse+Brouwers+Rotterdam"
     },
     {
         "id": 18,
@@ -633,7 +634,7 @@ export const PLACES_DEMO = [
         },
         "logo": "require('@/assets/images/placesdemo/beestboulders.png')",
         "website": "https://beestboulders.nl/rotterdam/",
-        "google_maps_link": "https://maps.google.com/?q=Beest+Boulders+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Beest+Boulders+Rotterdam"
     },
     {
         "id": 19,
@@ -677,7 +678,7 @@ export const PLACES_DEMO = [
         },
         "logo": "require('@/assets/images/placesdemo/queerrotterdam.png')",
         "website": "https://queerrotterdam.nl/",
-        "google_maps_link": "https://maps.google.com/?q=Queer+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Queer+Rotterdam"
     },
     {
         "id": 20,
@@ -723,7 +724,7 @@ export const PLACES_DEMO = [
         },
         "logo": "require('@/assets/images/placesdemo/ferry.png')",
         "website": "https://www.ferryrotterdam.com/",
-        "google_maps_link": "https://maps.google.com/?q=Ferry+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Ferry+Rotterdam"
     },
     {
         "id": 21,
@@ -769,7 +770,7 @@ export const PLACES_DEMO = [
         },
         "logo": "require('@/assets/images/placesdemo/ferry.png')",
         "website": "https://www.cineramabios.nl/",
-        "google_maps_link": "https://maps.google.com/?q=Cinerama+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Cinerama+Rotterdam"
     },
     {
         "id": 22,
@@ -815,7 +816,7 @@ export const PLACES_DEMO = [
         },
         "logo": "require('@/assets/images/placesdemo/de-slegte.png')",
         "website": "https://www.deslegte.com/rotterdam/",
-        "google_maps_link": "https://maps.google.com/?q=De+Slegte+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=De+Slegte+Rotterdam"
     },
     {
         "id": 23,
@@ -861,7 +862,7 @@ export const PLACES_DEMO = [
         },
         "logo": "require('@/assets/images/placesdemo/toffler.png')",
         "website": "https://www.toffler.nl/",
-        "google_maps_link": "https://maps.google.com/?q=Toffler+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Toffler+Rotterdam"
     },
     {
         "id": 24,
@@ -907,7 +908,7 @@ export const PLACES_DEMO = [
         },
         "logo": "require('@/assets/images/placesdemo/annabel.png')",
         "website": "https://www.annabel.nu/",
-        "google_maps_link": "https://maps.google.com/?q=Annabel+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Annabel+Rotterdam"
     },
     {
         "id": 25,
@@ -953,7 +954,7 @@ export const PLACES_DEMO = [
         },
         "logo": "require('@/assets/images/placesdemo/teds.png')",
         "website": "https://teds-place.nl/locations/rotterdam-op-t-dak/",
-        "google_maps_link": "https://maps.google.com/?q=Teds+op+het+dak+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Teds+op+het+dak+Rotterdam"
     },
     {
         "id": 26,
@@ -999,7 +1000,7 @@ export const PLACES_DEMO = [
         },
         "logo": "https://www.perron.nl/assets/images/logo.png",
         "website": "https://www.perron.nl/",
-        "google_maps_link": "https://maps.google.com/?q=Perron+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Perron+Rotterdam"
     },
     {
         "id": 27,
@@ -1031,7 +1032,7 @@ export const PLACES_DEMO = [
         },
         "logo": "https://roodkapje.org/assets/images/logo.png",
         "website": "https://roodkapje.org/",
-        "google_maps_link": "https://maps.google.com/?q=Roodkapje+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Roodkapje+Rotterdam"
     },
     {
         "id": 28,
@@ -1063,7 +1064,7 @@ export const PLACES_DEMO = [
         },
         "logo": "https://roodkapje.org/assets/images/logo.png",
         "website": "https://roodkapje.org/burgertrut/",
-        "google_maps_link": "https://maps.google.com/?q=Burgertrut+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Burgertrut+Rotterdam"
     },
     {
         "id": 29,
@@ -1095,7 +1096,7 @@ export const PLACES_DEMO = [
         },
         "logo": "https://www.fenixfoodfactory.nl/assets/images/logo.png",
         "website": "https://www.fenixfoodfactory.nl/",
-        "google_maps_link": "https://maps.google.com/?q=Fenix+Food+Factory+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Fenix+Food+Factory+Rotterdam"
     },
     {
         "id": 30,
@@ -1127,7 +1128,7 @@ export const PLACES_DEMO = [
         },
         "logo": null,
         "website": "https://www.theaterwalhalla.nl/",
-        "google_maps_link": "https://maps.google.com/?q=Kleine+Walhalla+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Kleine+Walhalla+Rotterdam"
     },
     {
         "id": 31,
@@ -1159,7 +1160,7 @@ export const PLACES_DEMO = [
         },
         "logo": null,
         "website": "https://www.luxortheater.nl/",
-        "google_maps_link": "https://maps.google.com/?q=Nieuwe+Luxor+Theater+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Nieuwe+Luxor+Theater+Rotterdam"
     },
     {
         "id": 32,
@@ -1191,7 +1192,7 @@ export const PLACES_DEMO = [
         },
         "logo": null,
         "website": "https://www.lantarenvenster.nl/",
-        "google_maps_link": "https://maps.google.com/?q=LantarenVenster+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=LantarenVenster+Rotterdam"
     },
     {
         "id": 33,
@@ -1223,7 +1224,7 @@ export const PLACES_DEMO = [
         },
         "logo": null,
         "website": "https://tuinschoonoord.nl/",
-        "google_maps_link": "https://maps.google.com/?q=Historische+Tuin+Schoonoord+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Historische+Tuin+Schoonoord+Rotterdam"
     },
     {
         "id": 34,
@@ -1255,7 +1256,7 @@ export const PLACES_DEMO = [
         },
         "logo": null,
         "website": "https://mystiek.nl/",
-        "google_maps_link": "https://maps.google.com/?q=Mystiek+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Mystiek+Rotterdam"
     },
     {
         "id": 35,
@@ -1287,7 +1288,7 @@ export const PLACES_DEMO = [
         },
         "logo": null,
         "website": "http://www.boekhandelvangennep.nl/",
-        "google_maps_link": "https://maps.google.com/?q=Boekhandel+van+Gennep+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Boekhandel+van+Gennep+Rotterdam"
     },
     {
         "id": 36,
@@ -1319,7 +1320,7 @@ export const PLACES_DEMO = [
         },
         "logo": "https://rejoes.com/",
         "website": "https://rejoes.com/",
-        "google_maps_link": "https://maps.google.com/?q=Kilo+Kilo+store+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Kilo+Kilo+store+Rotterdam"
     },
     {
         "id": 37,
@@ -1351,7 +1352,7 @@ export const PLACES_DEMO = [
         },
         "logo": "https://deapresskihut.nl/",
         "website": "https://deapresskihut.nl/en/",
-        "google_maps_link": "https://maps.google.com/?q=De+Après+Skihut+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=De+Après+Skihut+Rotterdam"
     },
     {
         "id": 38,
@@ -1383,7 +1384,7 @@ export const PLACES_DEMO = [
         },
         "logo": "https://www.degelekanarie.com/",
         "website": "https://www.degelekanarie.nl/",
-        "google_maps_link": "https://maps.google.com/?q=De+Gele+Kanarie+Cafe+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=De+Gele+Kanarie+Cafe+Rotterdam"
     },
     {
         "id": 39,
@@ -1415,7 +1416,7 @@ export const PLACES_DEMO = [
         },
         "logo": "https://delitasty.nl/",
         "website": "https://delitasty.nl/",
-        "google_maps_link": "https://maps.google.com/?q=Deli+Tasty+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Deli+Tasty+Rotterdam"
     },
     {
         "id": 40,
@@ -1447,7 +1448,7 @@ export const PLACES_DEMO = [
         },
         "logo": "https://rotterdam.info/locaties/cheap-fashion/",
         "website": "https://www.facebook.com/p/Cheap-Fashion-100046132787637/",
-        "google_maps_link": "https://maps.google.com/?q=Cheap+Fashion+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Cheap+Fashion+Rotterdam"
     },
     {
         "id": 41,
@@ -1479,7 +1480,7 @@ export const PLACES_DEMO = [
         },
         "logo": "require('@/assets/images/placesdemo/pebbles-kitty-cat-cafe.png')",
         "website": "https://pebbleskittycatcafe.nl/en/",
-        "google_maps_link": "https://maps.google.com/?q=Pebbles+Kitty+Cat+Café+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Pebbles+Kitty+Cat+Café+Rotterdam"
     },
     {
         "id": 42,
@@ -1511,7 +1512,7 @@ export const PLACES_DEMO = [
         },
         "logo": "require('@/assets/images/placesdemo/the-social-hub-rotterdam.png')",
         "website": "https://www.thesocialhub.co/rotterdam/",
-        "google_maps_link": "https://maps.google.com/?q=The+Social+Hub+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=The+Social+Hub+Rotterdam"
     },
     {
         "id": 43,
@@ -1543,7 +1544,7 @@ export const PLACES_DEMO = [
         },
         "logo": "require('@/assets/images/placesdemo/skate-fever.png')",
         "website": "https://skate-fever.com/",
-        "google_maps_link": "https://maps.google.com/?q=Skate+Fever+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Skate+Fever+Rotterdam"
     },
     {
         "id": 44,
@@ -1575,7 +1576,7 @@ export const PLACES_DEMO = [
         },
         "logo": "require('@/assets/images/placesdemo/hollywood-entertainment-center.png')",
         "website": "https://www.hollywood.nl/rotterdam",
-        "google_maps_link": "https://maps.google.com/?q=Hollywood+Entertainment+Center+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Hollywood+Entertainment+Center+Rotterdam"
     },
     {
         "id": 45,
@@ -1624,7 +1625,7 @@ export const PLACES_DEMO = [
         },
         "logo": "require('@/assets/images/placesdemo/gamestate-de-kuip.png')",
         "website": "https://gamestate.com/pages/rotterdam",
-        "google_maps_link": "https://maps.google.com/?q=Gamestate+de+Kuip+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Gamestate+de+Kuip+Rotterdam"
     },
     {
         "id": 46,
@@ -1673,7 +1674,7 @@ export const PLACES_DEMO = [
         },
         "logo": "require('@/assets/images/placesdemo/pathe-schouwburgplein.png')",
         "website": "https://www.pathe.nl/en/cinemas/pathe-schouwburgplein",
-        "google_maps_link": "https://maps.google.com/?q=Pathé+Schouwburgplein+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Pathé+Schouwburgplein+Rotterdam"
     },
     {
         "id": 47,
@@ -1722,7 +1723,7 @@ export const PLACES_DEMO = [
         },
         "logo": "require('@/assets/images/placesdemo/baroeg.png')",
         "website": "https://baroeg.nl/",
-        "google_maps_link": "https://maps.google.com/?q=Baroeg+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Baroeg+Rotterdam"
     },
     {
         "id": 48,
@@ -1771,7 +1772,7 @@ export const PLACES_DEMO = [
         },
         "logo": "require('@/assets/images/placesdemo/vessel11.png')",
         "website": "https://www.vessel11.nl/en/",
-        "google_maps_link": "https://maps.google.com/?q=Vessel+11+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Vessel+11+Rotterdam"
     },
     {
         "id": 49,
@@ -1820,7 +1821,7 @@ export const PLACES_DEMO = [
         },
         "logo": "require('@/assets/images/placesdemo/tuincentrum-de-molen.png')",
         "website": "https://www.bloemencentrum-demolen.nl/",
-        "google_maps_link": "https://maps.google.com/?q=Tuincentrum+De+Molen+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Tuincentrum+De+Molen+Rotterdam"
     },
     {
         "id": 50,
@@ -1852,7 +1853,7 @@ export const PLACES_DEMO = [
         },
         "logo": null,
         "website": "https://erasmusvolley.nl",
-        "google_maps_link": "https://maps.google.com/?q=Erasmus+Volley+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Erasmus+Volley+Rotterdam"
     },
     {
         "id": 51,
@@ -1884,7 +1885,7 @@ export const PLACES_DEMO = [
         },
         "logo": null,
         "website": "https://ebvbaros.nl",
-        "google_maps_link": "https://maps.google.com/?q=E.B.V.+Baros+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=E.B.V.+Baros+Rotterdam"
     },
     {
         "id": 52,
@@ -1916,7 +1917,7 @@ export const PLACES_DEMO = [
         },
         "logo": null,
         "website": "https://www.skadi.nl",
-        "google_maps_link": "https://maps.google.com/?q=A.R.S.R.+Skadi+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=A.R.S.R.+Skadi+Rotterdam"
     },
     {
         "id": 53,
@@ -1948,7 +1949,7 @@ export const PLACES_DEMO = [
         },
         "logo": null,
         "website": "https://passingshot.nl",
-        "google_maps_link": "https://maps.google.com/?q=R.S.T.V.+Passing+Shot+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=R.S.T.V.+Passing+Shot+Rotterdam"
     },
     {
         "id": 54,
@@ -1980,7 +1981,7 @@ export const PLACES_DEMO = [
         },
         "logo": null,
         "website": "https://ragnar-rotterdam.nl",
-        "google_maps_link": "https://maps.google.com/?q=R.S.Z.&W.V.+Ragnar+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=R.S.Z.&W.V.+Ragnar+Rotterdam"
     },
     {
         "id": 55,
@@ -2012,7 +2013,7 @@ export const PLACES_DEMO = [
         },
         "logo": null,
         "website": "https://erasmuspadel.nl",
-        "google_maps_link": "https://maps.google.com/?q=Erasmus+Padel+Association+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Erasmus+Padel+Association+Rotterdam"
     },
     {
         "id": 56,
@@ -2044,7 +2045,7 @@ export const PLACES_DEMO = [
         },
         "logo": null,
         "website": "https://www.erasmusdancesociety.nl",
-        "google_maps_link": "https://maps.google.com/?q=Erasmus+Dance+Society+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Erasmus+Dance+Society+Rotterdam"
     },
     {
         "id": 57,
@@ -2076,7 +2077,7 @@ export const PLACES_DEMO = [
         },
         "logo": null,
         "website": "https://eurroadrunners.nl",
-        "google_maps_link": "https://maps.google.com/?q=EUR-Roadrunners+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=EUR-Roadrunners+Rotterdam"
     },
     {
         "id": 58,
@@ -2108,7 +2109,7 @@ export const PLACES_DEMO = [
         },
         "logo": null,
         "website": "https://www.rsrc.nl",
-        "google_maps_link": "https://maps.google.com/?q=R.S.R.C.+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=R.S.R.C.+Rotterdam"
     },
     {
         "id": 59,
@@ -2140,7 +2141,7 @@ export const PLACES_DEMO = [
         },
         "logo": null,
         "website": "https://rsmstar.nl/",
-        "google_maps_link": "https://maps.google.com/?q=RSM+STAR+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=RSM+STAR+Rotterdam"
     },
     {
         "id": 60,
@@ -2172,7 +2173,7 @@ export const PLACES_DEMO = [
         },
         "logo": null,
         "website": "https://www.indesmitse.nl/",
-        "google_maps_link": "https://maps.google.com/?q=Café+In+de+Smitse+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Café+In+de+Smitse+Rotterdam"
     },
     {
         "id": 61,
@@ -2204,7 +2205,7 @@ export const PLACES_DEMO = [
         },
         "logo": null,
         "website": "https://eetcafeconcordia.com/",
-        "google_maps_link": "https://maps.google.com/?q=Eetcafé+Concordia+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Eetcafé+Concordia+Rotterdam"
     },
     {
         "id": 62,
@@ -2236,7 +2237,7 @@ export const PLACES_DEMO = [
         },
         "logo": null,
         "website": "https://dizzy.nl/",
-        "google_maps_link": "https://maps.google.com/?q=Jazzcafé+Dizzy+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Jazzcafé+Dizzy+Rotterdam"
     },
     {
         "id": 63,
@@ -2268,7 +2269,7 @@ export const PLACES_DEMO = [
         },
         "logo": null,
         "website": "https://www.dewitteaap.nl/",
-        "google_maps_link": "https://maps.google.com/?q=De+Witte+Aap+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=De+Witte+Aap+Rotterdam"
     },
     {
         "id": 64,
@@ -2300,7 +2301,7 @@ export const PLACES_DEMO = [
         },
         "logo": null,
         "website": "https://maps.google.com/?q=Bagels+Beans+Rotterdam",
-        "google_maps_link": "https://maps.google.com/?q=Bagels+Beans+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Bagels+Beans+Rotterdam"
     },
     {
         "id": 65,
@@ -2332,6 +2333,6 @@ export const PLACES_DEMO = [
         },
         "logo": null,
         "website": "https://coffeecompany.nl/locations/eendrachtsplein-2/",
-        "google_maps_link": "https://maps.google.com/?q=Coffee+Company+Eendrachtsplein+Rotterdam"
+        google_maps_directions_link: "https://www.google.com/maps/dir/?api=1&destination=Coffee+Company+Eendrachtsplein+Rotterdam"
     }
 ];

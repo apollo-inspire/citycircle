@@ -110,8 +110,8 @@ const MapScreen = () => {
       mapRef.current.animateToRegion({
         latitude: parseFloat(focusLat as string),
         longitude: parseFloat(focusLng as string),
-        latitudeDelta: 0.005,
-        longitudeDelta: 0.005,
+        latitudeDelta: 0.01,
+        longitudeDelta: 0.01,
       });
     }
   }, [focusLat, focusLng]);

@@ -1,6 +1,6 @@
-import { View, Text, Image, StyleSheet, Linking, TouchableOpacity, ScrollView } from 'react-native';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import React from 'react';
+import { Image, Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { PLACES_DEMO } from '@/constants/Places';
 import PLACES_IMAGES from '@/constants/PlacesDemoImages';
@@ -111,8 +111,8 @@ export default function PlaceDetail() {
         <TouchableOpacity onPress={() => Linking.openURL(place.website)}>
           <Text style={[styles.textDetails, styles.link]}>Link to Website</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => Linking.openURL(place.google_maps_link)}>
-          <Text style={[styles.textDetails, styles.link]}>Link to Google Maps</Text>
+        <TouchableOpacity onPress={() => Linking.openURL(place.google_maps_directions_link)}>
+          <Text style={[styles.textDetails, styles.link]}>Directions (Google Maps)</Text>
         </TouchableOpacity>
 
         <View style={styles.separator} />
