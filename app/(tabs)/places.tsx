@@ -274,20 +274,24 @@ export default function Places() {
 
 const styles = StyleSheet.create({
     container: {
+        fontFamily: 'Poppins-Regular',
         flex: 1,
         // flexDirection: 'column',
     },
     textDefault: {
+      fontFamily: 'Poppins-Regular',
       color: 'white',
       fontSize: 20,
   },
     text: {
+        fontFamily: 'Poppins-Regular',
         color: 'white',
         fontSize: 42,
         fontWeight: 'bold',
         textAlign: 'center',
     },
     textName: {
+      fontFamily: 'Poppins-Regular',
       color: 'white',
       fontSize: 18,
       fontWeight: 'bold',
@@ -296,6 +300,7 @@ const styles = StyleSheet.create({
       overflow: "hidden",
     },
     textType: {
+      fontFamily: 'Poppins-Regular',
       color: 'white',
       fontSize: 15,
       fontWeight: '400',

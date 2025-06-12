@@ -80,8 +80,8 @@ export default function PlaceDetail() {
         <Text style={styles.textType}>{place.type}</Text>
 
         <Text style={styles.textDetails}>{place.city}{place.district ? `, ${place.district}` : null}</Text>
-        
-        <Text style={[styles.textDetails, { fontWeight: 'bold', color: isOpen ? 'lightgreen' : 'tomato' }]}>
+
+        <Text style={[styles.textDetails, { fontFamily: 'Poppins-Bold', color: isOpen ? '#83E89F' : '#F2A6A9' }]}>
           {isOpen ? 'Open Now' : 'Closed Now'}
         </Text>
 
@@ -153,17 +153,20 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   text: {
+    fontFamily: 'Poppins-Bold',
     color: 'white',
     fontSize: 32,
-    fontWeight: 'bold',
+    // fontWeight: 'bold',
     textAlign: 'center',
   },
   textType: {
+    fontFamily: 'Poppins-Regular',
     color: 'white',
     fontSize: 24,
     marginBottom: 10,
   },
   textDetails: {
+    fontFamily: 'Poppins-Regular',
     color: 'white',
     fontSize: 18,
     marginVertical: 5,
