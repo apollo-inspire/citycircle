@@ -1,95 +1,55 @@
-import { View, Text, StyleSheet, ImageBackground, Pressable } from 'react-native'
-import { Link } from 'expo-router'
-import React from 'react'
-
-import rotterdamMapImg from "@/assets/images/maps-rotterdam.png"
-
-// import useGeoFenceNotification from '@/hooks/useGeoFenceNotification'
-// import useDatabase from "@/database/database2"
-
-import * as Notifications from "expo-notifications";
+import { Link } from 'expo-router';
+import React from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const index = () => {
-  // const database = useDatabase();
-
-  // database.initialiseOfflineCacheDB()
-
-  Notifications.setNotificationHandler({
-      handleNotification: async () => ({
-        shouldShowAlert: true,
-        shouldPlaySound: true,
-        shouldSetBadge: false,
-      }),
-  });
-
-  
-  // useGeoFenceNotification();
-
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={rotterdamMapImg}
-        resizeMode="cover"
-         style={styles.image}
-      >
-        <Text style={styles.text}>Dashboard</Text>
+      <Text style={styles.title}>Welcome to CityCircle</Text>
+      <Text style={styles.subtitle}>Discover places, meet new people, and explore your city—your way.</Text>
 
-        <Link href="/map" style={styles.link}>Map</Link>
-
-        {/* <Link href="/localdatabasetest" style={{ marginHorizontal: 'auto' }} asChild>
-            <Pressable style={styles.button}><Text style={styles.buttonText}>Local Database Test</Text></Pressable>
-        </Link> */}
-        <Link href="/Explore" style={{ marginHorizontal: 'auto' }} asChild>
-            <Pressable style={styles.button}><Text style={styles.buttonText}>Explore</Text></Pressable>
-        </Link>
-      </ImageBackground>
+      <Link href="/map" asChild>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Open Map</Text>
+        </TouchableOpacity>
+      </Link>
     </View>
-  )
-}
+  );
+};
 
-export default index
+export default index;
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-    },
-    image: {
-      width: '100%',
-      height: '100%',
-      flex: 1,
-      resizeMode: 'cover',
-      justifyContent: 'center',
-    },
-    text: {
-        color: 'white',
-        fontSize: 42,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        backgroundColor: 'rgba(0,0,0,0.7)',
-        marginBottom: 120,
-    },
-    link: {
-        color: 'white',
-        fontSize: 42,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        textDecorationLine: 'underline',
-        backgroundColor: 'rgba(0,0,0,0.7)',
-        padding: 4,
-    },
-    button:{
-        height: 60,
-        borderRadius: 20, 
-        justifyContent: 'center',
-        backgroundColor: 'rgba(0,0,0,0.7)',
-        padding: 6,
-    },
-    buttonText: {
-        color: 'white',
-        fontSize: 20,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        padding: 4,
-    }
-})
+  container: {
+    flex: 1,
+    backgroundColor: '#101828',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 24,
+  },
+  title: {
+    fontFamily: 'Poppins-Bold',
+    fontSize: 28,
+    color: '#F3F4F6',
+    marginBottom: 12,
+    textAlign: 'center',
+  },
+  subtitle: {
+    fontFamily: 'Poppins-Regular',
+    fontSize: 16,
+    color: '#99A1AF',
+    textAlign: 'center',
+    marginBottom: 24,
+  },
+  button: {
+    backgroundColor: '#FFC021',
+    paddingVertical: 14,
+    paddingHorizontal: 30,
+    borderRadius: 12,
+  },
+  buttonText: {
+    fontFamily: 'Poppins-Bold',
+    fontSize: 16,
+    color: '#030712',
+  },
+});
