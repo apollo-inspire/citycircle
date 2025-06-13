@@ -79,7 +79,7 @@ export const Colors = {
     icon: basicColors.gray[400],
     tabIconDefault: basicColors.gray[400],
     tint: '#fff',
-    tabIconSelected: '#fff',
+    tabIconSelected: basicColors.primary[400],
     link: basicColors.tertiary[400],
     buttonGray: basicColors.gray[700] 
   },

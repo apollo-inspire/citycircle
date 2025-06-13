@@ -81,7 +81,7 @@ export default function PlaceDetail() {
       <Stack.Screen options={{ title: "Place Detail", headerShown: true }} />
       <View style={styles.content}>
         <Image style={styles.image} source={PLACES_IMAGES[place.id]} />
-        <Text style={styles.text}>{place.name}</Text>
+        <Text style={styles.textTitle}>{place.name}</Text>
         <Text style={styles.textType}>{place.type}</Text>
 
         <Text style={styles.textDetails}>{place.city}{place.district ? `, ${place.district}` : null}</Text>
@@ -160,6 +160,13 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: 'Poppins-Bold',
     color: Colors.dark.text,
+    fontSize: 32,
+    // fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  textTitle: {
+    fontFamily: 'Poppins-Bold',
+    color: Colors.basic.primary[400],
     fontSize: 32,
     // fontWeight: 'bold',
     textAlign: 'center',
