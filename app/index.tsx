@@ -37,7 +37,7 @@ const SLIDES = [
   },
 ];
 
-const screenWidth = Dimensions.get('window').width;
+const screenWidth = Dimensions.get('window').width - 60;
 
 export default function Index() {
   const [hasOnboarded, setHasOnboarded] = useState(false);
@@ -51,10 +51,18 @@ export default function Index() {
   }, [hasOnboarded]);
 
   const handleScroll = (event) => {
-    const rawIndex = event.nativeEvent.contentOffset.x / screenWidth;
-    const clampedIndex = Math.max(0, Math.min(Math.round(rawIndex), SLIDES.length - 1));
-    setCurrentSlide(clampedIndex);
+    const offsetX = event.nativeEvent.contentOffset.x;
+    const index = Math.round(offsetX / screenWidth);
+
+    if (index >= SLIDES.length) {
+      // Force it back to the last slide
+      scrollRef.current?.scrollTo({ x: screenWidth * (SLIDES.length - 1), animated: true });
+      setCurrentSlide(SLIDES.length - 1);
+    } else {
+      setCurrentSlide(index);
+    }
   };
+
 
 
   if (hasOnboarded) return null;
@@ -72,9 +80,12 @@ export default function Index() {
           pagingEnabled
           showsHorizontalScrollIndicator={false}
           ref={scrollRef}
-          onScroll={handleScroll}
-          scrollEventThrottle={16}
+          onMomentumScrollEnd={handleScroll}
+          bounces={false}
           style={styles.carousel}
+          contentContainerStyle={{ width: screenWidth * SLIDES.length }}
+          snapToInterval={screenWidth}
+          decelerationRate="fast"
         >
           {SLIDES.map((slide, index) => (
             <View key={index} style={styles.slide}>
@@ -132,7 +143,8 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   slide: {
-    maxWidth: '100%',
+    // maxWidth: '100%',
+    width: screenWidth,
     paddingHorizontal: 8,
     alignItems: 'center',
   },
