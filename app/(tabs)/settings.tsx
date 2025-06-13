@@ -1,11 +1,11 @@
 import { Colors } from '@/constants/Colors';
 import { PLACES_DEMO } from '@/constants/Places';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Stack } from 'expo-router';
 import React, { useEffect, useState } from 'react';
-import { Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function SettingsScreen() {
     const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
@@ -107,14 +107,31 @@ useEffect(() => {
             />
 
             <TouchableOpacity
-              style={styles.clearButton}
-              onPress={() => {
-                setSelectedInterests([]);
-                setOpenInterests(false);
-              }}
-            >
-              <Text style={styles.clearButtonText}>Clear</Text>
-            </TouchableOpacity>
+                style={styles.clearButton}
+                onPress={() => {
+                    Alert.alert(
+                    "Clear all interests?",
+                    "This will remove all saved selected interests from your local storage. Are you sure?",
+                    [
+                        {
+                        text: "No, Keep Data",
+                        style: "cancel"
+                        },
+                        {
+                        text: "Yes, Clear Data",
+                        style: "destructive",
+                        onPress: () => {
+                            setSelectedInterests([]);
+                            setOpenInterests(false);
+                        }
+                        }
+                    ]
+                    );
+                }}
+                >
+                <Text style={styles.clearButtonText}>Clear</Text>
+                </TouchableOpacity>
+
 
             <Text style={styles.selectedLabel}>Currently selected:</Text>
                 <View style={styles.tagsContainer}>
