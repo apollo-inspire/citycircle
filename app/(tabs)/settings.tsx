@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Platform, ScrollView } from 'react-native';
-import { Link, Stack } from 'expo-router';
-import DropDownPicker from 'react-native-dropdown-picker';
 import { Colors } from '@/constants/Colors';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { PLACES_DEMO } from '@/constants/Places';
+import { Stack } from 'expo-router';
+import React, { useEffect, useState } from 'react';
+import { Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import DropDownPicker from 'react-native-dropdown-picker';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 export default function SettingsScreen() {
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
