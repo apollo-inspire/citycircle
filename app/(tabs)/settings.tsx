@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Platform, ScrollView } from 'react-native';
+import { Link, Stack } from 'expo-router';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Colors } from '@/constants/Colors';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
@@ -33,8 +34,9 @@ export default function SettingsScreen() {
 
   return (
     <Provider>
+      <Stack.Screen options={{ title: 'Settings',  headerShown: true }} />
       <Container style={styles.container}>
-        <Text style={styles.heading}>Settings</Text>
+        <Text style={styles.sectionTitle}>Please select your personal interests:</Text>
 
         <View style={styles.dropdownWrapper}>
           <DropDownPicker
@@ -70,32 +72,33 @@ export default function SettingsScreen() {
             <Text style={styles.clearButtonText}>Clear</Text>
           </TouchableOpacity>
         </View>
+
+        <Text style={styles.note}>
+          You can always update interests from settings or temporarily deselect filters on the map. This data is stored only locally on your device.
+        </Text>
       </Container>
     </Provider>
   );
 }
 
 const styles = StyleSheet.create({
-    container: {
+  container: {
     flex: 1,
     backgroundColor: Colors.dark.background,
     padding: 16,
-    minHeight: 600, // ensures space for dropdown to expand
-    },
-  heading: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 24,
-    color: Colors.dark.text,
-    marginBottom: 20,
-    textAlign: 'center',
   },
-    dropdownWrapper: {
-    flex: 1,
+  sectionTitle: {
+    fontFamily: 'Poppins-Bold',
+    fontSize: 18,
+    color: Colors.dark.text,
+    marginBottom: 8,
+  },
+  dropdownWrapper: {
     zIndex: 3000,
-    marginBottom: 20,
-    },
+    marginBottom: 12,
+  },
   dropdownDark: {
-    margin: 10,
+    marginVertical: 10,
     backgroundColor: Colors.dark.backgroundCard,
   },
   dropdownContainerDark: {
@@ -130,5 +133,13 @@ const styles = StyleSheet.create({
   clearButtonText: {
     fontFamily: 'Poppins-Bold',
     color: Colors.dark.text,
+  },
+  note: {
+    fontFamily: 'Poppins-Regular',
+    fontSize: 13,
+    color: Colors.dark.textLowcontrast,
+    fontStyle: 'italic',
+    marginTop: 8,
+    marginBottom: 32,
   },
 });
