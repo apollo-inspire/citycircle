@@ -46,14 +46,16 @@ export default function Index() {
 
   useEffect(() => {
     if (hasOnboarded) {
-      router.replace('/(tabs)/map');
+      router.replace('/(main)/onboarding2');
     }
   }, [hasOnboarded]);
 
   const handleScroll = (event) => {
-    const slideIndex = Math.round(event.nativeEvent.contentOffset.x / screenWidth);
-    setCurrentSlide(slideIndex);
+    const rawIndex = event.nativeEvent.contentOffset.x / screenWidth;
+    const clampedIndex = Math.max(0, Math.min(Math.round(rawIndex), SLIDES.length - 1));
+    setCurrentSlide(clampedIndex);
   };
+
 
   if (hasOnboarded) return null;
 
@@ -124,13 +126,14 @@ const styles = StyleSheet.create({
     color: Colors.dark.text,
     fontSize: 16,
     textAlign: 'center',
-    marginBottom: 24,
+    marginBottom: 32,
   },
   carousel: {
     width: '100%',
   },
   slide: {
     maxWidth: '100%',
+    paddingHorizontal: 8,
     alignItems: 'center',
   },
   mapImage: {
@@ -142,7 +145,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontFamily: 'Poppins-Bold',
     color: Colors.dark.text,
-    fontSize: 28,
+    fontSize: 24,
     textAlign: 'center',
     marginBottom: 8,
   },
