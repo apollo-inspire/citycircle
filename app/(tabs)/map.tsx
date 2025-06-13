@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Colors } from '@/constants/Colors';
 
@@ -55,6 +56,33 @@ const MapScreen = () => {
     setTypeOptions(formattedTypes);
 
   }, []);
+
+  useEffect(() => {
+    const loadUserInterests = async () => {
+      try {
+        const saved = await AsyncStorage.getItem('userInterests');
+        if (saved) {
+          setSelectedTypes(JSON.parse(saved)); // preselect but don’t update
+        }
+      } catch (e) {
+        console.error('Failed to load interests:', e);
+      }
+    };
+    loadUserInterests();
+  }, []);
+
+  
+  const applyUserDefaults = async () => {
+    try {
+      const saved = await AsyncStorage.getItem('userInterests');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        setSelectedTypes(parsed);
+      }
+    } catch (e) {
+      console.error('Failed to apply saved interests:', e);
+    }
+  };
 
   useEffect(() => {
     navigation.setOptions({
@@ -183,7 +211,15 @@ const MapScreen = () => {
           >
             <Text style={styles.clearButtonText}>Deselect All</Text>
           </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.defaultButton}
+            onPress={applyUserDefaults}
+          >
+            <Text style={styles.defaultButtonText}>Set to My Defaults</Text>
+          </TouchableOpacity>
         </View>
+
       </View>
 
       <MapView
@@ -443,7 +479,20 @@ const styles = StyleSheet.create({
   markerImage: {
     width: 40,
     height: 40
-  }
+  },
+  defaultButton: {
+    marginLeft: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 12,
+    backgroundColor: Colors.dark.buttonGray,
+    borderRadius: 8,
+    marginBottom: 10,
+  },
+  defaultButtonText: {
+    fontFamily: 'Poppins-Bold',
+    color: Colors.dark.text,
+  },
+
 });
 
 
