@@ -116,9 +116,19 @@ useEffect(() => {
               <Text style={styles.clearButtonText}>Clear</Text>
             </TouchableOpacity>
 
-            <Text style={styles.debugOutput}>
-            Saved interests: {savedDisplay || 'None'}
-            </Text>
+            <Text style={styles.selectedLabel}>Currently selected:</Text>
+                <View style={styles.tagsContainer}>
+                {selectedInterests.length > 0 ? (
+                    selectedInterests.map((interest, idx) => (
+                    <View key={idx} style={styles.tag}>
+                        <Text style={styles.tagText}>{interest}</Text>
+                    </View>
+                    ))
+                ) : (
+                    <Text style={styles.tagText}>No interests selected yet</Text>
+                )}
+                </View>
+
           </View>
 
           <Text style={styles.note}>
@@ -201,4 +211,28 @@ const styles = StyleSheet.create({
         marginTop: 4,
         fontStyle: 'italic',
     },
+        selectedLabel: {
+        fontFamily: 'Poppins-Bold',
+        fontSize: 14,
+        color: Colors.dark.text,
+        marginTop: 12,
+        marginBottom: 4,
+    },
+        tagsContainer: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: 8,
+        marginBottom: 12,
+    },
+        tag: {
+        backgroundColor: Colors.dark.background900,
+        borderRadius: 8,
+        paddingHorizontal: 10,
+        paddingVertical: 8,
+    },
+        tagText: {
+        fontFamily: 'Poppins-Regular',
+        color: Colors.dark.text,
+    },
+
 });
