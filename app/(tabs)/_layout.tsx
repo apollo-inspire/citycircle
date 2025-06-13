@@ -30,6 +30,13 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
+        name="places"
+        options={{
+          title: 'Places',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="list.fill" color={color} />,
+        }}
+      />
+      <Tabs.Screen
         name="map"
         options={{
           title: 'Map',
@@ -38,10 +45,10 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="places"
+        name="settings"
         options={{
-          title: 'Places',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="list.fill" color={color} />,
+          title: 'Settings',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="settings.fill" color={color} />,
         }}
       />
     </Tabs>
