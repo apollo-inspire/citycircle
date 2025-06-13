@@ -90,23 +90,28 @@ export default function PlaceDetail() {
           {isOpen ? 'Open Now' : 'Closed Now'}
         </Text>
 
-
-        <TouchableOpacity
-          onPress={() => {
-            router.push({
-              pathname: '/(tabs)/map',
-              params: {
-                focusLat: place.latitude,
-                focusLng: place.longitude,
-              },
-            });
-          }}
-          style={styles.button}
-        >
-          <Text style={{ color: Colors.dark.text, textAlign: 'center', fontWeight: 'bold' }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 10 }}>
+          <TouchableOpacity
+            onPress={() => {
+              router.push({
+                pathname: '/(tabs)/map',
+                params: {
+                  focusLat: place.latitude,
+                  focusLng: place.longitude,
+                },
+              });
+            }}
+            style={styles.button}>
+          <Text style={styles.buttonText}>
             Show on Map
           </Text>
         </TouchableOpacity>
+        <TouchableOpacity onPress={() => Linking.openURL(place.google_maps_directions_link)} style={styles.button}>
+          <Text style={styles.buttonText}>Directions</Text>
+          {/* <Text style={styles.buttonText}>Directions (Google Maps)</Text> */}
+        </TouchableOpacity>
+        </View>
+
         <View style={styles.separator} />
         
         <Text style={styles.textDetails}>Address: {place.address}</Text>
@@ -116,9 +121,7 @@ export default function PlaceDetail() {
         <TouchableOpacity onPress={() => Linking.openURL(place.website)}>
           <Text style={[styles.textDetails, styles.link]}>Link to Website</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => Linking.openURL(place.google_maps_directions_link)}>
-          <Text style={[styles.textDetails, styles.link]}>Directions (Google Maps)</Text>
-        </TouchableOpacity>
+
 
         <View style={styles.separator} />
         <Text style={styles.textDetails}>Opening Times:</Text>
@@ -167,7 +170,7 @@ const styles = StyleSheet.create({
   textTitle: {
     fontFamily: 'Poppins-Bold',
     color: Colors.basic.primary[400],
-    fontSize: 32,
+    fontSize: 36,
     // fontWeight: 'bold',
     textAlign: 'center',
   },
@@ -203,5 +206,10 @@ const styles = StyleSheet.create({
     padding: 12,
     backgroundColor: Colors.dark.buttonGray,
     borderRadius: 8,
+  },
+  buttonText: {
+    color: Colors.dark.text, 
+    textAlign: 'center', 
+    fontFamily: 'Poppins-Bold',
   }
 });
