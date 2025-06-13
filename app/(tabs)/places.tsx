@@ -8,6 +8,7 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { PLACES_DEMO } from '@/constants/Places';
 // import useDatabase from "@/database/database2"
 
+import { Colors } from '@/constants/Colors';
 
 export default function Places() {
   // const database = useDatabase();
@@ -159,7 +160,7 @@ export default function Places() {
   };
 
   const WhiteCheckIcon = () => (
-    <Text style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}>✓</Text>
+    <Text style={{ color: Colors.dark.text, fontSize: 16, fontWeight: 'bold' }}>✓</Text>
   );
 
   return (
@@ -168,52 +169,52 @@ export default function Places() {
       <Container style={styles.container}>
         {/* <Text style={styles.text}>List of Places</Text> */}
 
-        <View style={{ zIndex: 3000 }}>
-        <DropDownPicker
-          open={locationOpen}
-          multiple={true}
-          value={selectedLocations}
-          items={locationOptions}
-          setOpen={setLocationOpen}
-          setValue={setSelectedLocations}
-          setItems={setLocationOptions}
-          placeholder="Filter by city and districts..."
-          style={styles.dropdownDark}
-          dropDownContainerStyle={styles.dropdownContainerDark}
-          textStyle={styles.dropdownText}
-          placeholderStyle={styles.dropdownPlaceholder}
-          searchTextInputStyle={styles.searchInputDark}
-          searchable={true}
-          searchPlaceholder="Search city or district..."
-          TickIconComponent={WhiteCheckIcon}
-          onOpen={() => setOpen(false)}
-        />
+        <View style={styles.topperContainer}>
+          <DropDownPicker
+            open={locationOpen}
+            multiple={true}
+            value={selectedLocations}
+            items={locationOptions}
+            setOpen={setLocationOpen}
+            setValue={setSelectedLocations}
+            setItems={setLocationOptions}
+            placeholder="Filter by city and districts..."
+            style={styles.dropdownDark}
+            dropDownContainerStyle={styles.dropdownContainerDark}
+            textStyle={styles.dropdownText}
+            placeholderStyle={styles.dropdownPlaceholder}
+            searchTextInputStyle={styles.searchInputDark}
+            searchable={true}
+            searchPlaceholder="Search city or district..."
+            TickIconComponent={WhiteCheckIcon}
+            onOpen={() => setOpen(false)}
+          />
 
-        <DropDownPicker
-          open={open}
-          multiple={true}
-          value={selectedTypes}
-          items={typeOptions}
-          setOpen={setOpen}
-          setValue={setSelectedTypes}
-          setItems={setTypeOptions}
-          placeholder="Filter by types and tags..."
-          style={styles.dropdownDark}
-          dropDownContainerStyle={styles.dropdownContainerDark}
-          textStyle={styles.dropdownText}
-          placeholderStyle={styles.dropdownPlaceholder}
-          searchTextInputStyle={styles.searchInputDark}
-          searchable={true}
-          searchPlaceholder="Search types or tags..."
-          TickIconComponent={WhiteCheckIcon}
-          onOpen={() => setLocationOpen(false)}
-          listMode="SCROLLVIEW"
-          scrollViewProps={{
-            nestedScrollEnabled: true,
-          }}
-          zIndex={2000}
-          zIndexInverse={1000}
-        />
+          <DropDownPicker
+            open={open}
+            multiple={true}
+            value={selectedTypes}
+            items={typeOptions}
+            setOpen={setOpen}
+            setValue={setSelectedTypes}
+            setItems={setTypeOptions}
+            placeholder="Filter by types and tags..."
+            style={styles.dropdownDark}
+            dropDownContainerStyle={styles.dropdownContainerDark}
+            textStyle={styles.dropdownText}
+            placeholderStyle={styles.dropdownPlaceholder}
+            searchTextInputStyle={styles.searchInputDark}
+            searchable={true}
+            searchPlaceholder="Search types or tags..."
+            TickIconComponent={WhiteCheckIcon}
+            onOpen={() => setLocationOpen(false)}
+            listMode="SCROLLVIEW"
+            scrollViewProps={{
+              nestedScrollEnabled: true,
+            }}
+            zIndex={2000}
+            zIndexInverse={1000}
+          />
 
           <View style={styles.dropdownWrapper}>
             <TouchableOpacity
@@ -257,7 +258,7 @@ export default function Places() {
                       <Text style={styles.textDetails}>
                         {item.city}{item.district ? `, ${item.district}` : ''}
                       </Text>
-                      <Text style={[ styles.openStatus, { color: isOpen ? 'lightgreen' : 'tomato' },]} >
+                      <Text style={[ styles.openStatus, { color: isOpen ? Colors.basic.state.succes[300] : Colors.basic.state.error[300] },]} >
                           {isOpen ? 'Open Now' : 'Closed Now'}
                       </Text>
                     </View>
@@ -273,175 +274,187 @@ export default function Places() {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        fontFamily: 'Poppins-Regular',
-        flex: 1,
-        // flexDirection: 'column',
-    },
-    textDefault: {
+  container: {
       fontFamily: 'Poppins-Regular',
-      color: 'white',
-      fontSize: 20,
+      flex: 1,
+      // flexDirection: 'column',
   },
-    text: {
-        fontFamily: 'Poppins-Regular',
-        color: 'white',
-        fontSize: 42,
-        fontWeight: 'bold',
-        textAlign: 'center',
-    },
-    textName: {
-      fontFamily: 'Poppins-Regular',
-      color: 'white',
-      fontSize: 18,
-      fontWeight: 'bold',
-      // textAlign: 'center',
-      maxWidth: 150,
-      overflow: "hidden",
-    },
-    textType: {
-      fontFamily: 'Poppins-Regular',
-      color: 'white',
-      fontSize: 15,
-      fontWeight: '400',
-      // textAlign: 'center',
-      maxWidth: 100,
-      overflow: "hidden",
-      textOverflow: "ellipsis",
-    },
-    contentContainer: {
-      paddingTop: 10,
-      paddingBottom: 20,
-      paddingHorizontal: 12,
-      backgroundColor: "#202020",
-    },
+  textDefault: {
+    fontFamily: 'Poppins-Regular',
+    color: Colors.dark.text,
+    fontSize: 20,
+  },
+  text: {
+    fontFamily: 'Poppins-Regular',
+    color: Colors.dark.text,
+    fontSize: 42,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  textName: {
+    fontFamily: 'Poppins-Regular',
+    color: Colors.dark.text,
+    fontSize: 18,
+    fontWeight: 'bold',
+    // textAlign: 'center',
+    maxWidth: 150,
+    overflow: "hidden",
+  },
+  textType: {
+    fontFamily: 'Poppins-Regular',
+    color: Colors.dark.text,
+    fontSize: 15,
+    // fontWeight: '400',
+    // textAlign: 'center',
+    maxWidth: 100,
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+  },
+  contentContainer: {
+    paddingTop: 10,
+    paddingBottom: 20,
+    paddingHorizontal: 12,
+    backgroundColor: Colors.dark.background,
+  },
 
-    flatList: {
-      flex: 1,
-      flexDirection: "column",
-    },
+  flatList: {
+    flex: 1,
+    flexDirection: "column",
+  },
 
-    placeContainer: {
-      flex: 1,
-      flexDirection: 'row',
-      width: "100%",
-      maxWidth: 600,
-      marginBottom: 10,
-      borderRadius: 20,
-      overflow: "hidden",
-      marginHorizontal: "auto",
-      backgroundColor: "#333",
-      padding: 15,
-      height: 110
-    },
+  placeContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    width: "100%",
+    maxWidth: 600,
+    marginBottom: 10,
+    borderRadius: 16,
+    overflow: "hidden",
+    marginHorizontal: "auto",
+    backgroundColor: Colors.dark.backgroundCard,
+    padding: 15,
+    height: 110
+  },
 
-    textAllContainer: {
-      flex: 1,
-      flexDirection: 'row',
-      width: "100%",
-      justifyContent: 'space-between'
-    },
-    textContainer: {
-      marginLeft: 20,
-      height: "100%",
-      marginVertical: "auto",
-    },
-    iconImg: {
-      width: 70,
-      height: 70,
-    },
+  textAllContainer: {
+    fontFamily: 'Poppins-Regular',
+    flex: 1,
+    flexDirection: 'row',
+    width: "100%",
+    justifyContent: 'space-between'
+  },
+  textContainer: {
+    marginLeft: 20,
+    height: "100%",
+    marginVertical: "auto",
+  },
+  iconImg: {
+    width: 70,
+    height: 70,
+  },
 
-    textDetailsContainer: {
-      marginLeft: 3,
-      height: "100%",
-      maxWidth: 150,
-      alignItems: "flex-end",      // Align text to the right
-      justifyContent: "center",    // Vertically center
-    },
-    textDetails: {
-      color: 'white',
-      fontSize: 14,
-      fontWeight: '400',
-      // textAlign: 'center',
-      maxWidth: 150,
-      overflow: "hidden",
-      textOverflow: "ellipsis",
-      textAlign: "right"
-    },
+  textDetailsContainer: {
+    marginLeft: 3,
+    height: "100%",
+    maxWidth: 150,
+    alignItems: "flex-end",      // Align text to the right
+    justifyContent: "center",    // Vertically center
+  },
+  textDetails: {
+    fontFamily: 'Poppins-Regular',
+    color: Colors.dark.text,
+    fontSize: 14,
+    fontWeight: '400',
+    // textAlign: 'center',
+    maxWidth: 150,
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    textAlign: "right"
+  },
 
-    listHeaderFooterComponent: {
-      color: 'white',
-      textAlign: 'center',
-      marginHorizontal: 'auto',
-    },
-    dropdown: {
+  listHeaderFooterComponent: {
+    color: Colors.dark.text,
+    textAlign: 'center',
+    marginHorizontal: 'auto',
+  },
+  topperContainer: {
+    zIndex: 3000,
+    backgroundColor: Colors.dark.background900,
+  },
+  
+  dropdown: {
     margin: 10,
     zIndex: 3000,
-    },
-    dropdownContainer: {
-      zIndex: 2000,
-    },
-    searchInput: {
-      paddingVertical: 10,
-      paddingHorizontal: 12,
-      borderWidth: 1,
-      borderColor: '#ccc',
-      borderRadius: 6,
-      marginVertical: 1,
-      marginHorizontal: 3,
-    },
-    dropdownWrapper: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      marginHorizontal: 10,
-    },
+  },
+  dropdownContainer: {
+    zIndex: 2000,
+  },
+  searchInput: {
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    // borderWidth: 1,
+    // borderColor: '#ccc',
+    borderRadius: 6,
+    marginVertical: 1,
+    marginHorizontal: 3,
+  },
+  dropdownWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginHorizontal: 10,
+  },
 
-    dropdownDark: {
-      margin: 10,
-      backgroundColor: '#2a2a2a',
-      borderColor: '#444',
-      zIndex: 3000,
-    },
+  dropdownDark: {
+    margin: 10,
+    backgroundColor: Colors.dark.backgroundCard,
+    // borderColor: '#444',
+    zIndex: 3000,
+  },
 
-    dropdownContainerDark: {
-      backgroundColor: '#1f1f1f',
-      borderColor: '#444',
-    },
+  dropdownContainerDark: {
+    backgroundColor: Colors.dark.backgroundCard,
+    // borderColor: '#444',
+    maxHeight: 600
+  },
 
-    dropdownText: {
-      color: 'white',
-    },
+  dropdownText: {
+    fontFamily: 'Poppins-Regular',
+    color: Colors.dark.text,
+  },
 
-    dropdownPlaceholder: {
-      color: '#aaa',
-    },
+  dropdownPlaceholder: {
+    color: Colors.dark.textLowcontrast,
+  },
 
-    searchInputDark: {
-      padding: 12,
-      borderWidth: 1,
-      borderColor: '#555',
-      borderRadius: 6,  
-      marginVertical: 1,
-      marginHorizontal: 3,
-      color: 'white',
-      backgroundColor: '#2a2a2a',
-    },
+  searchInputDark: {
+    fontFamily: 'Poppins-Regular',
+    padding: 12,
+    // borderWidth: 1,
+    // borderColor: '#555',
+    borderRadius: 6,  
+    marginVertical: 1,
+    marginHorizontal: 3,
+    color: Colors.dark.text,
+    backgroundColor: Colors.dark.background900,
+  },
 
-    clearButton: {
-      marginLeft: 8,
-      paddingHorizontal: 10,
-      paddingVertical: 12,
-      backgroundColor: '#444',
-      borderRadius: 8,
-      marginBottom: 10,
-    },
-    clearButtonText: {
-      fontWeight: 'bold',
-      color: 'white',
-    },
-    openStatus: {
-      fontSize: 14,
-      fontWeight: 'bold',
-      marginTop: 4,
-    },
+  clearButton: {
+    marginLeft: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 12,
+    backgroundColor: Colors.dark.buttonGray,
+    borderRadius: 8,
+    marginBottom: 10,
+  },
+  clearButtonText: {
+    fontFamily: 'Poppins-Bold',
+    // fontWeight: 'bold',
+    color: Colors.dark.text,
+  },
+  openStatus: {
+    fontFamily: 'Poppins-Bold',
+    fontSize: 14,
+    // fontWeight: 'bold',
+    marginTop: 4,
+  },
 })

@@ -1,9 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
-import MapView, { PROVIDER_GOOGLE, Marker, Callout } from 'react-native-maps';
-import { useRouter, useLocalSearchParams } from 'expo-router';
 import { useNavigation } from '@react-navigation/native';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import React, { useEffect, useRef, useState } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+
+import { Colors } from '@/constants/Colors';
 
 import { PLACES_DEMO } from '@/constants/Places';
 
@@ -93,7 +95,6 @@ const MapScreen = () => {
 
     return matchesType && matchesLocation;
 
-    return matchesType && matchesCity && matchesDistrict;
   });
 
 
@@ -122,6 +123,8 @@ const MapScreen = () => {
 
   return (
     <View style={styles.container}>
+
+      <View style={styles.topperContainer}>
         <DropDownPicker
           open={locationOpen}
           multiple={true}
@@ -160,21 +163,28 @@ const MapScreen = () => {
           searchPlaceholder="Search types or tags..."
           TickIconComponent={WhiteCheckIcon}
           onOpen={() => setLocationOpen(false)}
+          listMode="SCROLLVIEW"
+          scrollViewProps={{
+            nestedScrollEnabled: true,
+          }}
+          zIndex={2000}
+          zIndexInverse={1000}
         />
 
-    <View style={styles.dropdownWrapper}>
-      <TouchableOpacity
-        style={styles.clearButton}
-        onPress={() => {
-          setSelectedTypes([]);
-          setSelectedLocations([]);
-          setOpen(false);
-          setLocationOpen(false);
-        }}
-      >
-        <Text style={styles.clearButtonText}>Deselect All</Text>
-      </TouchableOpacity>
-    </View>
+        <View style={styles.dropdownWrapper}>
+          <TouchableOpacity
+            style={styles.clearButton}
+            onPress={() => {
+              setSelectedTypes([]);
+              setSelectedLocations([]);
+              setOpen(false);
+              setLocationOpen(false);
+            }}
+          >
+            <Text style={styles.clearButtonText}>Deselect All</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
 
       <MapView
         customMapStyle={mapStyle}
@@ -313,6 +323,7 @@ const mapStyle = [
 
 const styles = StyleSheet.create({
   container: {
+    fontFamily: 'Poppins-Regular',
     flex: 1,
     zIndex: 10,
   },
@@ -322,8 +333,14 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   text: {
-    color: 'white',
+    fontFamily: 'Poppins-Regular',
+    color: Colors.dark.text,
   },
+  topperContainer: {
+    zIndex: 3000,
+    backgroundColor: Colors.dark.background900,
+  },
+
   dropdown: {
     margin: 10,
     zIndex: 3000,
@@ -340,61 +357,65 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     paddingHorizontal: 10,
     paddingVertical: 12,
-    backgroundColor: '#444',
+    backgroundColor: Colors.dark.buttonGray,
     borderRadius: 8,
     marginBottom: 10,
   },
   dropdownDark: {
-  margin: 10,
-  backgroundColor: '#2a2a2a',
-  borderColor: '#444',
-  zIndex: 3000,
+    margin: 10,
+    backgroundColor: Colors.dark.backgroundCard,
+    // borderColor: '#444',
+    zIndex: 3000,
   },
 
   dropdownContainerDark: {
-    backgroundColor: '#1f1f1f',
-    borderColor: '#444',
+    backgroundColor: Colors.dark.backgroundCard,
+    // borderColor: '#444',
+    maxHeight: 600
   },
 
   dropdownText: {
-    color: 'white',
+    fontFamily: 'Poppins-Regular',
+    color: Colors.dark.text,
   },
 
   dropdownPlaceholder: {
-    color: '#aaa',
+    color: Colors.dark.textLowcontrast,
   },
 
   searchInputDark: {
+    fontFamily: 'Poppins-Regular',
     padding: 12,
-    borderWidth: 1,
-    borderColor: '#555',
+    // borderWidth: 1,
+    // borderColor: '#555',
     borderRadius: 6,  
     marginVertical: 1,
     marginHorizontal: 3,
-    color: 'white',
-    backgroundColor: '#2a2a2a',
+    color: Colors.dark.text,
+    backgroundColor: Colors.dark.background900,
   },
   clearButtonText: {
-    fontWeight: 'bold',
+    fontFamily: 'Poppins-Bold',
+    // fontWeight: 'bold',
     color: 'white',
   },
   searchInput: {
     padding: 12,
-    borderWidth: 1,
-    borderColor: '#ccc',
+    // borderWidth: 1,
+    // borderColor: '#ccc',
     borderRadius: 6,  
     marginVertical: 1,
     marginHorizontal: 3,
   },
   markerContainer: {
-    color: "#333",
+    color: Colors.basic.gray[700],
     alignItems: 'center',
     justifyContent: 'center',
     width: 35,
     height: 35,
   },
   markerLabel: {
-    backgroundColor: 'white',
+    backgroundColor: Colors.dark.text,
     // paddingHorizontal: 6,
     // paddingVertical: 2,
     // borderRadius: 6,
@@ -405,8 +426,9 @@ const styles = StyleSheet.create({
   },
 
   markerLabelText: {
+    fontFamily: 'Poppins-Regular',
     fontSize: 12,
-    color: '#333',
+    color: Colors.dark.text,
     textAlign: 'center',
   },
 
@@ -418,7 +440,7 @@ const styles = StyleSheet.create({
   //   borderWidth: 2,
   //   borderColor: 'white',
   // },
-    markerImage: {
+  markerImage: {
     width: 40,
     height: 40
   }

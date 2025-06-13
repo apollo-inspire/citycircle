@@ -6,6 +6,11 @@ import { PLACES_DEMO } from '@/constants/Places';
 import PLACES_IMAGES from '@/constants/PlacesDemoImages';
 
 
+import { Colors } from '@/constants/Colors';
+
+
+
+
 export default function PlaceDetail() {
   // Get the ID from the URL
   const { id } = useLocalSearchParams();
@@ -81,7 +86,7 @@ export default function PlaceDetail() {
 
         <Text style={styles.textDetails}>{place.city}{place.district ? `, ${place.district}` : null}</Text>
 
-        <Text style={[styles.textDetails, { fontFamily: 'Poppins-Bold', color: isOpen ? '#83E89F' : '#F2A6A9' }]}>
+        <Text style={[styles.textDetails, { fontFamily: 'Poppins-Bold', color: isOpen ? Colors.basic.state.succes[300] : Colors.basic.state.error[300] }]}>
           {isOpen ? 'Open Now' : 'Closed Now'}
         </Text>
 
@@ -98,7 +103,7 @@ export default function PlaceDetail() {
           }}
           style={styles.button}
         >
-          <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>
+          <Text style={{ color: Colors.dark.text, textAlign: 'center', fontWeight: 'bold' }}>
             Show on Map
           </Text>
         </TouchableOpacity>
@@ -139,7 +144,7 @@ export default function PlaceDetail() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#202020',
+    backgroundColor: Colors.dark.background900,
   },
   content: {
     alignItems: 'center',
@@ -149,25 +154,25 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#202020',
+    backgroundColor: Colors.dark.background900,
     padding: 20,
   },
   text: {
     fontFamily: 'Poppins-Bold',
-    color: 'white',
+    color: Colors.dark.text,
     fontSize: 32,
     // fontWeight: 'bold',
     textAlign: 'center',
   },
   textType: {
     fontFamily: 'Poppins-Regular',
-    color: 'white',
+    color: Colors.dark.text,
     fontSize: 24,
     marginBottom: 10,
   },
   textDetails: {
     fontFamily: 'Poppins-Regular',
-    color: 'white',
+    color: Colors.dark.text,
     fontSize: 18,
     marginVertical: 5,
   },
@@ -177,11 +182,11 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   link: {
-    color: 'lightblue',
+    color: Colors.dark.link,
     textDecorationLine: 'underline',
   },
   separator: {
-    borderBottomColor: '#333',
+    borderBottomColor: Colors.basic.gray[700],
     borderBottomWidth: StyleSheet.hairlineWidth,
     marginVertical: 10,
     alignSelf: 'stretch',
@@ -189,7 +194,7 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 20,
     padding: 12,
-    backgroundColor: '#444',
+    backgroundColor: Colors.dark.buttonGray,
     borderRadius: 8,
   }
 });

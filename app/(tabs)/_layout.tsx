@@ -20,28 +20,18 @@ export default function TabLayout() {
         headerTitleAlign: 'center',
         tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,
+        tabBarLabelStyle: {
+          fontFamily: 'Poppins-Bold',
+          fontSize: 12,
+        },
         tabBarStyle: Platform.select({
           ios: {
-            // Use a transparent background on iOS to show the blur effect
             position: 'absolute',
           },
           default: {},
         }),
-      }}>
-      {/* <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Friends',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="forum.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="Events"
-        options={{
-          title: 'Events',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="calendar-today.fill" color={color} />,
-        }}
-      /> */}
+      }}
+    >
       <Tabs.Screen
         name="map"
         options={{
@@ -57,13 +47,6 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="list.fill" color={color} />,
         }}
       />
-      {/* <Tabs.Screen
-        name="profile"
-        options={{
-          title: 'Profile',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="person.fill" color={color} />,
-        }}
-      /> */}
     </Tabs>
   );
 }

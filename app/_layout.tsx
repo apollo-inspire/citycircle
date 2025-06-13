@@ -32,12 +32,19 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
+      <Stack
+        screenOptions={{
+          headerTitleStyle: {
+            fontFamily: 'Poppins-Regular',
+            fontSize: 20,
+          },
+        }}
+      >
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="(main)" options={{ headerShown: false }} />
-        <Stack.Screen name="index" options={{ title: 'Home',  headerShown: false }} />
-        <Stack.Screen name="explore" options={{ title: 'Explore', headerShown: true}} />
-        <Stack.Screen name="localdatabasetest" options={{ title: 'Localdatabasetest', headerShown: true}} />
+        <Stack.Screen name="index" options={{ title: 'Home', headerShown: false }} />
+        <Stack.Screen name="explore" options={{ title: 'Explore', headerShown: true }} />
+        {/* <Stack.Screen name="localdatabasetest" options={{ title: 'Localdatabasetest', headerShown: true }} /> */}
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />
