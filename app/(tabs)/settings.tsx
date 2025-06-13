@@ -5,11 +5,52 @@ import React, { useEffect, useState } from 'react';
 import { Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function SettingsScreen() {
-  const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
-  const [interestOptions, setInterestOptions] = useState([]);
-  const [openInterests, setOpenInterests] = useState(false);
+    const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
+    const [interestOptions, setInterestOptions] = useState([]);
+    const [openInterests, setOpenInterests] = useState(false);
+
+    useEffect(() => {
+    // Load saved interests from local storage
+    const loadInterests = async () => {
+        try {
+        const saved = await AsyncStorage.getItem('userInterests');
+        if (saved) {
+            const parsed = JSON.parse(saved);
+            setSelectedInterests(parsed);
+            setSavedDisplay(parsed.join(', ')); // show on load
+        }
+        } catch (e) {
+        console.error('Failed to load interests:', e);
+        }
+    };
+    loadInterests();
+    }, []);
+
+
+
+useEffect(() => {
+  const saveInterests = async () => {
+    try {
+      await AsyncStorage.setItem('userInterests', JSON.stringify(selectedInterests));
+      setSavedDisplay(selectedInterests.join(', ')); // update visible string
+    } catch (e) {
+      console.error('Failed to save interests:', e);
+    }
+  };
+  saveInterests();
+}, [selectedInterests]);
+
+
+
+    // Debugging
+    // AsyncStorage.removeItem('userInterests'); // Clears it
+    // AsyncStorage.getItem('userInterests').then(console.log); 
+
+    const [savedDisplay, setSavedDisplay] = useState<string>('');
+
 
   useEffect(() => {
     const types = PLACES_DEMO.map(place => place.type.toLowerCase());
@@ -74,6 +115,10 @@ export default function SettingsScreen() {
             >
               <Text style={styles.clearButtonText}>Clear</Text>
             </TouchableOpacity>
+
+            <Text style={styles.debugOutput}>
+            Saved interests: {savedDisplay || 'None'}
+            </Text>
           </View>
 
           <Text style={styles.note}>
@@ -149,4 +194,11 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginBottom: 32,
   },
+    debugOutput: {
+        fontFamily: 'Poppins-Regular',
+        fontSize: 12,
+        color: Colors.dark.textLowcontrast,
+        marginTop: 4,
+        fontStyle: 'italic',
+    },
 });
