@@ -216,7 +216,7 @@ const MapScreen = () => {
             style={styles.defaultButton}
             onPress={applyUserDefaults}
           >
-            <Text style={styles.defaultButtonText}>Set to My Defaults</Text>
+            <Text style={styles.defaultButtonText}>Reset to My Interests</Text>
           </TouchableOpacity>
         </View>
 

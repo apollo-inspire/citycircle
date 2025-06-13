@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Location from 'expo-location';
 import { Link, Stack } from 'expo-router';
 import React, { useEffect, useState } from 'react';
@@ -56,6 +57,33 @@ export default function Places() {
       });
     })();
   }, []);
+
+    const applyUserDefaults = async () => {
+    try {
+      const saved = await AsyncStorage.getItem('userInterests');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        setSelectedTypes(parsed);
+      }
+    } catch (e) {
+      console.error('Failed to apply saved interests:', e);
+    }
+  };
+
+  useEffect(() => {
+    const loadUserInterests = async () => {
+      try {
+        const saved = await AsyncStorage.getItem('userInterests');
+        if (saved) {
+          setSelectedTypes(JSON.parse(saved)); // preselect but don’t update
+        }
+      } catch (e) {
+        console.error('Failed to load interests:', e);
+      }
+    };
+    loadUserInterests();
+  }, []);
+
 
   function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
     const R = 6371; // Earth radius in km
@@ -218,17 +246,24 @@ export default function Places() {
 
           <View style={styles.dropdownWrapper}>
             <TouchableOpacity
-              style={styles.clearButton}
-              onPress={() => {
-                setSelectedTypes([]);
-                setSelectedLocations([]);
-                setOpen(false);
-                setLocationOpen(false);
-              }}
-            >
-              <Text style={styles.clearButtonText}>Deselect All</Text>
-            </TouchableOpacity>
-          </View>
+                style={styles.clearButton}
+                onPress={() => {
+                  setSelectedTypes([]);
+                  setSelectedLocations([]);
+                  setOpen(false);
+                  setLocationOpen(false);
+                }}
+              >
+                <Text style={styles.clearButtonText}>Deselect All</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.defaultButton}
+                onPress={applyUserDefaults}
+              >
+                <Text style={styles.defaultButtonText}>Reset to My Interests</Text>
+              </TouchableOpacity>
+            </View>
         </View>
 
         <FlatList 
@@ -457,4 +492,18 @@ const styles = StyleSheet.create({
     // fontWeight: 'bold',
     marginTop: 4,
   },
+
+  defaultButton: {
+  marginLeft: 8,
+  paddingHorizontal: 10,
+  paddingVertical: 12,
+  backgroundColor: Colors.dark.buttonGray,
+  borderRadius: 8,
+  marginBottom: 10,
+  },
+  defaultButtonText: {
+    fontFamily: 'Poppins-Bold',
+    color: Colors.dark.text,
+  },
+
 })
