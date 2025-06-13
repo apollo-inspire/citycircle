@@ -4,7 +4,6 @@ import { Link, Stack } from 'expo-router';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Colors } from '@/constants/Colors';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-
 import { PLACES_DEMO } from '@/constants/Places';
 
 export default function SettingsScreen() {
@@ -25,7 +24,7 @@ export default function SettingsScreen() {
     setInterestOptions(formatted);
   }, []);
 
-  const Provider = Platform.OS === 'web' ? null : SafeAreaProvider;
+  const Provider = Platform.OS === 'web' ? React.Fragment : SafeAreaProvider;
   const Container = Platform.OS === 'web' ? ScrollView : SafeAreaView;
 
   const WhiteCheckIcon = () => (
@@ -34,48 +33,53 @@ export default function SettingsScreen() {
 
   return (
     <Provider>
-      <Stack.Screen options={{ title: 'Settings',  headerShown: true }} />
+      <Stack.Screen options={{ title: 'Settings', headerShown: true }} />
       <Container style={styles.container}>
-        <Text style={styles.sectionTitle}>Please select your personal interests:</Text>
+        <ScrollView
+          contentContainerStyle={styles.scrollContent}
+          keyboardShouldPersistTaps="handled"
+        >
+          <Text style={styles.sectionTitle}>Please select your personal interests:</Text>
 
-        <View style={styles.dropdownWrapper}>
-          <DropDownPicker
-            open={openInterests}
-            multiple={true}
-            value={selectedInterests}
-            items={interestOptions}
-            setOpen={setOpenInterests}
-            setValue={setSelectedInterests}
-            setItems={setInterestOptions}
-            placeholder="Select your interests..."
-            style={styles.dropdownDark}
-            dropDownContainerStyle={styles.dropdownContainerDark}
-            textStyle={styles.dropdownText}
-            placeholderStyle={styles.dropdownPlaceholder}
-            searchTextInputStyle={styles.searchInputDark}
-            searchable={true}
-            searchPlaceholder="Search interests..."
-            TickIconComponent={WhiteCheckIcon}
-            listMode="SCROLLVIEW"
-            scrollViewProps={{ nestedScrollEnabled: true }}
-            zIndex={2000}
-            zIndexInverse={1000}
-          />
+          <View style={styles.dropdownWrapper}>
+            <DropDownPicker
+              open={openInterests}
+              multiple={true}
+              value={selectedInterests}
+              items={interestOptions}
+              setOpen={setOpenInterests}
+              setValue={setSelectedInterests}
+              setItems={setInterestOptions}
+              placeholder="Select your interests..."
+              style={styles.dropdownDark}
+              dropDownContainerStyle={styles.dropdownContainerDark}
+              textStyle={styles.dropdownText}
+              placeholderStyle={styles.dropdownPlaceholder}
+              searchTextInputStyle={styles.searchInputDark}
+              searchable={true}
+              searchPlaceholder="Search interests..."
+              TickIconComponent={WhiteCheckIcon}
+              listMode="SCROLLVIEW"
+              scrollViewProps={{ nestedScrollEnabled: true }}
+              zIndex={2000}
+              zIndexInverse={1000}
+            />
 
-          <TouchableOpacity
-            style={styles.clearButton}
-            onPress={() => {
-              setSelectedInterests([]);
-              setOpenInterests(false);
-            }}
-          >
-            <Text style={styles.clearButtonText}>Clear</Text>
-          </TouchableOpacity>
-        </View>
+            <TouchableOpacity
+              style={styles.clearButton}
+              onPress={() => {
+                setSelectedInterests([]);
+                setOpenInterests(false);
+              }}
+            >
+              <Text style={styles.clearButtonText}>Clear</Text>
+            </TouchableOpacity>
+          </View>
 
-        <Text style={styles.note}>
-          You can always update interests from settings or temporarily deselect filters on the map. This data is stored only locally on your device.
-        </Text>
+          <Text style={styles.note}>
+            You can always update interests from settings or temporarily deselect filters on the map. This data is stored only locally on your device.
+          </Text>
+        </ScrollView>
       </Container>
     </Provider>
   );
@@ -86,6 +90,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.dark.background,
     padding: 16,
+  },
+  scrollContent: {
+    paddingBottom: 80,
   },
   sectionTitle: {
     fontFamily: 'Poppins-Bold',
