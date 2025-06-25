@@ -1,5 +1,7 @@
+import { getDistanceFromLatLonInKm } from '@/utils/distance'; // adjust path accordingly
+import * as Location from 'expo-location';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Image, Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { PLACES_DEMO } from '@/constants/Places';
@@ -19,6 +21,48 @@ export default function PlaceDetail() {
 
   // Convert ID to number and find the place
   const place = PLACES_DEMO.find((p) => p.id === Number(id));
+
+  const [userLocation, setUserLocation] = useState<{ latitude: number; longitude: number } | null>(null);
+  const [distanceKm, setDistanceKm] = useState<number | null>(null);
+
+  // Request user location
+  useEffect(() => {
+    (async () => {
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        console.warn('Location permission not granted');
+        return;
+      }
+      const loc = await Location.getCurrentPositionAsync({});
+      setUserLocation({
+        latitude: loc.coords.latitude,
+        longitude: loc.coords.longitude,
+      });
+    })();
+  }, []);
+
+
+  // Calculate distance once we have both user location and place
+  useEffect(() => {
+    if (userLocation && place) {
+      const km = getDistanceFromLatLonInKm(
+        userLocation.latitude,
+        userLocation.longitude,
+        place.latitude,
+        place.longitude,
+      );
+      setDistanceKm(km);
+    }
+  }, [userLocation, place]);
+
+// Format: use meters if <1km
+  const formattedDistance = distanceKm != null
+    ? distanceKm < 1
+      ? `${Math.round(distanceKm * 1000)} m away`
+      : `${distanceKm.toFixed(2)} km away`
+    : 'Loading distance…';
+
+
 
   // If the place doesn't exist, show an error message
   if (!place) {
@@ -76,6 +120,8 @@ export default function PlaceDetail() {
 
   const isOpen = getIsOpenNow(place.opening_times);
 
+
+  
   return (
     <ScrollView style={styles.container}>
       <Stack.Screen options={{ title: "Place Detail", headerShown: true }} />
@@ -85,6 +131,7 @@ export default function PlaceDetail() {
         <Text style={styles.textType}>{place.type}</Text>
 
         <Text style={styles.textDetails}>{place.city}{place.district ? `, ${place.district}` : null}</Text>
+        <Text style={styles.textDetails}>{formattedDistance}</Text>
 
         <Text style={[styles.textDetails, { fontFamily: 'Poppins-Bold', color: isOpen ? Colors.basic.state.succes[300] : Colors.basic.state.error[300] }]}>
           {isOpen ? 'Open Now' : 'Closed Now'}

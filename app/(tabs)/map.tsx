@@ -1,10 +1,9 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import DropDownPicker from 'react-native-dropdown-picker';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Colors } from '@/constants/Colors';
 
@@ -156,33 +155,35 @@ const MapScreen = () => {
 
       <View style={styles.topperContainer}>
 
-        <MultiselectDropdown
-            open={locationOpen}
-            setOpen={setLocationOpen}
-            value={selectedLocations}
-            setValue={setSelectedLocations}
-            items={locationOptions}
-            setItems={setLocationOptions}
-            placeholder="Filter by city and districts..."
-            searchPlaceholder="Search city or district..."
-            onOpen={() => setOpen(false)}
-            zIndex={3000}
-            zIndexInverse={1000}
-        />
+        <View style={styles.dropdownsContainer}>
+          <MultiselectDropdown
+              open={locationOpen}
+              setOpen={setLocationOpen}
+              value={selectedLocations}
+              setValue={setSelectedLocations}
+              items={locationOptions}
+              setItems={setLocationOptions}
+              placeholder="Filter by city and districts..."
+              searchPlaceholder="Search city or district..."
+              onOpen={() => setOpen(false)}
+              zIndex={3000}
+              zIndexInverse={1000}
+          />
 
-        <MultiselectDropdown
-          open={open}
-          setOpen={setOpen}
-          value={selectedTypes}
-          setValue={setSelectedTypes}
-          items={typeOptions}
-          setItems={setTypeOptions}
-          placeholder="Filter by types and tags..."
-          searchPlaceholder="Search types or tags..."
-          onOpen={() => setLocationOpen(false)}
-          zIndex={2000}
-          zIndexInverse={1000}
-        />
+          <MultiselectDropdown
+            open={open}
+            setOpen={setOpen}
+            value={selectedTypes}
+            setValue={setSelectedTypes}
+            items={typeOptions}
+            setItems={setTypeOptions}
+            placeholder="Filter by types and tags..."
+            searchPlaceholder="Search types or tags..."
+            onOpen={() => setLocationOpen(false)}
+            zIndex={2000}
+            zIndexInverse={1000}
+          />
+        </View>
 
         <View style={styles.dropdownWrapper}>
           <TouchableOpacity
@@ -360,8 +361,13 @@ const styles = StyleSheet.create({
   topperContainer: {
     zIndex: 3000,
     backgroundColor: Colors.dark.background900,
+    width: '100%',
   },
-
+  dropdownsContainer: {
+    width: '100%',
+    paddingLeft: 10,
+    paddingRight: 20,
+  },
   dropdown: {
     margin: 10,
     zIndex: 3000,
