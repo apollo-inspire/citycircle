@@ -3,7 +3,6 @@ import * as Location from 'expo-location';
 import { Link, Stack } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { FlatList, Platform, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import DropDownPicker from 'react-native-dropdown-picker';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import { PLACES_DEMO } from '@/constants/Places';
@@ -13,6 +12,9 @@ import { Colors } from '@/constants/Colors';
 
 import { getDistanceFromLatLonInKm } from '@/utils/distance';
 import { getIsOpenNow } from '@/utils/opentimes';
+
+import MultiselectDropdown from '@/components/MultiselectDropdown';
+import TestComponent from '@/components/TestComponent';
 
 export default function Places() {
   // const database = useDatabase();
@@ -163,9 +165,37 @@ export default function Places() {
       <Stack.Screen options={{ title: 'Places',  headerShown: true }} />
       <Container style={styles.container}>
         {/* <Text style={styles.text}>List of Places</Text> */}
-
+        {/* <TestComponent/> */}
         <View style={styles.topperContainer}>
-          <DropDownPicker
+          <MultiselectDropdown
+              open={locationOpen}
+              setOpen={setLocationOpen}
+              value={selectedLocations}
+              setValue={setSelectedLocations}
+              items={locationOptions}
+              setItems={setLocationOptions}
+              placeholder="Filter by city and districts..."
+              searchPlaceholder="Search city or district..."
+              onOpen={() => setOpen(false)}
+              zIndex={3000}
+              zIndexInverse={1000}
+          />
+
+          <MultiselectDropdown
+            open={open}
+            setOpen={setOpen}
+            value={selectedTypes}
+            setValue={setSelectedTypes}
+            items={typeOptions}
+            setItems={setTypeOptions}
+            placeholder="Filter by types and tags..."
+            searchPlaceholder="Search types or tags..."
+            onOpen={() => setLocationOpen(false)}
+            zIndex={2000}
+            zIndexInverse={1000}
+          />
+
+          {/* <DropDownPicker
             open={locationOpen}
             multiple={true}
             value={selectedLocations}
@@ -183,9 +213,9 @@ export default function Places() {
             searchPlaceholder="Search city or district..."
             TickIconComponent={WhiteCheckIcon}
             onOpen={() => setOpen(false)}
-          />
+          /> */}
 
-          <DropDownPicker
+          {/* <DropDownPicker
             open={open}
             multiple={true}
             value={selectedTypes}
@@ -209,7 +239,7 @@ export default function Places() {
             }}
             zIndex={2000}
             zIndexInverse={1000}
-          />
+          /> */}
 
           <View style={styles.dropdownWrapper}>
             <TouchableOpacity
