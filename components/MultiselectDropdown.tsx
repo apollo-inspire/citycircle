@@ -1,7 +1,7 @@
-import React from 'react';
-import DropDownPicker from 'react-native-dropdown-picker';
-import { Text } from 'react-native';
 import { Colors } from '@/constants/Colors';
+import React from 'react';
+import { Text } from 'react-native';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 type MultiSelectDropdownProps = {
   open: boolean;
@@ -18,7 +18,7 @@ type MultiSelectDropdownProps = {
 };
 
 const WhiteCheckIcon = () => (
-  <Text style={{ color: Colors.dark.text, fontSize: 16, fontWeight: 'bold' }}>✓</Text>
+  <Text style={{ color: Colors.basic.primary[300], fontSize: 16, fontWeight: 'bold' }}>✓</Text>
 );
 
 export default function MultiselectDropdown({
@@ -65,6 +65,12 @@ export default function MultiselectDropdown({
       scrollViewProps={{ nestedScrollEnabled: true }}
       zIndex={zIndex}
       zIndexInverse={zIndexInverse}
+      selectedItemLabelStyle={{
+        color: Colors.basic.primary[300],
+        // backgroundColor: Colors.dark.buttonGray,
+        fontFamily: 'Poppins-Bold',
+        // fontWeight: 'bold',
+      }}
     />
   );
 }
