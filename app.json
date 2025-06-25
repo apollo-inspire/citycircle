@@ -15,7 +15,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/rotterdam-icon.jpg",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.apolloinstinct.friendsandhobbies"
     },
     "web": {
       "bundler": "metro",
@@ -38,6 +39,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "807694aa-2cf6-4304-9fef-26ce27acc4c2"
+      }
     }
   }
 }
