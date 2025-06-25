@@ -11,6 +11,9 @@ import { PLACES_DEMO } from '@/constants/Places';
 
 import { Colors } from '@/constants/Colors';
 
+import { getDistanceFromLatLonInKm } from '@/utils/distance';
+import { getIsOpenNow } from '@/utils/opentimes';
+
 export default function Places() {
   // const database = useDatabase();
   const [places, setPlaces] = useState([]);
@@ -85,22 +88,6 @@ export default function Places() {
   }, []);
 
 
-  function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-    const R = 6371; // Earth radius in km
-    const dLat = ((lat2 - lat1) * Math.PI) / 180;
-    const dLon = ((lon2 - lon1) * Math.PI) / 180;
-    const a =
-      0.5 -
-      Math.cos(dLat) / 2 +
-      (Math.cos((lat1 * Math.PI) / 180) *
-        Math.cos((lat2 * Math.PI) / 180) *
-        (1 - Math.cos(dLon))) /
-        2;
-
-    return R * 2 * Math.asin(Math.sqrt(a));
-  }
-
-
   useEffect(() => {
   const types = PLACES_DEMO.map(place => place.type.toLowerCase());
   const allTags = PLACES_DEMO.flatMap(place => place.tags.map(tag => tag.toLowerCase()));
@@ -166,26 +153,6 @@ export default function Places() {
 
     setPlaces(sorted);
   }, [selectedTypes, selectedLocations, userLocation]);
-
-  const getIsOpenNow = (openingTimes) => {
-    const now = new Date();
-    const weekday = now.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase(); // e.g. "monday"
-    const openTime = openingTimes[`${weekday}_open`];
-    const closeTime = openingTimes[`${weekday}_close`];
-
-    if (!openTime || !closeTime) return false;
-
-    const [openHour, openMinute] = openTime.split(':').map(Number);
-    const [closeHour, closeMinute] = closeTime.split(':').map(Number);
-
-    const openDate = new Date(now);
-    openDate.setHours(openHour, openMinute, 0);
-
-    const closeDate = new Date(now);
-    closeDate.setHours(closeHour, closeMinute, 0);
-
-    return now >= openDate && now <= closeDate;
-  };
 
   const WhiteCheckIcon = () => (
     <Text style={{ color: Colors.dark.text, fontSize: 16, fontWeight: 'bold' }}>✓</Text>
