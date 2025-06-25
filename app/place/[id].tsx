@@ -1,4 +1,5 @@
 import { getDistanceFromLatLonInKm } from '@/utils/distance'; // adjust path accordingly
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Location from 'expo-location';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
@@ -24,6 +25,51 @@ export default function PlaceDetail() {
 
   const [userLocation, setUserLocation] = useState<{ latitude: number; longitude: number } | null>(null);
   const [distanceKm, setDistanceKm] = useState<number | null>(null);
+
+  const [isBookmarked, setIsBookmarked] = useState<boolean>(false);
+
+
+  const BOOKMARKS_KEY = 'bookmarkedPlaces';
+
+  const checkIfBookmarked = async (placeId: number) => {
+    try {
+      const saved = await AsyncStorage.getItem(BOOKMARKS_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        return parsed.includes(placeId);
+      }
+    } catch (e) {
+      console.error('Failed to load bookmarks:', e);
+    }
+    return false;
+  };
+
+  const toggleBookmark = async () => {
+    try {
+      const saved = await AsyncStorage.getItem(BOOKMARKS_KEY);
+      const bookmarks: number[] = saved ? JSON.parse(saved) : [];
+
+      let updated;
+      if (isBookmarked) {
+        updated = bookmarks.filter((id: number) => id !== place.id);
+      } else {
+        updated = [...bookmarks, place.id];
+      }
+
+      await AsyncStorage.setItem(BOOKMARKS_KEY, JSON.stringify(updated));
+      setIsBookmarked(!isBookmarked);
+    } catch (e) {
+      console.error('Failed to update bookmarks:', e);
+    }
+  };
+
+  useEffect(() => {
+    if (place) {
+      checkIfBookmarked(place.id).then(setIsBookmarked);
+    }
+  }, [place]);
+
+
 
   // Request user location
   useEffect(() => {
@@ -156,6 +202,11 @@ export default function PlaceDetail() {
         <TouchableOpacity onPress={() => Linking.openURL(place.google_maps_directions_link)} style={styles.button}>
           <Text style={styles.buttonText}>Directions</Text>
           {/* <Text style={styles.buttonText}>Directions (Google Maps)</Text> */}
+        </TouchableOpacity>
+        <TouchableOpacity onPress={toggleBookmark} style={styles.button}>
+          <Text style={styles.buttonText}>
+            {isBookmarked ? 'Remove Bookmark' : 'Bookmark'}
+          </Text>
         </TouchableOpacity>
         </View>
 

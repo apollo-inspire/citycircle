@@ -48,6 +48,28 @@ export default function Places() {
 
   const [userLocation, setUserLocation] = useState<null | { latitude: number, longitude: number }>(null);
 
+  const [openNowOnly, setOpenNowOnly] = useState(false);
+
+  const [bookmarkedPlaces, setBookmarkedPlaces] = useState<string[]>([]);
+  const [showBookmarksOnly, setShowBookmarksOnly] = useState(false);
+ 
+  useEffect(() => {
+    const loadBookmarks = async () => {
+      try {
+        const saved = await AsyncStorage.getItem('bookmarkedPlaces');
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          // convert all to numbers just in case
+          const numbers = parsed.map((id) => Number(id));
+          setBookmarkedPlaces(numbers);
+        }
+      } catch (e) {
+        console.error('Failed to load bookmarks:', e);
+      }
+    };
+    loadBookmarks();
+  }, []);
+
   useEffect(() => {
     (async () => {
       const { status } = await Location.requestForegroundPermissionsAsync();
@@ -127,8 +149,16 @@ export default function Places() {
         selectedLocations.includes(place.city) ||
         selectedLocations.includes(place.district);
 
-      return matchesType && matchesLocation;
+      const matchesOpenNow = !openNowOnly || getIsOpenNow(place.opening_times);
+
+      console.log('BookmarkedPlaces:', bookmarkedPlaces);
+      console.log('Bookmark check:', place.id.toString(), bookmarkedPlaces.includes(place.id));
+
+      const matchesBookmark = !showBookmarksOnly || bookmarkedPlaces.includes(place.id);
+
+      return matchesType && matchesLocation && matchesOpenNow && matchesBookmark;
     });
+
 
     let sorted = [...filtered];
 
@@ -154,8 +184,10 @@ export default function Places() {
     } 
 
     setPlaces(sorted);
-  }, [selectedTypes, selectedLocations, userLocation]);
+  }, [selectedTypes, selectedLocations, userLocation, openNowOnly, showBookmarksOnly]);
 
+
+  
   const WhiteCheckIcon = () => (
     <Text style={{ color: Colors.dark.text, fontSize: 16, fontWeight: 'bold' }}>✓</Text>
   );
@@ -214,7 +246,49 @@ export default function Places() {
               >
                 <Text style={styles.defaultButtonText}>Reset to My Interests</Text>
               </TouchableOpacity>
-            </View>
+          </View>
+          <View style={styles.dropdownWrapper}>
+            <TouchableOpacity
+                style={[
+                  styles.defaultButton,
+                  { backgroundColor: openNowOnly ? Colors.basic.state.succes[300] : Colors.dark.background800 }
+                ]}
+                onPress={() => setOpenNowOnly(!openNowOnly)}
+              >
+                <Text style={styles.defaultButtonText}>
+                  {openNowOnly ? 'Only Open Now ✓' : 'Filter: Open Now'}
+                </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+                style={[
+                  styles.defaultButton,
+                  { 
+                    backgroundColor: showBookmarksOnly ? Colors.basic.state.succes[300] : Colors.dark.background800,
+                    paddingVertical: 8,
+                    paddingHorizontal: 16,
+                    borderRadius: 8,
+                  }
+                ]}
+                onPress={() => setShowBookmarksOnly(!showBookmarksOnly)}
+              >
+              <Text style={styles.defaultButtonText}>
+                {showBookmarksOnly ? 'Bookmarked Only ✓' : 'Filter: Bookmarked'}
+              </Text>
+            </TouchableOpacity>
+
+
+            
+          </View>
+          
+          {/* <View style={{ flexDirection: 'row', alignItems: 'center', marginHorizontal: 10, marginBottom: 10 }}>
+            <Text style={[styles.textDefault, { marginRight: 8 }]}>Show Bookmarked Only</Text>
+            <Switch
+              value={showBookmarksOnly}
+              onValueChange={setShowBookmarksOnly}
+              thumbColor={showBookmarksOnly ? Colors.basic.state.succes[300] : undefined}
+            />
+          </View> */}
         </View>
 
         <FlatList 
