@@ -14,7 +14,7 @@ import { getDistanceFromLatLonInKm } from '@/utils/distance';
 import { getIsOpenNow } from '@/utils/opentimes';
 
 import MultiselectDropdown from '@/components/MultiselectDropdown';
-import TestComponent from '@/components/TestComponent';
+// import TestComponent from '@/components/TestComponent';
 
 export default function Places() {
   // const database = useDatabase();
@@ -194,52 +194,6 @@ export default function Places() {
             zIndex={2000}
             zIndexInverse={1000}
           />
-
-          {/* <DropDownPicker
-            open={locationOpen}
-            multiple={true}
-            value={selectedLocations}
-            items={locationOptions}
-            setOpen={setLocationOpen}
-            setValue={setSelectedLocations}
-            setItems={setLocationOptions}
-            placeholder="Filter by city and districts..."
-            style={styles.dropdownDark}
-            dropDownContainerStyle={styles.dropdownContainerDark}
-            textStyle={styles.dropdownText}
-            placeholderStyle={styles.dropdownPlaceholder}
-            searchTextInputStyle={styles.searchInputDark}
-            searchable={true}
-            searchPlaceholder="Search city or district..."
-            TickIconComponent={WhiteCheckIcon}
-            onOpen={() => setOpen(false)}
-          /> */}
-
-          {/* <DropDownPicker
-            open={open}
-            multiple={true}
-            value={selectedTypes}
-            items={typeOptions}
-            setOpen={setOpen}
-            setValue={setSelectedTypes}
-            setItems={setTypeOptions}
-            placeholder="Filter by types and tags..."
-            style={styles.dropdownDark}
-            dropDownContainerStyle={styles.dropdownContainerDark}
-            textStyle={styles.dropdownText}
-            placeholderStyle={styles.dropdownPlaceholder}
-            searchTextInputStyle={styles.searchInputDark}
-            searchable={true}
-            searchPlaceholder="Search types or tags..."
-            TickIconComponent={WhiteCheckIcon}
-            onOpen={() => setLocationOpen(false)}
-            listMode="SCROLLVIEW"
-            scrollViewProps={{
-              nestedScrollEnabled: true,
-            }}
-            zIndex={2000}
-            zIndexInverse={1000}
-          /> */}
 
           <View style={styles.dropdownWrapper}>
             <TouchableOpacity

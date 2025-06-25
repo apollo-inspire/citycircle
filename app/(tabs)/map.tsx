@@ -10,6 +10,8 @@ import { Colors } from '@/constants/Colors';
 
 import { PLACES_DEMO } from '@/constants/Places';
 
+import MultiselectDropdown from '@/components/MultiselectDropdown';
+
 const INITIAL_REGION = {
   latitude: 51.9205651,
   longitude: 4.4856543,
@@ -153,48 +155,31 @@ const MapScreen = () => {
     <View style={styles.container}>
 
       <View style={styles.topperContainer}>
-        <DropDownPicker
-          open={locationOpen}
-          multiple={true}
-          value={selectedLocations}
-          items={locationOptions}
-          setOpen={setLocationOpen}
-          setValue={setSelectedLocations}
-          setItems={setLocationOptions}
-          placeholder="Filter by city and districts..."
-          style={styles.dropdownDark}
-          dropDownContainerStyle={styles.dropdownContainerDark}
-          textStyle={styles.dropdownText}
-          placeholderStyle={styles.dropdownPlaceholder}
-          searchTextInputStyle={styles.searchInputDark}
-          searchable={true}
-          searchPlaceholder="Search city or district..."
-          TickIconComponent={WhiteCheckIcon}
-          onOpen={() => setOpen(false)}
+
+        <MultiselectDropdown
+            open={locationOpen}
+            setOpen={setLocationOpen}
+            value={selectedLocations}
+            setValue={setSelectedLocations}
+            items={locationOptions}
+            setItems={setLocationOptions}
+            placeholder="Filter by city and districts..."
+            searchPlaceholder="Search city or district..."
+            onOpen={() => setOpen(false)}
+            zIndex={3000}
+            zIndexInverse={1000}
         />
 
-        <DropDownPicker
+        <MultiselectDropdown
           open={open}
-          multiple={true}
-          value={selectedTypes}
-          items={typeOptions}
           setOpen={setOpen}
+          value={selectedTypes}
           setValue={setSelectedTypes}
+          items={typeOptions}
           setItems={setTypeOptions}
           placeholder="Filter by types and tags..."
-          style={styles.dropdownDark}
-          dropDownContainerStyle={styles.dropdownContainerDark}
-          textStyle={styles.dropdownText}
-          placeholderStyle={styles.dropdownPlaceholder}
-          searchTextInputStyle={styles.searchInputDark}
-          searchable={true}
           searchPlaceholder="Search types or tags..."
-          TickIconComponent={WhiteCheckIcon}
           onOpen={() => setLocationOpen(false)}
-          listMode="SCROLLVIEW"
-          scrollViewProps={{
-            nestedScrollEnabled: true,
-          }}
           zIndex={2000}
           zIndexInverse={1000}
         />
