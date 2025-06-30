@@ -147,7 +147,7 @@ export default function Onboard2() {
       gap: 16,
     },
     saveButton: {
-      backgroundColor: Colors.basic.primary[400],
+      backgroundColor: theme.accent,
       paddingVertical: 14,
       paddingHorizontal: 20,
       borderRadius: 14,

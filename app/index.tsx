@@ -1,16 +1,16 @@
+import logoImage from '@/assets/images/CityCircle-logo.png';
+import mapImage from '@/assets/images/citycircle_maps_screen.png'; // replace path if needed
 import { router } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
 import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
+  Dimensions,
   Image,
   ScrollView,
-  Dimensions,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
-import mapImage from '@/assets/images/citycircle_maps_screen.png'; // replace path if needed
-import logoImage from '@/assets/images/CityCircle-logo.png';
 
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
@@ -137,11 +137,11 @@ export default function Index() {
     dotActive: {
       width: 8,
       height: 8,
-      backgroundColor: Colors.basic.primary[400],
+      backgroundColor: theme.accent,
       borderRadius: 4,
     },
     button: {
-      backgroundColor: Colors.basic.primary[400],
+      backgroundColor: theme.accent,
       paddingVertical: 14,
       paddingHorizontal: 30,
       borderRadius: 14,
