@@ -4327,7 +4327,7 @@ export const PLACES_DEMO = [
         "longitude": 0,
         "city": "Rotterdam",
         "district": "Stadscentrum",
-        "address": null,
+        "address": "Wijnhaven 107, 3011 WN Rotterdam",
         "tags": ["education", "school", "student", "creative", "media", "it"],
         "languages": ["NL", "EN"],
         "description": "A specific institute of the Rotterdam University of Applied Sciences focusing on creative, medical, and IT-related studies.",
@@ -4348,7 +4348,7 @@ export const PLACES_DEMO = [
             "sunday_close": "Closed"
         },
         "logo": null,
-        "website": null,
+        "website": "https://www.hogeschoolrotterdam.nl/instituten/cmi/",
         "Maps_directions_link": null
     },
     {
@@ -4359,7 +4359,7 @@ export const PLACES_DEMO = [
         "longitude": 0,
         "city": "Rotterdam",
         "district": "Centrum",
-        "address": null,
+        "address": "Hoogstraat 147, 3011 PM Rotterdam",
         "tags": ["vintage", "second-hand", "fashion", "kilo sale", "sustainable", "retro"],
         "languages": ["NL", "EN"],
         "description": "A vintage clothing store where you pay by the weight of the items, offering a unique shopping experience for second-hand fashion.",
@@ -4380,7 +4380,7 @@ export const PLACES_DEMO = [
             "sunday_close": "17:00"
         },
         "logo": null,
-        "website": null,
+        "website": "https://kilokilovintage.nl/",
         "Maps_directions_link": null
     },
     {
@@ -4391,7 +4391,7 @@ export const PLACES_DEMO = [
         "longitude": 0,
         "city": "Rotterdam",
         "district": "Kralingen-Crooswijk",
-        "address": null,
+        "address": "Burgemeester Oudlaan 50, 3062 PA Rotterdam",
         "tags": ["food court", "student", "lunch", "casual", "international", "campus"],
         "languages": ["NL", "EN"],
         "description": "A food court on the Erasmus University campus offering a variety of international food options for students and staff.",
@@ -4412,7 +4412,7 @@ export const PLACES_DEMO = [
             "sunday_close": "Closed"
         },
         "logo": null,
-        "website": null,
+        "website": "https://www.eur.nl/en/campus/campus-development/food-plaza",
         "Maps_directions_link": null
     },
     {
@@ -4423,7 +4423,7 @@ export const PLACES_DEMO = [
         "longitude": 0,
         "city": "Rotterdam",
         "district": "Kralingen-Crooswijk",
-        "address": null,
+        "address": "Burgemeester Oudlaan 50, 3062 PA Rotterdam",
         "tags": ["student", "lounge", "study spot", "relax", "community", "campus"],
         "languages": ["NL", "EN"],
         "description": "A designated lounge area for students in the Langeveld building on the Erasmus University campus, perfect for studying or relaxing between classes.",
@@ -4444,7 +4444,7 @@ export const PLACES_DEMO = [
             "sunday_close": "Closed"
         },
         "logo": null,
-        "website": null,
+        "website": "https://www.eur.nl/en/essc/student-well-being/living-room",
         "Maps_directions_link": null
     },
     {
@@ -4455,7 +4455,7 @@ export const PLACES_DEMO = [
         "longitude": 0,
         "city": "Rotterdam",
         "district": "Stadscentrum",
-        "address": null,
+        "address": "Rodezand 36, 3011 AN Rotterdam",
         "tags": ["bar", "irish pub", "live music", "sports", "beer", "social"],
         "languages": ["NL", "EN"],
         "description": "A traditional Irish pub in the heart of Rotterdam, offering live music, sports screenings, and a wide selection of beers and whiskeys.",
@@ -4476,7 +4476,7 @@ export const PLACES_DEMO = [
             "sunday_close": "01:00"
         },
         "logo": null,
-        "website": null,
+        "website": "https://paddymurphys.nl/",
         "Maps_directions_link": null
     },
     {
@@ -4487,7 +4487,7 @@ export const PLACES_DEMO = [
         "longitude": 0,
         "city": "Rotterdam",
         "district": "Stadscentrum",
-        "address": null,
+        "address": "Goudsesingel 52, 3011 KC Rotterdam",
         "tags": ["cafe", "coffee", "study", "cozy", "work-friendly", "lunch"],
         "languages": ["NL", "EN"],
         "description": "A cozy and welcoming café that feels like a second home, ideal for studying, working, or enjoying a coffee with friends.",
@@ -4508,7 +4508,7 @@ export const PLACES_DEMO = [
             "sunday_close": "17:00"
         },
         "logo": null,
-        "website": null,
+        "website": "https://www.cafeathome.nl/",
         "Maps_directions_link": null
     },
     {
@@ -4519,7 +4519,7 @@ export const PLACES_DEMO = [
         "longitude": 0,
         "city": "Rotterdam",
         "district": "Stadscentrum",
-        "address": null,
+        "address": "Goudsesingel 2, 3011 KA Rotterdam",
         "tags": ["cafe", "coffee", "study", "knowledge", "workshops", "community"],
         "languages": ["NL", "EN"],
         "description": "A café that combines specialty coffee with a focus on knowledge sharing, hosting regular workshops and talks.",
@@ -4540,7 +4540,7 @@ export const PLACES_DEMO = [
             "sunday_close": "Closed"
         },
         "logo": null,
-        "website": null,
+        "website": "https://www.kennisenkoffie.com/",
         "Maps_directions_link": null
     },
     {
@@ -4551,7 +4551,7 @@ export const PLACES_DEMO = [
         "longitude": 0,
         "city": "Rotterdam",
         "district": "Stadscentrum",
-        "address": null,
+        "address": "Schiedamse Vest 146, 3011 BG Rotterdam",
         "tags": ["cafe", "coffee", "specialty coffee", "roastery", "bakery", "brunch"],
         "languages": ["NL", "EN"],
         "description": "An artisan coffee roaster and bakery known for its high-quality coffee, sourdough bread, and excellent brunch options.",
@@ -4572,7 +4572,7 @@ export const PLACES_DEMO = [
             "sunday_close": "18:00"
         },
         "logo": null,
-        "website": null,
+        "website": "https://www.hopper-coffee.nl/",
         "Maps_directions_link": null
     },
     {
@@ -4583,7 +4583,7 @@ export const PLACES_DEMO = [
         "longitude": 0,
         "city": "Rotterdam",
         "district": "Stadscentrum",
-        "address": null,
+        "address": "Weena 702, 3014 DA Rotterdam",
         "tags": ["healthy", "vegan", "plant-based", "fast food", "sustainable", "lunch"],
         "languages": ["NL", "EN"],
         "description": "A fast-food style restaurant serving 100% plant-based and healthy meals, focusing on sustainability and flavor.",
@@ -4604,7 +4604,7 @@ export const PLACES_DEMO = [
             "sunday_close": "21:00"
         },
         "logo": null,
-        "website": null,
+        "website": "https://www.jackbean.nl/",
         "Maps_directions_link": null
     },
     {
@@ -4615,7 +4615,7 @@ export const PLACES_DEMO = [
         "longitude": 0,
         "city": "Rotterdam",
         "district": "Noord",
-        "address": null,
+        "address": "Noordplein, 3035 EC Rotterdam",
         "tags": ["public square", "market", "events", "local", "community", "food"],
         "languages": ["NL", "EN"],
         "description": "A lively public square in the Noord district, known for hosting markets, festivals, and community events.",
@@ -4636,7 +4636,7 @@ export const PLACES_DEMO = [
             "sunday_close": "Always"
         },
         "logo": null,
-        "website": null,
+        "website": "https://www.rotterdam.nl/locaties/noordplein",
         "Maps_directions_link": null
     },
     {
@@ -4647,7 +4647,7 @@ export const PLACES_DEMO = [
         "longitude": 0,
         "city": "Rotterdam",
         "district": "Stadscentrum",
-        "address": null,
+        "address": "Boompjeskade, 3011 XE Rotterdam",
         "tags": ["riverside", "promenade", "walking", "scenic", "waterfront", "relaxing"],
         "languages": ["NL", "EN"],
         "description": "A scenic promenade along the Maas river, perfect for walks, enjoying the view of the skyline and the Erasmus bridge.",
@@ -4668,7 +4668,7 @@ export const PLACES_DEMO = [
             "sunday_close": "Always"
         },
         "logo": null,
-        "website": null,
+        "website": "https://www.rotterdam.nl/boompjeskade",
         "Maps_directions_link": null
     },
     {
@@ -4679,7 +4679,7 @@ export const PLACES_DEMO = [
         "longitude": 0,
         "city": "Rotterdam",
         "district": "Kralingen-Crooswijk",
-        "address": null,
+        "address": "Langepad, 3062 CJ Rotterdam",
         "tags": ["park", "lake", "nature", "recreation", "sports", "walking"],
         "languages": ["NL", "EN"],
         "description": "A large lake and surrounding park area, popular for sailing, running, picnics, and enjoying nature within the city.",
@@ -4700,7 +4700,7 @@ export const PLACES_DEMO = [
             "sunday_close": "Always"
         },
         "logo": null,
-        "website": null,
+        "website": "https://www.rotterdam.nl/kralingse-plas-en-bos",
         "Maps_directions_link": null
     },
     {
@@ -4711,7 +4711,7 @@ export const PLACES_DEMO = [
         "longitude": 0,
         "city": "Rotterdam",
         "district": "Stadscentrum",
-        "address": null,
+        "address": "Museumpark, 3015 CB Rotterdam",
         "tags": ["park", "museums", "art", "culture", "events", "architecture"],
         "languages": ["NL", "EN"],
         "description": "A park in the city center surrounded by major museums like Boijmans Van Beuningen, Het Nieuwe Instituut, and the Kunsthal. It often hosts cultural events and festivals.",
@@ -4732,7 +4732,7 @@ export const PLACES_DEMO = [
             "sunday_close": "Always"
         },
         "logo": null,
-        "website": null,
+        "website": "https://www.rotterdam.nl/locaties/museumpark",
         "Maps_directions_link": null
     },
     {
@@ -4743,7 +4743,7 @@ export const PLACES_DEMO = [
         "longitude": 0,
         "city": "Rotterdam",
         "district": "Kralingen-Crooswijk",
-        "address": null,
+        "address": "Burgemeester Oudlaan 50, 3062 PA Rotterdam",
         "tags": ["study association", "economics", "business", "student", "networking", "career"],
         "languages": ["NL", "EN"],
         "description": "The study association for economics and business students at the Erasmus School of Economics.",
@@ -4764,7 +4764,7 @@ export const PLACES_DEMO = [
             "sunday_close": "Closed"
         },
         "logo": null,
-        "website": null,
+        "website": "https://www.efr.nl/",
         "Maps_directions_link": null
     },
     {
@@ -4775,7 +4775,7 @@ export const PLACES_DEMO = [
         "longitude": 0,
         "city": "Rotterdam",
         "district": "Kralingen-Crooswijk",
-        "address": null,
+        "address": "Burgemeester Oudlaan 50, 3062 PA Rotterdam",
         "tags": ["study association", "econometrics", "student", "career", "academic", "networking"],
         "languages": ["NL", "EN"],
         "description": "The official school association for students in Econometrics & Operations Research at the Erasmus University Rotterdam.",
@@ -4796,7 +4796,7 @@ export const PLACES_DEMO = [
             "sunday_close": "Closed"
         },
         "logo": null,
-        "website": null,
+        "website": "https://www.faector.nl/",
         "Maps_directions_link": null
     },
     {
@@ -4807,7 +4807,7 @@ export const PLACES_DEMO = [
         "longitude": 0,
         "city": "Rotterdam",
         "district": "Kralingen-Crooswijk",
-        "address": null,
+        "address": "Burgemeester Oudlaan 50, 3062 PA Rotterdam",
         "tags": ["study association", "law", "economics", "student", "double degree", "academic"],
         "languages": ["NL", "EN"],
         "description": "The study association for students pursuing a double degree in Law and either Economics or Business Administration at Erasmus University Rotterdam.",
@@ -4828,7 +4828,7 @@ export const PLACES_DEMO = [
             "sunday_close": "Closed"
         },
         "logo": null,
-        "website": null,
+        "website": "https://www.induplo.nl/",
         "Maps_directions_link": null
     }
 ];
