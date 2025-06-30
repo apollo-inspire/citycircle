@@ -151,8 +151,8 @@ export default function Places() {
 
       const matchesOpenNow = !openNowOnly || getIsOpenNow(place.opening_times);
 
-      console.log('BookmarkedPlaces:', bookmarkedPlaces);
-      console.log('Bookmark check:', place.id.toString(), bookmarkedPlaces.includes(place.id));
+      // console.log('BookmarkedPlaces:', bookmarkedPlaces);
+      // console.log('Bookmark check:', place.id.toString(), bookmarkedPlaces.includes(place.id));
 
       const matchesBookmark = !showBookmarksOnly || bookmarkedPlaces.includes(place.id);
 

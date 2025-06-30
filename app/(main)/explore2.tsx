@@ -6,7 +6,7 @@ import { ExternalLink } from '@/components/old/ExternalLink';
 import ParallaxScrollView from '@/components/old/ParallaxScrollView';
 import { ThemedText } from '@/components/old/ThemedText';
 import { ThemedView } from '@/components/old/ThemedView';
-import { IconSymbol } from '@/components/ui/IconSymbol';
+import { IconSymbol } from '@/components/old/ui/IconSymbol';
 
 export default function TabTwoScreen() {
   return (
