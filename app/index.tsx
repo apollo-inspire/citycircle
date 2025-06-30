@@ -17,7 +17,6 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 
 
 
-
 const SLIDES = [
   {
     title: 'Discover Local Places (Map)',
