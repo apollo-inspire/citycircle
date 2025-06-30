@@ -11,7 +11,9 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
-  const theme = Colors[colorScheme ?? 'dark'];
+  const theme = Colors[colorScheme] ?? Colors.dark;
+
+  // console.log(colorScheme)
 
   const [loaded] = useFonts({
     'Poppins-Regular': require('../assets/fonts/poppins/Poppins-Regular.ttf'),

@@ -1,7 +1,11 @@
-import { Colors } from '@/constants/Colors';
 import React from 'react';
 import { Text } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
+
+import { Colors } from '@/constants/Colors';
+import { useColorScheme } from '@/hooks/useColorScheme';
+
+
 
 type MultiSelectDropdownProps = {
   open: boolean;
@@ -17,9 +21,7 @@ type MultiSelectDropdownProps = {
   zIndexInverse?: number;
 };
 
-const WhiteCheckIcon = () => (
-  <Text style={{ color: Colors.basic.primary[300], fontSize: 16, fontWeight: 'bold' }}>✓</Text>
-);
+
 
 export default function MultiselectDropdown({
   open,
@@ -34,6 +36,14 @@ export default function MultiselectDropdown({
   zIndex,
   zIndexInverse,
 }: MultiSelectDropdownProps) {
+  
+  const colorScheme = useColorScheme();
+  const theme = Colors[colorScheme] ?? Colors.dark;
+
+  const WhiteCheckIcon = () => (
+  <Text style={{ color: theme.accent, fontSize: 16, fontWeight: 'bold' }}>✓</Text>
+  );
+
   return (
     <DropDownPicker
       open={open}
@@ -44,18 +54,18 @@ export default function MultiselectDropdown({
       setValue={setValue}
       setItems={setItems}
       placeholder={placeholder}
-      style={{ margin: 10, backgroundColor: Colors.dark.backgroundCard, zIndex }}
-      dropDownContainerStyle={{ backgroundColor: Colors.dark.backgroundCard, maxHeight: 600 }}
-      textStyle={{ fontFamily: 'Poppins-Regular', color: Colors.dark.text }}
-      placeholderStyle={{ color: Colors.dark.textLowcontrast }}
+      style={{ margin: 10, backgroundColor: theme.backgroundCard, zIndex }}
+      dropDownContainerStyle={{ backgroundColor: theme.backgroundCard, maxHeight: 600 }}
+      textStyle={{ fontFamily: 'Poppins-Regular', color: theme.text }}
+      placeholderStyle={{ color: theme.textLowcontrast }}
       searchTextInputStyle={{
         fontFamily: 'Poppins-Regular',
         padding: 12,
         borderRadius: 6,
         marginVertical: 1,
         marginHorizontal: 3,
-        color: Colors.dark.text,
-        backgroundColor: Colors.dark.background900,
+        color: theme.text,
+        backgroundColor: theme.background900,
       }}
       searchable={true}
       searchPlaceholder={searchPlaceholder}
@@ -66,7 +76,7 @@ export default function MultiselectDropdown({
       zIndex={zIndex}
       zIndexInverse={zIndexInverse}
       selectedItemLabelStyle={{
-        color: Colors.basic.primary[300],
+        color: theme.accent,
         // backgroundColor: Colors.dark.buttonGray,
         fontFamily: 'Poppins-Bold',
         // fontWeight: 'bold',

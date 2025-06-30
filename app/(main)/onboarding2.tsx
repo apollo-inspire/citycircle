@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import { Colors } from '@/constants/Colors';
 import { router } from 'expo-router';
 import DropDownPicker from 'react-native-dropdown-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { PLACES_DEMO } from '@/constants/Places';
+
+import { Colors } from '@/constants/Colors';
+import { useColorScheme } from '@/hooks/useColorScheme';
 
 export default function Onboard2() {
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
@@ -50,8 +52,127 @@ export default function Onboard2() {
   };
 
   const WhiteCheckIcon = () => (
-    <Text style={{ color: Colors.dark.text, fontSize: 16, fontWeight: 'bold' }}>✓</Text>
+    <Text style={{ color: theme.text, fontSize: 16, fontWeight: 'bold' }}>✓</Text>
   );
+
+  const colorScheme = useColorScheme();
+  const theme = Colors[colorScheme] ?? Colors.dark;
+
+  const styles = StyleSheet.create({
+    root: {
+      flex: 1,
+      backgroundColor: theme.background,
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 16,
+    },
+    card: {
+      backgroundColor: theme.backgroundCard,
+      borderRadius: 20,
+      padding: 20,
+      width: '100%',
+      maxWidth: 500,
+    },
+    title: {
+      fontFamily: 'Poppins-Bold',
+      fontSize: 38,
+      color: theme.text,
+      textAlign: 'center',
+      marginBottom: 12,
+    },
+    subtitle: {
+      fontFamily: 'Poppins-Regular',
+      fontSize: 16,
+      color: theme.text,
+      textAlign: 'center',
+      marginBottom: 24,
+    },
+    sectionTitle: {
+      fontFamily: 'Poppins-Bold',
+      fontSize: 18,
+      color: theme.text,
+      marginBottom: 8,
+    },
+    dropdownDark: {
+      marginVertical: 10,
+      backgroundColor: theme.backgroundCard,
+    },
+    dropdownContainerDark: {
+      backgroundColor: theme.backgroundCard,
+      maxHeight: 600,
+    },
+    dropdownText: {
+      fontFamily: 'Poppins-Regular',
+      color: theme.text,
+    },
+    dropdownPlaceholder: {
+      color: theme.textLowcontrast,
+    },
+    searchInputDark: {
+      fontFamily: 'Poppins-Regular',
+      padding: 12,
+      borderRadius: 6,
+      marginVertical: 1,
+      marginHorizontal: 3,
+      color: theme.text,
+      backgroundColor: theme.background900,
+    },
+    tagsContainer: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      gap: 8,
+      marginBottom: 12,
+    },
+    tag: {
+      backgroundColor: theme.background900,
+      borderRadius: 8,
+      paddingHorizontal: 10,
+      paddingVertical: 8,
+    },
+    tagText: {
+      fontFamily: 'Poppins-Regular',
+      color: theme.text,
+    },
+    note: {
+      fontFamily: 'Poppins-Regular',
+      fontSize: 13,
+      color: theme.textLowcontrast,
+      fontStyle: 'italic',
+      marginTop: 8,
+      marginBottom: 32,
+    },
+    buttonRow: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      gap: 16,
+    },
+    saveButton: {
+      backgroundColor: Colors.basic.primary[400],
+      paddingVertical: 14,
+      paddingHorizontal: 20,
+      borderRadius: 14,
+      flex: 1,
+    },
+    skipButton: {
+      backgroundColor: theme.buttonGray,
+      paddingVertical: 14,
+      paddingHorizontal: 20,
+      borderRadius: 14,
+    },
+    buttonText: {
+      fontFamily: 'Poppins-Bold',
+      fontSize: 16,
+      color: theme.background,
+      textAlign: 'center',
+    },
+    skipText: {
+      fontFamily: 'Poppins-Bold',
+      fontSize: 16,
+      color: theme.text,
+      textAlign: 'center',
+    },
+  });
+
 
   return (
     <View style={styles.root}>
@@ -115,117 +236,3 @@ export default function Onboard2() {
   );
 }
 
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: Colors.dark.background,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 16,
-  },
-  card: {
-    backgroundColor: Colors.dark.backgroundCard,
-    borderRadius: 20,
-    padding: 20,
-    width: '100%',
-    maxWidth: 500,
-  },
-  title: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 38,
-    color: Colors.dark.text,
-    textAlign: 'center',
-    marginBottom: 12,
-  },
-  subtitle: {
-    fontFamily: 'Poppins-Regular',
-    fontSize: 16,
-    color: Colors.dark.text,
-    textAlign: 'center',
-    marginBottom: 24,
-  },
-  sectionTitle: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 18,
-    color: Colors.dark.text,
-    marginBottom: 8,
-  },
-  dropdownDark: {
-    marginVertical: 10,
-    backgroundColor: Colors.dark.backgroundCard,
-  },
-  dropdownContainerDark: {
-    backgroundColor: Colors.dark.backgroundCard,
-    maxHeight: 600,
-  },
-  dropdownText: {
-    fontFamily: 'Poppins-Regular',
-    color: Colors.dark.text,
-  },
-  dropdownPlaceholder: {
-    color: Colors.dark.textLowcontrast,
-  },
-  searchInputDark: {
-    fontFamily: 'Poppins-Regular',
-    padding: 12,
-    borderRadius: 6,
-    marginVertical: 1,
-    marginHorizontal: 3,
-    color: Colors.dark.text,
-    backgroundColor: Colors.dark.background900,
-  },
-  tagsContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 8,
-    marginBottom: 12,
-  },
-  tag: {
-    backgroundColor: Colors.dark.background900,
-    borderRadius: 8,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-  },
-  tagText: {
-    fontFamily: 'Poppins-Regular',
-    color: Colors.dark.text,
-  },
-  note: {
-    fontFamily: 'Poppins-Regular',
-    fontSize: 13,
-    color: Colors.dark.textLowcontrast,
-    fontStyle: 'italic',
-    marginTop: 8,
-    marginBottom: 32,
-  },
-  buttonRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    gap: 16,
-  },
-  saveButton: {
-    backgroundColor: Colors.basic.primary[400],
-    paddingVertical: 14,
-    paddingHorizontal: 20,
-    borderRadius: 14,
-    flex: 1,
-  },
-  skipButton: {
-    backgroundColor: Colors.dark.buttonGray,
-    paddingVertical: 14,
-    paddingHorizontal: 20,
-    borderRadius: 14,
-  },
-  buttonText: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 16,
-    color: Colors.dark.background,
-    textAlign: 'center',
-  },
-  skipText: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 16,
-    color: Colors.dark.text,
-    textAlign: 'center',
-  },
-});

@@ -6,6 +6,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 
 import { Colors } from '@/constants/Colors';
+import { useColorScheme } from '@/hooks/useColorScheme';
 
 import { PLACES_DEMO } from '@/constants/Places';
 
@@ -183,150 +184,155 @@ const MapScreen = () => {
     <Text style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}>✓</Text>
   );
 
-  return (
-    <View style={styles.container}>
+  const colorScheme = useColorScheme();
+  const theme = Colors[colorScheme] ?? Colors.dark;
 
-      <View style={styles.topperContainer}>
+  const styles = StyleSheet.create({
+    container: {
+      fontFamily: 'Poppins-Regular',
+      flex: 1,
+      zIndex: 10,
+    },
+    map: {
+      flex: 1,
+      width: '100%',
+      height: '100%',
+    },
+    text: {
+      fontFamily: 'Poppins-Regular',
+      color: theme.text,
+    },
+    topperContainer: {
+      zIndex: 3000,
+      backgroundColor: theme.background900,
+      width: '100%',
+    },
+    dropdownsContainer: {
+      width: '100%',
+      paddingLeft: 10,
+      paddingRight: 20,
+    },
+    dropdown: {
+      margin: 10,
+      zIndex: 3000,
+    },
+    dropdownContainer: {
+      // zIndex: 2000,
+    },
+    dropdownWrapper: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginHorizontal: 10,
+    },
+    clearButton: {
+      marginLeft: 8,
+      paddingHorizontal: 10,
+      paddingVertical: 12,
+      backgroundColor: theme.buttonGray,
+      borderRadius: 8,
+      marginBottom: 10,
+    },
+    dropdownDark: {
+      margin: 10,
+      backgroundColor: theme.backgroundCard,
+      // borderColor: '#444',
+      zIndex: 3000,
+    },
 
-        <View style={styles.dropdownsContainer}>
-          <MultiselectDropdown
-              open={locationOpen}
-              setOpen={setLocationOpen}
-              value={selectedLocations}
-              setValue={setSelectedLocations}
-              items={locationOptions}
-              setItems={setLocationOptions}
-              placeholder="Filter by city and districts..."
-              searchPlaceholder="Search city or district..."
-              onOpen={() => setOpen(false)}
-              zIndex={3000}
-              zIndexInverse={1000}
-          />
+    dropdownContainerDark: {
+      backgroundColor: theme.backgroundCard,
+      // borderColor: '#444',
+      maxHeight: 600
+    },
 
-          <MultiselectDropdown
-            open={open}
-            setOpen={setOpen}
-            value={selectedTypes}
-            setValue={setSelectedTypes}
-            items={typeOptions}
-            setItems={setTypeOptions}
-            placeholder="Filter by types and tags..."
-            searchPlaceholder="Search types or tags..."
-            onOpen={() => setLocationOpen(false)}
-            zIndex={2000}
-            zIndexInverse={1000}
-          />
-        </View>
+    dropdownText: {
+      fontFamily: 'Poppins-Regular',
+      color: theme.text,
+    },
 
-        <View style={styles.dropdownWrapper}>
-          <TouchableOpacity
-            style={styles.clearButton}
-            onPress={() => {
-              setSelectedTypes([]);
-              setSelectedLocations([]);
-              setOpen(false);
-              setLocationOpen(false);
-            }}
-          >
-            <Text style={styles.clearButtonText}>Deselect All</Text>
-          </TouchableOpacity>
+    dropdownPlaceholder: {
+      color: theme.textLowcontrast,
+    },
 
-          <TouchableOpacity
-            style={styles.defaultButton}
-            onPress={applyUserDefaults}
-          >
-            <Text style={styles.defaultButtonText}>Reset to My Interests</Text>
-          </TouchableOpacity>
+    searchInputDark: {
+      fontFamily: 'Poppins-Regular',
+      padding: 12,
+      // borderWidth: 1,
+      // borderColor: '#555',
+      borderRadius: 6,  
+      marginVertical: 1,
+      marginHorizontal: 3,
+      color: theme.text,
+      backgroundColor: theme.background900,
+    },
+    clearButtonText: {
+      fontFamily: 'Poppins-Bold',
+      // fontWeight: 'bold',
+      color: theme.text,
+    },
+    searchInput: {
+      padding: 12,
+      // borderWidth: 1,
+      // borderColor: '#ccc',
+      borderRadius: 6,  
+      marginVertical: 1,
+      marginHorizontal: 3,
+    },
+    markerContainer: {
+      color: Colors.basic.gray[700],
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: 35,
+      height: 35,
+    },
+    markerLabel: {
+      backgroundColor: theme.text,
+      // paddingHorizontal: 6,
+      // paddingVertical: 2,
+      // borderRadius: 6,
+      // borderColor: '#ccc',
+      // borderWidth: 1,
+      // marginBottom: 4,
+      // maxWidth: 500,
+    },
+
+    markerLabelText: {
+      fontFamily: 'Poppins-Regular',
+      fontSize: 12,
+      color: theme.text,
+      textAlign: 'center',
+    },
+
+    // markerDot: {
+    //   width: 10,
+    //   height: 10,
+    //   borderRadius: 5,
+    //   backgroundColor: '#007AFF',
+    //   borderWidth: 2,
+    //   borderColor: 'white',
+    // },
+    markerImage: {
+      width: 40,
+      height: 40
+    },
+    defaultButton: {
+      marginLeft: 8,
+      paddingHorizontal: 10,
+      paddingVertical: 12,
+      backgroundColor: theme.buttonGray,
+      borderRadius: 8,
+      marginBottom: 10,
+    },
+    defaultButtonText: {
+      fontFamily: 'Poppins-Bold',
+      color: theme.text,
+    },
+
+  });
 
 
-        </View>
 
-          <View style={styles.dropdownWrapper}>
-            <TouchableOpacity
-                style={[
-                  styles.defaultButton,
-                  { backgroundColor: openNowOnly ? Colors.basic.state.succes[300] : Colors.dark.background800 }
-                ]}
-                onPress={() => setOpenNowOnly(!openNowOnly)}
-              >
-                <Text style={styles.defaultButtonText}>
-                  {openNowOnly ? 'Only Open Now ✓' : 'Filter: Open Now'}
-                </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-                style={[
-                  styles.defaultButton,
-                  { 
-                    backgroundColor: showBookmarksOnly ? Colors.basic.state.succes[300] : Colors.dark.background800,
-                    paddingVertical: 8,
-                    paddingHorizontal: 16,
-                    borderRadius: 8,
-                  }
-                ]}
-                onPress={() => setShowBookmarksOnly(!showBookmarksOnly)}
-              >
-              <Text style={styles.defaultButtonText}>
-                {showBookmarksOnly ? 'Bookmarked Only ✓' : 'Filter: Bookmarked'}
-              </Text>
-            </TouchableOpacity>
-
-
-            
-          </View>
-      </View>
-
-      {/* <View style={{ flexDirection: 'row', alignItems: 'center', marginHorizontal: 10, marginBottom: 10 }}>
-          <Text style={[styles.textDefault, { marginRight: 8 }]}>Show Bookmarked Only</Text>
-          <Switch
-            value={showBookmarksOnly}
-            onValueChange={setShowBookmarksOnly}
-            thumbColor={showBookmarksOnly ? Colors.basic.state.succes[300] : undefined}
-          />
-        </View> */}
-
-      <MapView
-        customMapStyle={mapStyle}
-        style={styles.map}
-        provider={PROVIDER_GOOGLE}
-        initialRegion={INITIAL_REGION}
-        showsUserLocation
-        showsMyLocationButton
-        ref={mapRef}
-        rotateEnabled={false}
-        showsCompass
-        showsPointsOfInterest={false}
-        pitchEnabled
-      >
-        {filteredPlaces.map((marker, index) => (
-          <Marker
-            ref={markerRef}
-            key={index}
-            coordinate={{
-              latitude: marker.latitude,
-              longitude: marker.longitude,
-            }}
-            onPress={() => onMarkerSelected(marker)}
-            title={marker.name}
-            // description={marker.district}
-          >
-            {/* <View style={styles.markerContainer}>
-              <Image 
-                source={require('@/assets/images/map-marker.png')}
-                style={styles.markerImage}
-              />
-              <View style={styles.markerLabel}>
-                <Text style={styles.markerLabelText}>{marker.name}</Text>
-              </View> 
-            </View> */}
-          </Marker>
-        ))}
-      </MapView>
-    </View>
-  );
-};
-
-const mapStyle = [
+  const mapStyle = [
   // On/off
   {
     featureType: "poi",
@@ -420,148 +426,152 @@ const mapStyle = [
   },
 ];
 
-const styles = StyleSheet.create({
-  container: {
-    fontFamily: 'Poppins-Regular',
-    flex: 1,
-    zIndex: 10,
-  },
-  map: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
-  },
-  text: {
-    fontFamily: 'Poppins-Regular',
-    color: Colors.dark.text,
-  },
-  topperContainer: {
-    zIndex: 3000,
-    backgroundColor: Colors.dark.background900,
-    width: '100%',
-  },
-  dropdownsContainer: {
-    width: '100%',
-    paddingLeft: 10,
-    paddingRight: 20,
-  },
-  dropdown: {
-    margin: 10,
-    zIndex: 3000,
-  },
-  dropdownContainer: {
-    // zIndex: 2000,
-  },
-  dropdownWrapper: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginHorizontal: 10,
-  },
-  clearButton: {
-    marginLeft: 8,
-    paddingHorizontal: 10,
-    paddingVertical: 12,
-    backgroundColor: Colors.dark.buttonGray,
-    borderRadius: 8,
-    marginBottom: 10,
-  },
-  dropdownDark: {
-    margin: 10,
-    backgroundColor: Colors.dark.backgroundCard,
-    // borderColor: '#444',
-    zIndex: 3000,
-  },
 
-  dropdownContainerDark: {
-    backgroundColor: Colors.dark.backgroundCard,
-    // borderColor: '#444',
-    maxHeight: 600
-  },
 
-  dropdownText: {
-    fontFamily: 'Poppins-Regular',
-    color: Colors.dark.text,
-  },
 
-  dropdownPlaceholder: {
-    color: Colors.dark.textLowcontrast,
-  },
 
-  searchInputDark: {
-    fontFamily: 'Poppins-Regular',
-    padding: 12,
-    // borderWidth: 1,
-    // borderColor: '#555',
-    borderRadius: 6,  
-    marginVertical: 1,
-    marginHorizontal: 3,
-    color: Colors.dark.text,
-    backgroundColor: Colors.dark.background900,
-  },
-  clearButtonText: {
-    fontFamily: 'Poppins-Bold',
-    // fontWeight: 'bold',
-    color: 'white',
-  },
-  searchInput: {
-    padding: 12,
-    // borderWidth: 1,
-    // borderColor: '#ccc',
-    borderRadius: 6,  
-    marginVertical: 1,
-    marginHorizontal: 3,
-  },
-  markerContainer: {
-    color: Colors.basic.gray[700],
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 35,
-    height: 35,
-  },
-  markerLabel: {
-    backgroundColor: Colors.dark.text,
-    // paddingHorizontal: 6,
-    // paddingVertical: 2,
-    // borderRadius: 6,
-    // borderColor: '#ccc',
-    // borderWidth: 1,
-    // marginBottom: 4,
-    // maxWidth: 500,
-  },
+  return (
+    <View style={styles.container}>
 
-  markerLabelText: {
-    fontFamily: 'Poppins-Regular',
-    fontSize: 12,
-    color: Colors.dark.text,
-    textAlign: 'center',
-  },
+      <View style={styles.topperContainer}>
 
-  // markerDot: {
-  //   width: 10,
-  //   height: 10,
-  //   borderRadius: 5,
-  //   backgroundColor: '#007AFF',
-  //   borderWidth: 2,
-  //   borderColor: 'white',
-  // },
-  markerImage: {
-    width: 40,
-    height: 40
-  },
-  defaultButton: {
-    marginLeft: 8,
-    paddingHorizontal: 10,
-    paddingVertical: 12,
-    backgroundColor: Colors.dark.buttonGray,
-    borderRadius: 8,
-    marginBottom: 10,
-  },
-  defaultButtonText: {
-    fontFamily: 'Poppins-Bold',
-    color: Colors.dark.text,
-  },
+        <View style={styles.dropdownsContainer}>
+          <MultiselectDropdown
+              open={locationOpen}
+              setOpen={setLocationOpen}
+              value={selectedLocations}
+              setValue={setSelectedLocations}
+              items={locationOptions}
+              setItems={setLocationOptions}
+              placeholder="Filter by city and districts..."
+              searchPlaceholder="Search city or district..."
+              onOpen={() => setOpen(false)}
+              zIndex={3000}
+              zIndexInverse={1000}
+          />
 
-});
+          <MultiselectDropdown
+            open={open}
+            setOpen={setOpen}
+            value={selectedTypes}
+            setValue={setSelectedTypes}
+            items={typeOptions}
+            setItems={setTypeOptions}
+            placeholder="Filter by types and tags..."
+            searchPlaceholder="Search types or tags..."
+            onOpen={() => setLocationOpen(false)}
+            zIndex={2000}
+            zIndexInverse={1000}
+          />
+        </View>
+
+        <View style={styles.dropdownWrapper}>
+          <TouchableOpacity
+            style={styles.clearButton}
+            onPress={() => {
+              setSelectedTypes([]);
+              setSelectedLocations([]);
+              setOpen(false);
+              setLocationOpen(false);
+            }}
+          >
+            <Text style={styles.clearButtonText}>Deselect All</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.defaultButton}
+            onPress={applyUserDefaults}
+          >
+            <Text style={styles.defaultButtonText}>Reset to My Interests</Text>
+          </TouchableOpacity>
+
+
+        </View>
+
+          <View style={styles.dropdownWrapper}>
+            <TouchableOpacity
+                style={[
+                  styles.defaultButton,
+                  { backgroundColor: openNowOnly ? Colors.basic.state.succes[300] : theme.background900 }
+                ]}
+                onPress={() => setOpenNowOnly(!openNowOnly)}
+              >
+                <Text style={styles.defaultButtonText}>
+                  {openNowOnly ? 'Only Open Now ✓' : 'Filter: Open Now'}
+                </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+                style={[
+                  styles.defaultButton,
+                  { 
+                    backgroundColor: showBookmarksOnly ? Colors.basic.state.succes[300] : theme.background900,
+                    paddingVertical: 8,
+                    paddingHorizontal: 16,
+                    borderRadius: 8,
+                  }
+                ]}
+                onPress={() => setShowBookmarksOnly(!showBookmarksOnly)}
+              >
+              <Text style={styles.defaultButtonText}>
+                {showBookmarksOnly ? 'Bookmarked Only ✓' : 'Filter: Bookmarked'}
+              </Text>
+            </TouchableOpacity>
+
+
+            
+          </View>
+      </View>
+
+      {/* <View style={{ flexDirection: 'row', alignItems: 'center', marginHorizontal: 10, marginBottom: 10 }}>
+          <Text style={[styles.textDefault, { marginRight: 8 }]}>Show Bookmarked Only</Text>
+          <Switch
+            value={showBookmarksOnly}
+            onValueChange={setShowBookmarksOnly}
+            thumbColor={showBookmarksOnly ? Colors.basic.state.succes[300] : undefined}
+          />
+        </View> */}
+
+      <MapView
+        customMapStyle={mapStyle}
+        style={styles.map}
+        provider={PROVIDER_GOOGLE}
+        initialRegion={INITIAL_REGION}
+        showsUserLocation
+        showsMyLocationButton
+        ref={mapRef}
+        rotateEnabled={false}
+        showsCompass
+        showsPointsOfInterest={false}
+        pitchEnabled
+      >
+        {filteredPlaces.map((marker, index) => (
+          <Marker
+            ref={markerRef}
+            key={index}
+            coordinate={{
+              latitude: marker.latitude,
+              longitude: marker.longitude,
+            }}
+            onPress={() => onMarkerSelected(marker)}
+            title={marker.name}
+            // description={marker.district}
+          >
+            {/* <View style={styles.markerContainer}>
+              <Image 
+                source={require('@/assets/images/map-marker.png')}
+                style={styles.markerImage}
+              />
+              <View style={styles.markerLabel}>
+                <Text style={styles.markerLabelText}>{marker.name}</Text>
+              </View> 
+            </View> */}
+          </Marker>
+        ))}
+      </MapView>
+    </View>
+  );
+};
 
 
 export default MapScreen;

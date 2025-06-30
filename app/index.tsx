@@ -9,9 +9,13 @@ import {
   ScrollView,
   Dimensions,
 } from 'react-native';
-import { Colors } from '@/constants/Colors';
 import mapImage from '@/assets/images/citycircle_maps_screen.png'; // replace path if needed
 import logoImage from '@/assets/images/CityCircle-logo.png';
+
+import { Colors } from '@/constants/Colors';
+import { useColorScheme } from '@/hooks/useColorScheme';
+
+
 
 
 const SLIDES = [
@@ -64,6 +68,98 @@ export default function Index() {
   };
 
 
+  const colorScheme = useColorScheme();
+  const theme = Colors[colorScheme] ?? Colors.dark;
+
+  const styles = StyleSheet.create({
+    root: {
+      flex: 1,
+      backgroundColor: theme.background,
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 16,
+    },
+    card: {
+      backgroundColor: theme.backgroundCard,
+      borderRadius: 20,
+      padding: 20,
+      width: '100%',
+      maxWidth: 500,
+    },
+    description: {
+      fontFamily: 'Poppins-Regular',
+      color: theme.text,
+      fontSize: 16,
+      textAlign: 'center',
+      marginBottom: 32,
+    },
+    carousel: {
+      width: '100%',
+    },
+    slide: {
+      // maxWidth: '100%',
+      width: screenWidth,
+      paddingHorizontal: 8,
+      alignItems: 'center',
+    },
+    mapImage: {
+      width: '100%',
+      height: 150,
+      borderRadius: 8,
+      marginBottom: 20,
+    },
+    sectionTitle: {
+      fontFamily: 'Poppins-Bold',
+      color: theme.text,
+      fontSize: 24,
+      textAlign: 'center',
+      marginBottom: 8,
+    },
+    sectionDescription: {
+      fontFamily: 'Poppins-Regular',
+      color: theme.text,
+      fontSize: 16,
+      textAlign: 'center',
+      marginBottom: 24,
+    },
+    dots: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      gap: 6,
+      marginBottom: 32,
+    },
+    dot: {
+      width: 8,
+      height: 8,
+      backgroundColor: Colors.basic.gray[500],
+      borderRadius: 4,
+    },
+    dotActive: {
+      width: 8,
+      height: 8,
+      backgroundColor: Colors.basic.primary[400],
+      borderRadius: 4,
+    },
+    button: {
+      backgroundColor: Colors.basic.primary[400],
+      paddingVertical: 14,
+      paddingHorizontal: 30,
+      borderRadius: 14,
+      alignSelf: 'center',
+    },
+    buttonText: {
+      fontFamily: 'Poppins-Bold',
+      fontSize: 16,
+      color: theme.background,
+      textAlign: 'center',
+    },
+    logoImage: {
+      maxWidth: 350,
+      height: 60,
+      alignSelf: 'center',
+      marginBottom: 16,
+    },
+  });
 
   if (hasOnboarded) return null;
 
@@ -115,95 +211,3 @@ export default function Index() {
     </View>
   );
 }
-
-
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: Colors.dark.background,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 16,
-  },
-  card: {
-    backgroundColor: Colors.dark.backgroundCard,
-    borderRadius: 20,
-    padding: 20,
-    width: '100%',
-    maxWidth: 500,
-  },
-  description: {
-    fontFamily: 'Poppins-Regular',
-    color: Colors.dark.text,
-    fontSize: 16,
-    textAlign: 'center',
-    marginBottom: 32,
-  },
-  carousel: {
-    width: '100%',
-  },
-  slide: {
-    // maxWidth: '100%',
-    width: screenWidth,
-    paddingHorizontal: 8,
-    alignItems: 'center',
-  },
-  mapImage: {
-    width: '100%',
-    height: 150,
-    borderRadius: 8,
-    marginBottom: 20,
-  },
-  sectionTitle: {
-    fontFamily: 'Poppins-Bold',
-    color: Colors.dark.text,
-    fontSize: 24,
-    textAlign: 'center',
-    marginBottom: 8,
-  },
-  sectionDescription: {
-    fontFamily: 'Poppins-Regular',
-    color: Colors.dark.text,
-    fontSize: 16,
-    textAlign: 'center',
-    marginBottom: 24,
-  },
-  dots: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    gap: 6,
-    marginBottom: 32,
-  },
-  dot: {
-    width: 8,
-    height: 8,
-    backgroundColor: Colors.basic.gray[500],
-    borderRadius: 4,
-  },
-  dotActive: {
-    width: 8,
-    height: 8,
-    backgroundColor: Colors.basic.primary[400],
-    borderRadius: 4,
-  },
-  button: {
-    backgroundColor: Colors.basic.primary[400],
-    paddingVertical: 14,
-    paddingHorizontal: 30,
-    borderRadius: 14,
-    alignSelf: 'center',
-  },
-  buttonText: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 16,
-    color: Colors.dark.background,
-    textAlign: 'center',
-  },
-  logoImage: {
-    maxWidth: 350,
-    height: 60,
-    alignSelf: 'center',
-    marginBottom: 16,
-  },
-});
-

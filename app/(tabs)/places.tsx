@@ -9,6 +9,7 @@ import { PLACES_DEMO } from '@/constants/Places';
 // import useDatabase from "@/database/database2"
 
 import { Colors } from '@/constants/Colors';
+import { useColorScheme } from '@/hooks/useColorScheme';
 
 import { getDistanceFromLatLonInKm } from '@/utils/distance';
 import { getIsOpenNow } from '@/utils/opentimes';
@@ -22,9 +23,6 @@ export default function Places() {
 
   const Provider = Platform.OS === 'web' ? null : SafeAreaProvider;
   const Container = Platform.OS === 'web' ? ScrollView : SafeAreaView;
-
-  const listHeaderComponent = <Text style={styles.textDefault}>Top of List</Text>
-  const listFooterComponent = <Text style={styles.textDefault}>End of List</Text>
 
   const CITY_CENTER = { latitude: 51.9178565, longitude: 4.4811894 }; // Rotterdam
 
@@ -187,10 +185,214 @@ export default function Places() {
   }, [selectedTypes, selectedLocations, userLocation, openNowOnly, showBookmarksOnly]);
 
 
-  
+  const colorScheme = useColorScheme();
+  const theme = Colors[colorScheme] ?? Colors.dark;
+
   const WhiteCheckIcon = () => (
-    <Text style={{ color: Colors.dark.text, fontSize: 16, fontWeight: 'bold' }}>✓</Text>
+    <Text style={{ color: theme.text, fontSize: 16, fontWeight: 'bold' }}>✓</Text>
   );
+
+  const styles = StyleSheet.create({
+    container: {
+        fontFamily: 'Poppins-Regular',
+        flex: 1,
+        // flexDirection: 'column',
+    },
+    textDefault: {
+      fontFamily: 'Poppins-Regular',
+      color: theme.text,
+      fontSize: 20,
+    },
+    text: {
+      fontFamily: 'Poppins-Regular',
+      color: theme.text,
+      fontSize: 42,
+      fontWeight: 'bold',
+      textAlign: 'center',
+    },
+    textName: {
+      fontFamily: 'Poppins-Regular',
+      color: theme.text,
+      fontSize: 18,
+      fontWeight: 'bold',
+      // textAlign: 'center',
+      maxWidth: 150,
+      overflow: "hidden",
+    },
+    textType: {
+      fontFamily: 'Poppins-Regular',
+      color: theme.text,
+      fontSize: 15,
+      // fontWeight: '400',
+      // textAlign: 'center',
+      maxWidth: 100,
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+    },
+    contentContainer: {
+      paddingTop: 10,
+      paddingBottom: 20,
+      paddingHorizontal: 12,
+      backgroundColor: theme.background,
+    },
+
+    flatList: {
+      flex: 1,
+      flexDirection: "column",
+    },
+
+    placeContainer: {
+      flex: 1,
+      flexDirection: 'row',
+      width: "100%",
+      maxWidth: 600,
+      marginBottom: 10,
+      borderRadius: 16,
+      overflow: "hidden",
+      marginHorizontal: "auto",
+      backgroundColor: theme.backgroundCard,
+      padding: 15,
+      height: 110
+    },
+
+    textAllContainer: {
+      fontFamily: 'Poppins-Regular',
+      flex: 1,
+      flexDirection: 'row',
+      width: "100%",
+      justifyContent: 'space-between'
+    },
+    textContainer: {
+      marginLeft: 20,
+      height: "100%",
+      marginVertical: "auto",
+    },
+    iconImg: {
+      width: 70,
+      height: 70,
+    },
+
+    textDetailsContainer: {
+      marginLeft: 3,
+      height: "100%",
+      maxWidth: 150,
+      alignItems: "flex-end",      // Align text to the right
+      justifyContent: "center",    // Vertically center
+    },
+    textDetails: {
+      fontFamily: 'Poppins-Regular',
+      color: theme.text,
+      fontSize: 14,
+      fontWeight: '400',
+      // textAlign: 'center',
+      maxWidth: 150,
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      textAlign: "right"
+    },
+
+    listHeaderFooterComponent: {
+      color: theme.text,
+      textAlign: 'center',
+      marginHorizontal: 'auto',
+    },
+    topperContainer: {
+      zIndex: 3000,
+      backgroundColor: theme.background900,
+    },
+    
+    dropdown: {
+      margin: 10,
+      zIndex: 3000,
+    },
+    dropdownContainer: {
+      zIndex: 2000,
+    },
+    searchInput: {
+      paddingVertical: 10,
+      paddingHorizontal: 12,
+      // borderWidth: 1,
+      // borderColor: '#ccc',
+      borderRadius: 6,
+      marginVertical: 1,
+      marginHorizontal: 3,
+    },
+    dropdownWrapper: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginHorizontal: 10,
+    },
+
+    dropdownDark: {
+      margin: 10,
+      backgroundColor: theme.backgroundCard,
+      // borderColor: '#444',
+      zIndex: 3000,
+    },
+
+    dropdownContainerDark: {
+      backgroundColor: theme.backgroundCard,
+      // borderColor: '#444',
+      maxHeight: 600
+    },
+
+    dropdownText: {
+      fontFamily: 'Poppins-Regular',
+      color: theme.text,
+    },
+
+    dropdownPlaceholder: {
+      color: theme.textLowcontrast,
+    },
+
+    searchInputDark: {
+      fontFamily: 'Poppins-Regular',
+      padding: 12,
+      // borderWidth: 1,
+      // borderColor: '#555',
+      borderRadius: 6,  
+      marginVertical: 1,
+      marginHorizontal: 3,
+      color: theme.text,
+      backgroundColor: theme.background900,
+    },
+
+    clearButton: {
+      marginLeft: 8,
+      paddingHorizontal: 10,
+      paddingVertical: 12,
+      backgroundColor: theme.buttonGray,
+      borderRadius: 8,
+      marginBottom: 10,
+    },
+    clearButtonText: {
+      fontFamily: 'Poppins-Bold',
+      // fontWeight: 'bold',
+      color: theme.text,
+    },
+    openStatus: {
+      fontFamily: 'Poppins-Bold',
+      fontSize: 14,
+      // fontWeight: 'bold',
+      marginTop: 4,
+    },
+
+    defaultButton: {
+    marginLeft: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 12,
+    backgroundColor: theme.buttonGray,
+    borderRadius: 8,
+    marginBottom: 10,
+    },
+    defaultButtonText: {
+      fontFamily: 'Poppins-Bold',
+      color: theme.text,
+    },
+  })
+
+  const listHeaderComponent = <Text style={styles.textDefault}>Top of List</Text>
+  const listFooterComponent = <Text style={styles.textDefault}>End of List</Text>
 
   return (
     <Provider>
@@ -251,7 +453,7 @@ export default function Places() {
             <TouchableOpacity
                 style={[
                   styles.defaultButton,
-                  { backgroundColor: openNowOnly ? Colors.basic.state.succes[300] : Colors.dark.background800 }
+                  { backgroundColor: openNowOnly ? Colors.basic.state.succes[300] : theme.background800 }
                 ]}
                 onPress={() => setOpenNowOnly(!openNowOnly)}
               >
@@ -264,7 +466,7 @@ export default function Places() {
                 style={[
                   styles.defaultButton,
                   { 
-                    backgroundColor: showBookmarksOnly ? Colors.basic.state.succes[300] : Colors.dark.background800,
+                    backgroundColor: showBookmarksOnly ? Colors.basic.state.succes[300] : theme.background0,
                     paddingVertical: 8,
                     paddingHorizontal: 16,
                     borderRadius: 8,
@@ -333,202 +535,3 @@ export default function Places() {
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-      fontFamily: 'Poppins-Regular',
-      flex: 1,
-      // flexDirection: 'column',
-  },
-  textDefault: {
-    fontFamily: 'Poppins-Regular',
-    color: Colors.dark.text,
-    fontSize: 20,
-  },
-  text: {
-    fontFamily: 'Poppins-Regular',
-    color: Colors.dark.text,
-    fontSize: 42,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  textName: {
-    fontFamily: 'Poppins-Regular',
-    color: Colors.dark.text,
-    fontSize: 18,
-    fontWeight: 'bold',
-    // textAlign: 'center',
-    maxWidth: 150,
-    overflow: "hidden",
-  },
-  textType: {
-    fontFamily: 'Poppins-Regular',
-    color: Colors.dark.text,
-    fontSize: 15,
-    // fontWeight: '400',
-    // textAlign: 'center',
-    maxWidth: 100,
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-  },
-  contentContainer: {
-    paddingTop: 10,
-    paddingBottom: 20,
-    paddingHorizontal: 12,
-    backgroundColor: Colors.dark.background,
-  },
-
-  flatList: {
-    flex: 1,
-    flexDirection: "column",
-  },
-
-  placeContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    width: "100%",
-    maxWidth: 600,
-    marginBottom: 10,
-    borderRadius: 16,
-    overflow: "hidden",
-    marginHorizontal: "auto",
-    backgroundColor: Colors.dark.backgroundCard,
-    padding: 15,
-    height: 110
-  },
-
-  textAllContainer: {
-    fontFamily: 'Poppins-Regular',
-    flex: 1,
-    flexDirection: 'row',
-    width: "100%",
-    justifyContent: 'space-between'
-  },
-  textContainer: {
-    marginLeft: 20,
-    height: "100%",
-    marginVertical: "auto",
-  },
-  iconImg: {
-    width: 70,
-    height: 70,
-  },
-
-  textDetailsContainer: {
-    marginLeft: 3,
-    height: "100%",
-    maxWidth: 150,
-    alignItems: "flex-end",      // Align text to the right
-    justifyContent: "center",    // Vertically center
-  },
-  textDetails: {
-    fontFamily: 'Poppins-Regular',
-    color: Colors.dark.text,
-    fontSize: 14,
-    fontWeight: '400',
-    // textAlign: 'center',
-    maxWidth: 150,
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-    textAlign: "right"
-  },
-
-  listHeaderFooterComponent: {
-    color: Colors.dark.text,
-    textAlign: 'center',
-    marginHorizontal: 'auto',
-  },
-  topperContainer: {
-    zIndex: 3000,
-    backgroundColor: Colors.dark.background900,
-  },
-  
-  dropdown: {
-    margin: 10,
-    zIndex: 3000,
-  },
-  dropdownContainer: {
-    zIndex: 2000,
-  },
-  searchInput: {
-    paddingVertical: 10,
-    paddingHorizontal: 12,
-    // borderWidth: 1,
-    // borderColor: '#ccc',
-    borderRadius: 6,
-    marginVertical: 1,
-    marginHorizontal: 3,
-  },
-  dropdownWrapper: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginHorizontal: 10,
-  },
-
-  dropdownDark: {
-    margin: 10,
-    backgroundColor: Colors.dark.backgroundCard,
-    // borderColor: '#444',
-    zIndex: 3000,
-  },
-
-  dropdownContainerDark: {
-    backgroundColor: Colors.dark.backgroundCard,
-    // borderColor: '#444',
-    maxHeight: 600
-  },
-
-  dropdownText: {
-    fontFamily: 'Poppins-Regular',
-    color: Colors.dark.text,
-  },
-
-  dropdownPlaceholder: {
-    color: Colors.dark.textLowcontrast,
-  },
-
-  searchInputDark: {
-    fontFamily: 'Poppins-Regular',
-    padding: 12,
-    // borderWidth: 1,
-    // borderColor: '#555',
-    borderRadius: 6,  
-    marginVertical: 1,
-    marginHorizontal: 3,
-    color: Colors.dark.text,
-    backgroundColor: Colors.dark.background900,
-  },
-
-  clearButton: {
-    marginLeft: 8,
-    paddingHorizontal: 10,
-    paddingVertical: 12,
-    backgroundColor: Colors.dark.buttonGray,
-    borderRadius: 8,
-    marginBottom: 10,
-  },
-  clearButtonText: {
-    fontFamily: 'Poppins-Bold',
-    // fontWeight: 'bold',
-    color: Colors.dark.text,
-  },
-  openStatus: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 14,
-    // fontWeight: 'bold',
-    marginTop: 4,
-  },
-
-  defaultButton: {
-  marginLeft: 8,
-  paddingHorizontal: 10,
-  paddingVertical: 12,
-  backgroundColor: Colors.dark.buttonGray,
-  borderRadius: 8,
-  marginBottom: 10,
-  },
-  defaultButtonText: {
-    fontFamily: 'Poppins-Bold',
-    color: Colors.dark.text,
-  },
-
-})

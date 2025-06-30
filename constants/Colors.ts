@@ -1,10 +1,3 @@
-/**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
- */
-
-
-
 const basicColors = {
   gray: {
     950: '#030712',
@@ -80,8 +73,23 @@ export const Colors = {
     tabIconDefault: basicColors.gray[400],
     tint: '#fff',
     tabIconSelected: basicColors.primary[400],
+    accent: basicColors.primary[400],
     link: basicColors.tertiary[400],
     buttonGray: basicColors.gray[700] 
+  },
+  light: {
+    text: basicColors.gray[950],
+    textLowcontrast: basicColors.gray[900],
+    background: basicColors.gray[50],
+    background900: basicColors.gray[100],
+    backgroundCard: basicColors.gray[300],
+    icon: basicColors.gray[700],
+    tabIconDefault: basicColors.gray[700],
+    tint: '#000',
+    tabIconSelected: basicColors.secondary[600],
+    accent: basicColors.secondary[600],
+    link: basicColors.tertiary[600],
+    buttonGray: basicColors.gray[300] 
   },
   basic: basicColors,
 };

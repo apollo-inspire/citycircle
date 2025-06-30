@@ -10,6 +10,7 @@ import PLACES_IMAGES from '@/constants/PlacesDemoImages';
 
 
 import { Colors } from '@/constants/Colors';
+import { useColorScheme } from '@/hooks/useColorScheme';
 
 
 
@@ -167,7 +168,81 @@ export default function PlaceDetail() {
   const isOpen = getIsOpenNow(place.opening_times);
 
 
-  
+  const colorScheme = useColorScheme();
+  const theme = Colors[colorScheme] ?? Colors.dark;
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: theme.background900,
+    },
+    content: {
+      alignItems: 'center',
+      padding: 20,
+    },
+    centeredContainer: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: theme.background900,
+      padding: 20,
+    },
+    text: {
+      fontFamily: 'Poppins-Bold',
+      color: theme.text,
+      fontSize: 32,
+      // fontWeight: 'bold',
+      textAlign: 'center',
+    },
+    textTitle: {
+      fontFamily: 'Poppins-Bold',
+      color: theme.accent,
+      fontSize: 36,
+      // fontWeight: 'bold',
+      textAlign: 'center',
+    },
+    textType: {
+      fontFamily: 'Poppins-Regular',
+      color: theme.text,
+      fontSize: 24,
+      marginBottom: 10,
+    },
+    textDetails: {
+      fontFamily: 'Poppins-Regular',
+      color: theme.text,
+      fontSize: 18,
+      marginVertical: 5,
+    },
+    image: {
+      width: 100,
+      height: 100,
+      marginBottom: 20,
+    },
+    link: {
+      color: theme.link,
+      textDecorationLine: 'underline',
+    },
+    separator: {
+      borderBottomColor: Colors.basic.gray[700],
+      borderBottomWidth: StyleSheet.hairlineWidth,
+      marginVertical: 10,
+      alignSelf: 'stretch',
+    },
+    button: {
+      marginTop: 20,
+      padding: 12,
+      backgroundColor: theme.buttonGray,
+      borderRadius: 8,
+    },
+    buttonText: {
+      color: theme.text, 
+      textAlign: 'center', 
+      fontFamily: 'Poppins-Bold',
+    }
+  });
+
+
+
   return (
     <ScrollView style={styles.container}>
       <Stack.Screen options={{ title: "Place Detail", headerShown: true }} />
@@ -242,72 +317,3 @@ export default function PlaceDetail() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Colors.dark.background900,
-  },
-  content: {
-    alignItems: 'center',
-    padding: 20,
-  },
-  centeredContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: Colors.dark.background900,
-    padding: 20,
-  },
-  text: {
-    fontFamily: 'Poppins-Bold',
-    color: Colors.dark.text,
-    fontSize: 32,
-    // fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  textTitle: {
-    fontFamily: 'Poppins-Bold',
-    color: Colors.basic.primary[400],
-    fontSize: 36,
-    // fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  textType: {
-    fontFamily: 'Poppins-Regular',
-    color: Colors.dark.text,
-    fontSize: 24,
-    marginBottom: 10,
-  },
-  textDetails: {
-    fontFamily: 'Poppins-Regular',
-    color: Colors.dark.text,
-    fontSize: 18,
-    marginVertical: 5,
-  },
-  image: {
-    width: 100,
-    height: 100,
-    marginBottom: 20,
-  },
-  link: {
-    color: Colors.dark.link,
-    textDecorationLine: 'underline',
-  },
-  separator: {
-    borderBottomColor: Colors.basic.gray[700],
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    marginVertical: 10,
-    alignSelf: 'stretch',
-  },
-  button: {
-    marginTop: 20,
-    padding: 12,
-    backgroundColor: Colors.dark.buttonGray,
-    borderRadius: 8,
-  },
-  buttonText: {
-    color: Colors.dark.text, 
-    textAlign: 'center', 
-    fontFamily: 'Poppins-Bold',
-  }
-});

@@ -1,4 +1,3 @@
-import { Colors } from '@/constants/Colors';
 import { PLACES_DEMO } from '@/constants/Places';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Stack } from 'expo-router';
@@ -6,6 +5,9 @@ import React, { useEffect, useState } from 'react';
 import { Alert, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+
+import { Colors } from '@/constants/Colors';
+import { useColorScheme } from '@/hooks/useColorScheme';
 
 export default function SettingsScreen() {
     const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
@@ -69,8 +71,109 @@ useEffect(() => {
   const Container = Platform.OS === 'web' ? ScrollView : SafeAreaView;
 
   const WhiteCheckIcon = () => (
-    <Text style={{ color: Colors.dark.text, fontSize: 16, fontWeight: 'bold' }}>✓</Text>
+    <Text style={{ color: theme.text, fontSize: 16, fontWeight: 'bold' }}>✓</Text>
   );
+
+  const colorScheme = useColorScheme();
+  const theme = Colors[colorScheme] ?? Colors.dark;
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: theme.background,
+      padding: 16,
+    },
+    scrollContent: {
+      paddingBottom: 80,
+    },
+    sectionTitle: {
+      fontFamily: 'Poppins-Bold',
+      fontSize: 18,
+      color: theme.text,
+      marginBottom: 8,
+    },
+    dropdownWrapper: {
+      zIndex: 3000,
+      marginBottom: 12,
+    },
+    dropdownDark: {
+      marginVertical: 10,
+      backgroundColor: theme.backgroundCard,
+    },
+    dropdownContainerDark: {
+      backgroundColor: theme.backgroundCard,
+      maxHeight: 600,
+    },
+    dropdownText: {
+      fontFamily: 'Poppins-Regular',
+      color: theme.text,
+    },
+    dropdownPlaceholder: {
+      color: theme.textLowcontrast,
+    },
+    searchInputDark: {
+      fontFamily: 'Poppins-Regular',
+      padding: 12,
+      borderRadius: 6,
+      marginVertical: 1,
+      marginHorizontal: 3,
+      color: theme.text,
+      backgroundColor: theme.background900,
+    },
+    clearButton: {
+      marginLeft: 8,
+      paddingHorizontal: 10,
+      paddingVertical: 12,
+      backgroundColor: theme.buttonGray,
+      borderRadius: 8,
+      alignSelf: 'flex-start',
+      marginHorizontal: 10,
+    },
+    clearButtonText: {
+      fontFamily: 'Poppins-Bold',
+      color: theme.text,
+    },
+    note: {
+      fontFamily: 'Poppins-Regular',
+      fontSize: 13,
+      color: theme.textLowcontrast,
+      fontStyle: 'italic',
+      marginTop: 8,
+      marginBottom: 32,
+    },
+      debugOutput: {
+          fontFamily: 'Poppins-Regular',
+          fontSize: 12,
+          color: theme.textLowcontrast,
+          marginTop: 4,
+          fontStyle: 'italic',
+      },
+          selectedLabel: {
+          fontFamily: 'Poppins-Bold',
+          fontSize: 14,
+          color: theme.text,
+          marginTop: 12,
+          marginBottom: 4,
+      },
+          tagsContainer: {
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          gap: 8,
+          marginBottom: 12,
+      },
+          tag: {
+          backgroundColor: theme.background900,
+          borderRadius: 8,
+          paddingHorizontal: 10,
+          paddingVertical: 8,
+      },
+          tagText: {
+          fontFamily: 'Poppins-Regular',
+          color: theme.text,
+      },
+
+  });
+
 
   return (
     <Provider>
@@ -157,99 +260,3 @@ useEffect(() => {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Colors.dark.background,
-    padding: 16,
-  },
-  scrollContent: {
-    paddingBottom: 80,
-  },
-  sectionTitle: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 18,
-    color: Colors.dark.text,
-    marginBottom: 8,
-  },
-  dropdownWrapper: {
-    zIndex: 3000,
-    marginBottom: 12,
-  },
-  dropdownDark: {
-    marginVertical: 10,
-    backgroundColor: Colors.dark.backgroundCard,
-  },
-  dropdownContainerDark: {
-    backgroundColor: Colors.dark.backgroundCard,
-    maxHeight: 600,
-  },
-  dropdownText: {
-    fontFamily: 'Poppins-Regular',
-    color: Colors.dark.text,
-  },
-  dropdownPlaceholder: {
-    color: Colors.dark.textLowcontrast,
-  },
-  searchInputDark: {
-    fontFamily: 'Poppins-Regular',
-    padding: 12,
-    borderRadius: 6,
-    marginVertical: 1,
-    marginHorizontal: 3,
-    color: Colors.dark.text,
-    backgroundColor: Colors.dark.background900,
-  },
-  clearButton: {
-    marginLeft: 8,
-    paddingHorizontal: 10,
-    paddingVertical: 12,
-    backgroundColor: Colors.dark.buttonGray,
-    borderRadius: 8,
-    alignSelf: 'flex-start',
-    marginHorizontal: 10,
-  },
-  clearButtonText: {
-    fontFamily: 'Poppins-Bold',
-    color: Colors.dark.text,
-  },
-  note: {
-    fontFamily: 'Poppins-Regular',
-    fontSize: 13,
-    color: Colors.dark.textLowcontrast,
-    fontStyle: 'italic',
-    marginTop: 8,
-    marginBottom: 32,
-  },
-    debugOutput: {
-        fontFamily: 'Poppins-Regular',
-        fontSize: 12,
-        color: Colors.dark.textLowcontrast,
-        marginTop: 4,
-        fontStyle: 'italic',
-    },
-        selectedLabel: {
-        fontFamily: 'Poppins-Bold',
-        fontSize: 14,
-        color: Colors.dark.text,
-        marginTop: 12,
-        marginBottom: 4,
-    },
-        tagsContainer: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        gap: 8,
-        marginBottom: 12,
-    },
-        tag: {
-        backgroundColor: Colors.dark.background900,
-        borderRadius: 8,
-        paddingHorizontal: 10,
-        paddingVertical: 8,
-    },
-        tagText: {
-        fontFamily: 'Poppins-Regular',
-        color: Colors.dark.text,
-    },
-
-});

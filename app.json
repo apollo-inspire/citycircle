@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/images/rotterdam-icon.jpg",
     "scheme": "myapp",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true
