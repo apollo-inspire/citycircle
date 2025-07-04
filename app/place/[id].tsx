@@ -247,7 +247,7 @@ export default function PlaceDetail() {
     <ScrollView style={styles.container}>
       <Stack.Screen options={{ title: "Place Detail", headerShown: true }} />
       <View style={styles.content}>
-        <Image style={styles.image} source={PLACES_IMAGES[place.id]} />
+        {/* <Image style={styles.image} source={PLACES_IMAGES[place.id]} /> */}
         <Text style={styles.textTitle}>{place.name}</Text>
         <Text style={styles.textType}>{place.type}</Text>
 
