@@ -8,7 +8,7 @@ import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 
-import { PLACES_DEMO } from '@/constants/Places';
+// import { PLACES_DEMO } from '@/constants/Places';
 
 import MultiselectDropdown from '@/components/MultiselectDropdown';
 import { getIsOpenNow } from '@/utils/opentimes';
@@ -43,6 +43,23 @@ const MapScreen = () => {
 
   const [bookmarkedPlaces, setBookmarkedPlaces] = useState<string[]>([]);
   const [showBookmarksOnly, setShowBookmarksOnly] = useState(false);
+
+  const [places, setPlaces] = useState([]);
+
+
+    useEffect(() => {
+    const fetchPlaces = async () => {
+      try {
+        const response = await fetch('https://raw.githubusercontent.com/apollo-inspire/placesdata/main/rotterdam/Places.json');
+        const json = await response.json();
+        setPlaces(json);
+      } catch (error) {
+        console.error('Failed to fetch remote places:', error);
+      }
+    };
+    fetchPlaces();
+  }, []);
+
  
   useEffect(() => {
     const loadBookmarks = async () => {
@@ -63,8 +80,8 @@ const MapScreen = () => {
 
 
   useEffect(() => {
-    const types = PLACES_DEMO.map(place => place.type.toLowerCase());
-    const allTags = PLACES_DEMO.flatMap(place => place.tags.map(tag => tag.toLowerCase()));
+    const types = places.map(place => place.type.toLowerCase());
+    const allTags = places.flatMap(place => place.tags.map(tag => tag.toLowerCase()));
     const combined = Array.from(new Set([...types, ...allTags]));
 
     const formattedTypes = combined.map(entry => ({
@@ -73,7 +90,7 @@ const MapScreen = () => {
     }));
 
     const locations = Array.from(
-      new Set([...PLACES_DEMO.map(p => p.city), ...PLACES_DEMO.map(p => p.district)])
+      new Set([...places.map(p => p.city), ...places.map(p => p.district)])
     ).map(location => ({
       label: location,
       value: location,
@@ -139,7 +156,7 @@ const MapScreen = () => {
   };
 
   // Filter logic
-  const filteredPlaces = PLACES_DEMO.filter(place => {
+  const filteredPlaces = places.filter(place => {
     const matchesType = selectedTypes.length === 0 ||
       selectedTypes.includes(place.type.toLowerCase()) ||
       place.tags.some(tag => selectedTypes.includes(tag.toLowerCase()));

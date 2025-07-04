@@ -3,11 +3,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Location from 'expo-location';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
-import { Image, Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-import { PLACES_DEMO } from '@/constants/Places';
-import PLACES_IMAGES from '@/constants/PlacesDemoImages';
-
+// import { PLACES_DEMO } from '@/constants/Places';
 
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
@@ -21,13 +19,105 @@ export default function PlaceDetail() {
 
   const router = useRouter();
 
-  // Convert ID to number and find the place
-  const place = PLACES_DEMO.find((p) => p.id === Number(id));
+  // const place = PLACES_DEMO.find((p) => p.id === Number(id));
+
+  const [place, setPlace] = useState(null);
+
+  useEffect(() => {
+    const fetchPlace = async () => {
+      try {
+        const response = await fetch('https://raw.githubusercontent.com/apollo-inspire/placesdata/main/rotterdam/Places.json');
+        const json = await response.json();
+        const matched = json.find((p) => p.id === Number(id));
+        setPlace(matched);
+      } catch (error) {
+        console.error('Failed to fetch remote places:', error);
+      }
+    };
+
+    fetchPlace();
+  }, [id]);
 
   const [userLocation, setUserLocation] = useState<{ latitude: number; longitude: number } | null>(null);
   const [distanceKm, setDistanceKm] = useState<number | null>(null);
 
   const [isBookmarked, setIsBookmarked] = useState<boolean>(false);
+
+  const colorScheme = useColorScheme();
+  const theme = Colors[colorScheme] ?? Colors.dark;
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: theme.background900,
+    },
+    content: {
+      alignItems: 'center',
+      padding: 20,
+    },
+    centeredContainer: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: theme.background900,
+      padding: 20,
+    },
+    text: {
+      fontFamily: 'Poppins-Bold',
+      color: theme.text,
+      fontSize: 32,
+      // fontWeight: 'bold',
+      textAlign: 'center',
+    },
+    textTitle: {
+      fontFamily: 'Poppins-Bold',
+      color: theme.accent,
+      fontSize: 36,
+      // fontWeight: 'bold',
+      textAlign: 'center',
+    },
+    textType: {
+      fontFamily: 'Poppins-Regular',
+      color: theme.text,
+      fontSize: 24,
+      marginBottom: 10,
+    },
+    textDetails: {
+      fontFamily: 'Poppins-Regular',
+      color: theme.text,
+      fontSize: 18,
+      marginVertical: 5,
+    },
+    image: {
+      width: 100,
+      height: 100,
+      marginBottom: 20,
+    },
+    link: {
+      color: theme.link,
+      textDecorationLine: 'underline',
+    },
+    separator: {
+      borderBottomColor: Colors.basic.gray[700],
+      borderBottomWidth: StyleSheet.hairlineWidth,
+      marginVertical: 10,
+      alignSelf: 'stretch',
+    },
+    button: {
+      marginTop: 20,
+      padding: 12,
+      backgroundColor: theme.buttonGray,
+      borderRadius: 8,
+    },
+    buttonText: {
+      color: theme.text, 
+      textAlign: 'center', 
+      fontFamily: 'Poppins-Bold',
+    }
+  });
+
+
+
 
 
   const BOOKMARKS_KEY = 'bookmarkedPlaces';
@@ -168,79 +258,7 @@ export default function PlaceDetail() {
   const isOpen = getIsOpenNow(place.opening_times);
 
 
-  const colorScheme = useColorScheme();
-  const theme = Colors[colorScheme] ?? Colors.dark;
-
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: theme.background900,
-    },
-    content: {
-      alignItems: 'center',
-      padding: 20,
-    },
-    centeredContainer: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: theme.background900,
-      padding: 20,
-    },
-    text: {
-      fontFamily: 'Poppins-Bold',
-      color: theme.text,
-      fontSize: 32,
-      // fontWeight: 'bold',
-      textAlign: 'center',
-    },
-    textTitle: {
-      fontFamily: 'Poppins-Bold',
-      color: theme.accent,
-      fontSize: 36,
-      // fontWeight: 'bold',
-      textAlign: 'center',
-    },
-    textType: {
-      fontFamily: 'Poppins-Regular',
-      color: theme.text,
-      fontSize: 24,
-      marginBottom: 10,
-    },
-    textDetails: {
-      fontFamily: 'Poppins-Regular',
-      color: theme.text,
-      fontSize: 18,
-      marginVertical: 5,
-    },
-    image: {
-      width: 100,
-      height: 100,
-      marginBottom: 20,
-    },
-    link: {
-      color: theme.link,
-      textDecorationLine: 'underline',
-    },
-    separator: {
-      borderBottomColor: Colors.basic.gray[700],
-      borderBottomWidth: StyleSheet.hairlineWidth,
-      marginVertical: 10,
-      alignSelf: 'stretch',
-    },
-    button: {
-      marginTop: 20,
-      padding: 12,
-      backgroundColor: theme.buttonGray,
-      borderRadius: 8,
-    },
-    buttonText: {
-      color: theme.text, 
-      textAlign: 'center', 
-      fontFamily: 'Poppins-Bold',
-    }
-  });
-
+  
 
 
   return (

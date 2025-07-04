@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { FlatList, Platform, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
-import { PLACES_DEMO } from '@/constants/Places';
+// import { PLACES_DEMO } from '@/constants/Places';
 // import useDatabase from "@/database/database2"
 
 import { Colors } from '@/constants/Colors';
@@ -20,6 +20,7 @@ import MultiselectDropdown from '@/components/MultiselectDropdown';
 export default function Places() {
   // const database = useDatabase();
   const [places, setPlaces] = useState([]);
+  const [remotePlaces, setRemotePlaces] = useState([]);
 
   const Provider = Platform.OS === 'web' ? null : SafeAreaProvider;
   const Container = Platform.OS === 'web' ? ScrollView : SafeAreaView;
@@ -51,6 +52,20 @@ export default function Places() {
   const [bookmarkedPlaces, setBookmarkedPlaces] = useState<string[]>([]);
   const [showBookmarksOnly, setShowBookmarksOnly] = useState(false);
  
+  useEffect(() => {
+    const fetchPlaces = async () => {
+      try {
+        const response = await fetch('https://raw.githubusercontent.com/apollo-inspire/placesdata/main/rotterdam/Places.json');
+        const json = await response.json();
+        setRemotePlaces(json);
+      } catch (e) {
+        console.error('Failed to fetch remote places:', e);
+      }
+    };
+    fetchPlaces();
+  }, []);
+
+
   useEffect(() => {
     const loadBookmarks = async () => {
       try {
@@ -111,8 +126,8 @@ export default function Places() {
 
 
   useEffect(() => {
-  const types = PLACES_DEMO.map(place => place.type.toLowerCase());
-  const allTags = PLACES_DEMO.flatMap(place => place.tags.map(tag => tag.toLowerCase()));
+  const types = remotePlaces.map(place => place.type.toLowerCase());
+  const allTags = remotePlaces.flatMap(place => place.tags.map(tag => tag.toLowerCase()));
   const combined = Array.from(new Set([...types, ...allTags]));
 
   const formattedTypes = combined.map(entry => ({
@@ -121,7 +136,7 @@ export default function Places() {
   }));
 
   const locations = Array.from(
-    new Set([...PLACES_DEMO.map(p => p.city), ...PLACES_DEMO.map(p => p.district)])
+    new Set([...remotePlaces.map(p => p.city), ...remotePlaces.map(p => p.district)])
   ).map(location => ({
     label: location,
     value: location,
@@ -133,7 +148,7 @@ export default function Places() {
 
 
   useEffect(() => {
-    const filtered = PLACES_DEMO.filter(place => {
+    const filtered = remotePlaces.filter(place => {
       const type = place.type.toLowerCase();
       const tags = place.tags.map(tag => tag.toLowerCase());
 
