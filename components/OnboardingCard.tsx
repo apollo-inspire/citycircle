@@ -30,7 +30,6 @@ export function OnboardingCard({ onComplete, colorScheme }: OnboardingCardProps)
     const index = Math.round(offsetX / screenWidth);
 
     if (index >= SLIDES.length) {
-      // Prevent scrolling beyond the last slide
       scrollRef.current?.scrollTo({ x: screenWidth * (SLIDES.length - 1), animated: true });
       setCurrentSlide(SLIDES.length - 1);
     } else {

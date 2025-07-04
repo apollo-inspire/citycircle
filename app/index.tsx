@@ -28,7 +28,6 @@ export default function Index() {
   });
 
   if (hasOnboarded) {
-    // Return null or a loading spinner while redirecting
     return null;
   }
 

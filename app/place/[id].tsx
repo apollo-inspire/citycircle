@@ -192,7 +192,7 @@ export default function PlaceDetail() {
     }
   }, [userLocation, place]);
 
-// Format: use meters if <1km
+  // Format: use meters if <1km
   const formattedDistance = distanceKm != null
     ? distanceKm < 1
       ? `${Math.round(distanceKm * 1000)} m away`

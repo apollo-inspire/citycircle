@@ -41,7 +41,7 @@ export default function Onboard2() {
   }, []);
 
   useEffect(() => {
-    if (remotePlaces.length === 0) return; // wait for data
+    if (remotePlaces.length === 0) return; 
 
     const types = remotePlaces.map(place => place.type?.toLowerCase());
     const allTags = remotePlaces.flatMap(place =>

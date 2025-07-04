@@ -296,8 +296,8 @@ export default function Places() {
       marginLeft: 3,
       height: "100%",
       maxWidth: 150,
-      alignItems: "flex-end",      // Align text to the right
-      justifyContent: "center",    // Vertically center
+      alignItems: "flex-end",      
+      justifyContent: "center",    
     },
     textDetails: {
       fontFamily: 'Poppins-Regular',
