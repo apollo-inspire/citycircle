@@ -80,8 +80,10 @@ const MapScreen = () => {
 
 
   useEffect(() => {
-    const types = places.map(place => place.type.toLowerCase());
-    const allTags = places.flatMap(place => place.tags.map(tag => tag.toLowerCase()));
+    if (places.length === 0) return; 
+
+    const types = places.map(place => place.type?.toLowerCase());
+    const allTags = places.flatMap(place => place.tags?.map(tag => tag.toLowerCase()) ?? []);
     const combined = Array.from(new Set([...types, ...allTags]));
 
     const formattedTypes = combined.map(entry => ({
@@ -91,16 +93,17 @@ const MapScreen = () => {
 
     const locations = Array.from(
       new Set([...places.map(p => p.city), ...places.map(p => p.district)])
-    ).map(location => ({
-      label: location,
-      value: location,
-    }));
-
-    setLocationOptions(locations);
+    )
+      .filter(Boolean)
+      .map(location => ({
+        label: location,
+        value: location,
+      }));
 
     setTypeOptions(formattedTypes);
+    setLocationOptions(locations);
+  }, [places]); 
 
-  }, []);
 
   useEffect(() => {
     const loadUserInterests = async () => {

@@ -126,25 +126,30 @@ export default function Places() {
 
 
   useEffect(() => {
-  const types = remotePlaces.map(place => place.type.toLowerCase());
-  const allTags = remotePlaces.flatMap(place => place.tags.map(tag => tag.toLowerCase()));
-  const combined = Array.from(new Set([...types, ...allTags]));
+    if (remotePlaces.length === 0) return; 
 
-  const formattedTypes = combined.map(entry => ({
-    label: entry.charAt(0).toUpperCase() + entry.slice(1),
-    value: entry,
-  }));
+    const types = remotePlaces.map(place => place.type.toLowerCase());
+    const allTags = remotePlaces.flatMap(place => place.tags.map(tag => tag.toLowerCase()));
+    const combined = Array.from(new Set([...types, ...allTags]));
 
-  const locations = Array.from(
-    new Set([...remotePlaces.map(p => p.city), ...remotePlaces.map(p => p.district)])
-  ).map(location => ({
-    label: location,
-    value: location,
-  }));
+    const formattedTypes = combined.map(entry => ({
+      label: entry.charAt(0).toUpperCase() + entry.slice(1),
+      value: entry,
+    }));
 
-  setTypeOptions(formattedTypes);
-  setLocationOptions(locations);
-}, []);
+    const locations = Array.from(
+      new Set([...remotePlaces.map(p => p.city), ...remotePlaces.map(p => p.district)])
+    )
+      .filter(Boolean) // remove null/undefined
+      .map(location => ({
+        label: location,
+        value: location,
+      }));
+
+    setTypeOptions(formattedTypes);
+    setLocationOptions(locations);
+  }, [remotePlaces]); 
+
 
 
   useEffect(() => {

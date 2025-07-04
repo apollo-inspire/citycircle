@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import { router } from 'expo-router';
-import DropDownPicker from 'react-native-dropdown-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { PLACES_DEMO } from '@/constants/Places';
+import { router } from 'expo-router';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import DropDownPicker from 'react-native-dropdown-picker';
+// import { PLACES_DEMO } from '@/constants/Places';
 
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
@@ -11,7 +11,22 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 export default function Onboard2() {
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
   const [interestOptions, setInterestOptions] = useState([]);
+  const [remotePlaces, setRemotePlaces] = useState([]);
   const [openInterests, setOpenInterests] = useState(false);
+
+  useEffect(() => {
+    const fetchPlaces = async () => {
+      try {
+        const response = await fetch('https://raw.githubusercontent.com/apollo-inspire/placesdata/main/rotterdam/Places.json');
+        const json = await response.json();
+        setRemotePlaces(json);
+      } catch (e) {
+        console.error('Failed to fetch remote places:', e);
+      }
+    };
+    fetchPlaces();
+  }, []);
+
 
   useEffect(() => {
     const loadInterests = async () => {
@@ -26,8 +41,12 @@ export default function Onboard2() {
   }, []);
 
   useEffect(() => {
-    const types = PLACES_DEMO.map(place => place.type.toLowerCase());
-    const allTags = PLACES_DEMO.flatMap(place => place.tags.map(tag => tag.toLowerCase()));
+    if (remotePlaces.length === 0) return; // wait for data
+
+    const types = remotePlaces.map(place => place.type?.toLowerCase());
+    const allTags = remotePlaces.flatMap(place =>
+      place.tags?.map(tag => tag.toLowerCase()) ?? []
+    );
     const combined = Array.from(new Set([...types, ...allTags]));
 
     const formatted = combined.map(entry => ({
@@ -36,7 +55,8 @@ export default function Onboard2() {
     }));
 
     setInterestOptions(formatted);
-  }, []);
+  }, [remotePlaces]);
+
 
   const saveInterests = async () => {
     try {

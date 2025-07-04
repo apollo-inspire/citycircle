@@ -1,4 +1,4 @@
-import { PLACES_DEMO } from '@/constants/Places';
+// import { PLACES_DEMO } from '@/constants/Places';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Stack } from 'expo-router';
 import React, { useEffect, useState } from 'react';
@@ -10,9 +10,26 @@ import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 
 export default function SettingsScreen() {
+    const [remotePlaces, setRemotePlaces] = useState([]);
     const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
     const [interestOptions, setInterestOptions] = useState([]);
     const [openInterests, setOpenInterests] = useState(false);
+
+
+    useEffect(() => {
+      const fetchPlaces = async () => {
+        try {
+          const response = await fetch('https://raw.githubusercontent.com/apollo-inspire/placesdata/main/rotterdam/Places.json');
+          const json = await response.json();
+          setRemotePlaces(json);
+        } catch (e) {
+          console.error('Failed to fetch remote places:', e);
+        }
+      };
+      fetchPlaces();
+    }, []);
+
+
 
     useEffect(() => {
     // Load saved interests from local storage
@@ -33,17 +50,17 @@ export default function SettingsScreen() {
 
 
 
-useEffect(() => {
-  const saveInterests = async () => {
-    try {
-      await AsyncStorage.setItem('userInterests', JSON.stringify(selectedInterests));
-      setSavedDisplay(selectedInterests.join(', ')); // update visible string
-    } catch (e) {
-      console.error('Failed to save interests:', e);
-    }
-  };
-  saveInterests();
-}, [selectedInterests]);
+    useEffect(() => {
+      const saveInterests = async () => {
+        try {
+          await AsyncStorage.setItem('userInterests', JSON.stringify(selectedInterests));
+          setSavedDisplay(selectedInterests.join(', ')); // update visible string
+        } catch (e) {
+          console.error('Failed to save interests:', e);
+        }
+      };
+      saveInterests();
+    }, [selectedInterests]);
 
 
 
@@ -55,8 +72,12 @@ useEffect(() => {
 
 
   useEffect(() => {
-    const types = PLACES_DEMO.map(place => place.type.toLowerCase());
-    const allTags = PLACES_DEMO.flatMap(place => place.tags.map(tag => tag.toLowerCase()));
+    if (remotePlaces.length === 0) return; // wait for fetch
+
+    const types = remotePlaces.map(place => place.type?.toLowerCase());
+    const allTags = remotePlaces.flatMap(place =>
+      place.tags?.map(tag => tag.toLowerCase()) ?? []
+    );
     const combined = Array.from(new Set([...types, ...allTags]));
 
     const formatted = combined.map(entry => ({
@@ -65,7 +86,8 @@ useEffect(() => {
     }));
 
     setInterestOptions(formatted);
-  }, []);
+  }, [remotePlaces]);
+
 
   const Provider = Platform.OS === 'web' ? React.Fragment : SafeAreaProvider;
   const Container = Platform.OS === 'web' ? ScrollView : SafeAreaView;
